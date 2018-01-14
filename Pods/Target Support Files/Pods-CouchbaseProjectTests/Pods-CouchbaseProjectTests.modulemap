@@ -1,0 +1,6 @@
+framework module Pods_CouchbaseProjectTests {
+  umbrella header "Pods-CouchbaseProjectTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,43 @@
+PODS:
+  - Alamofire (4.6.0)
+  - AlamofireObjectMapper (5.0.0):
+    - Alamofire (~> 4.1)
+    - ObjectMapper (~> 3.0)
+  - couchbase-lite-ios (1.4.1):
+    - couchbase-lite-ios/SQLite (= 1.4.1)
+  - couchbase-lite-ios/SQLite (1.4.1)
+  - Kingfisher (4.6.1)
+  - ObjectMapper (3.1.0)
+  - PromiseKit (4.5.1):
+    - PromiseKit/Foundation (= 4.5.1)
+    - PromiseKit/QuartzCore (= 4.5.1)
+    - PromiseKit/UIKit (= 4.5.1)
+  - PromiseKit/CorePromise (4.5.1)
+  - PromiseKit/Foundation (4.5.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/QuartzCore (4.5.1):
+    - PromiseKit/CorePromise
+  - PromiseKit/UIKit (4.5.1):
+    - PromiseKit/CorePromise
+  - SwViewCapture (1.0.6)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.5)
+  - AlamofireObjectMapper (~> 5.0)
+  - couchbase-lite-ios (~> 1.4)
+  - Kingfisher
+  - PromiseKit (~> 4.0)
+  - SwViewCapture
+
+SPEC CHECKSUMS:
+  Alamofire: f41a599bd63041760b26d393ec1069d9d7b917f4
+  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  couchbase-lite-ios: 7c875538a0fc55a7e9744edb4e89c23737686230
+  Kingfisher: 1f9157d9c02b380cbd0b7cc890161195164eb634
+  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  PromiseKit: 445dac9b2c3c3b4b31b5f842bc325700b848a8bd
+  SwViewCapture: edf1ea74e164f47af005fbdfdc6fc18ec373ec69
+
+PODFILE CHECKSUM: 2a733c6609f2e245090d2ce4e7f6fe0a9d5ced04
+
+COCOAPODS: 1.2.0
