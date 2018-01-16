@@ -107,6 +107,7 @@ class CBLDataHelper:NSObject {
     }
     
     @objc func observeDatabaseChange(notification: Notification) {
+        print("changes observed in data base via notification = \(notification)")
         if(!(notification.userInfo?["external"] as! Bool)) {
             return;
         }
@@ -233,7 +234,6 @@ class CBLDataHelper:NSObject {
         guard kSyncEnabled else {
             return
         }
-        
         syncError = nil
         
         // TRAINING: Start push/pull replications
@@ -257,6 +257,7 @@ class CBLDataHelper:NSObject {
         pusher.start()
         puller.start()
     }
+    
     /*
      let session: Dictionary<String, String> = [
      "session_id": "904ac010862f37c8dd99015a33ab5a3565fd8447",
@@ -264,11 +265,11 @@ class CBLDataHelper:NSObject {
      "cookie_name": "SyncGatewaySession"
      ]
      */
+    
     func startReplication(withSession session:[String:String]) {
         guard kSyncEnabled else {
             return
         }
-        
         syncError = nil
         
         let dateString = session["expires"]!

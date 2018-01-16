@@ -30,7 +30,7 @@ class AskTableViewCell: UITableViewCell,ConfigurableCell {
         return "AskTableViewCell"
     }
     
-    func configure(_ item: CBLQueryRow, at indexPath: IndexPath) {
+    func configure(_ item: AskViewModel, at indexPath: IndexPath) {
         //        dataTitleLabel.text = item
         titleLabel.text = "AskTableViewCell"
     }

@@ -166,6 +166,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="TRP-Jz-kpz"/>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="6h6-P3-QhQ"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <nil key="simulatedBottomBarMetrics"/>

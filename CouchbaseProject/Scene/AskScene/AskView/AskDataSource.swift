@@ -9,7 +9,7 @@
 import Foundation
 
 
-class AskCBLDataSource: TableArrayDataSource<CBLQueryRow, AskTableViewCell> {
+class AskDataSource: TableArrayDataSource<AskViewModel, AskTableViewCell> {
     
     //Additional properties for further modification
     //    var cellActionDelegate:actionAbleCellDelegate?

@@ -28,9 +28,13 @@ class TrackAskViewController: BaseAskViewController {
         let headerview = TitleHeaderView.instanceFromNib()
         headerview.backgroundColor = UIColor.red
         headerview.delegate = self
-        headerview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20)
+        headerview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80)
         headerview.setUp(with: "Tracking", date: nil)
         self.tableView.tableHeaderView = headerview
+        
+//        headerview.translatesAutoresizingMaskIntoConstraints = false
+//        headerview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[view(height)]", options: [], metrics:["height":100], views: ["view":headerview]) )
+//        headerview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[view(width)]", options: [], metrics:["width":UIScreen.main.bounds.width], views: ["view":headerview]) )
     }
 }
 

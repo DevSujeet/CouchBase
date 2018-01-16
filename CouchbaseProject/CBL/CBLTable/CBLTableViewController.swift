@@ -39,7 +39,7 @@ protocol CBLDataSourceRequirment {
     func setUpDataSource()
     func setupViewAndQuery()
 }
-class CBLTableViewController: UIViewController,CBLDataSourceRequirment {
+class CBLTableViewController: UIViewController {
     
     @IBOutlet weak var tableView:UITableView!
     
@@ -60,6 +60,11 @@ class CBLTableViewController: UIViewController,CBLDataSourceRequirment {
         setupViewAndQuery()
     }
 
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
     func setUpDataSource() {
 //        //create a proper data source
 //        cBLDataSource = CBLDataSource(tableView: self.tableView, array: listRows!)
@@ -68,10 +73,7 @@ class CBLTableViewController: UIViewController,CBLDataSourceRequirment {
 //            print("CBLTableViewCell selected")
 //        }
     }
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+
     // MARK: - KVO
     
     // TRAINING: Responding to Live Query changes

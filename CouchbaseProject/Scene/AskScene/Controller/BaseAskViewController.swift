@@ -7,14 +7,19 @@
 //
 
 import UIKit
+/*
+    a controller with a given data source and a ask view with its own data source
+ */
 struct BaseAskViewControllerSetting {
-    static let askViewTopConstraintTopMargin = CGFloat(70)
+    static let askViewTopConstraintTopMargin = CGFloat(30)
+    static let askViewBottomConstraintFromTopMargin = CGFloat(90)
 }
 class BaseAskViewController: CBLTableViewController {
     
     var askView:AskView!
     
     ///----------for test purpose------
+    //each subclass should define its own data array and data source depending upon the requirement.
     let arrayData = ["AAA","BBB","CCC","DDD"]
     var arrayDataSource:ArrayDataSource?
     //----------------------------------
@@ -41,9 +46,13 @@ class BaseAskViewController: CBLTableViewController {
     
     private func createAskViewAndSetup() {
         askView = AskView.instanceFromNib()
-        askView.layer.cornerRadius = 8
         askView.setupTest()
+        
         askView.delegate = self
+        askView.layer.cornerRadius = 8
+        askView.layer.borderWidth = 1
+        askView.layer.borderColor = UIColor.gray.cgColor
+        askView.clipsToBounds = true
         self.view.addSubview(askView)
         
         setUpConstraintsForAskView()
@@ -57,11 +66,11 @@ class BaseAskViewController: CBLTableViewController {
         //setup Constriaint
         let guide = self.view.safeAreaLayoutGuide
         askTopConstraint = (askView.topAnchor.constraint(equalTo: guide.topAnchor))
-        askTopConstraint.constant = UIScreen.main.bounds.height - BaseAskViewControllerSetting.askViewTopConstraintTopMargin
+        askTopConstraint.constant = UIScreen.main.bounds.height - BaseAskViewControllerSetting.askViewBottomConstraintFromTopMargin
         self.view.addConstraint(askTopConstraint)
         let superview = self.view
         //adding height constraint
-        superview!.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[view(height)]", options: [], metrics:["height":UIScreen.main.bounds.height - BaseAskViewControllerSetting.askViewTopConstraintTopMargin], views: ["view":askView]) )
+        superview!.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[view(height)]", options: [], metrics:["height":superview!.frame.height - BaseAskViewControllerSetting.askViewTopConstraintTopMargin], views: ["view":askView]) )
         
         //Adding side margin constriant
         superview!.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:|-(0)-[view]-(0)-|", options: [], metrics: nil, views: ["view":askView]) )
@@ -71,7 +80,7 @@ class BaseAskViewController: CBLTableViewController {
 extension BaseAskViewController:AskViewDelegate {
     func doneButtonPressed() {
         UIView.animate(withDuration: 0.5, animations: { [weak self] in
-            self?.askTopConstraint.constant = UIScreen.main.bounds.height - BaseAskViewControllerSetting.askViewTopConstraintTopMargin
+            self?.askTopConstraint.constant = UIScreen.main.bounds.height - BaseAskViewControllerSetting.askViewBottomConstraintFromTopMargin
             self?.view.layoutIfNeeded() ?? ()
         })
         

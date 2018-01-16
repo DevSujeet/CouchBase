@@ -25,7 +25,7 @@ class AlertViewController: BaseAskViewController {
 
     func createHeaderView(){
         let headerView = TitleWithBackView.instanceFromNib()
-        headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 20)
+        headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 60)
         headerView.setUp(withTitle: "Alert")
         headerView.delegate = self
         

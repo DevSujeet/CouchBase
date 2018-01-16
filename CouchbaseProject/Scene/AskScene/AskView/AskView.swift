@@ -13,13 +13,14 @@ protocol AskViewDelegate:NSObjectProtocol {
     func didBeginAsking()
 }
 
-class AskView: UIView,CBLDataSourceRequirment, UISearchResultsUpdating {
+class AskView: UIView,CBLDataSourceRequirment {//, UISearchResultsUpdating..not using search controller
 
     @IBOutlet weak var tableView: UITableView!
     
-    var cBLDataSource:AskCBLDataSource?
     weak var delegate:AskViewDelegate?
     
+    var askDataArray:[AskViewModel]?
+    var askDataSource:AskDataSource?
     ///----------for test purpose------
     let arrayData = ["ask1A","ask1AB","ask1AC","ask1AD"]
     var arrayDataSource:ArrayDataSource?
@@ -37,25 +38,42 @@ class AskView: UIView,CBLDataSourceRequirment, UISearchResultsUpdating {
 
     func setupTest(){
         // Setup SearchController:
-        let searchHeaderView = AskSearchView.instanceFromNib()
-        searchHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 40)
-        searchHeaderView.delegate = self
-        self.tableView.tableHeaderView = searchHeaderView
-
-        // Do any additional setup after loading the view, typically from a nib.
-        arrayDataSource = ArrayDataSource(tableView: tableView, array: arrayData)
+        setUpSearchHeader()
         
+        //let dummy data
+        let ask1 = AskViewModel(with: "ask1")
+        let ask2 = AskViewModel(with: "ask2")
+        let ask3 = AskViewModel(with: "ask3")
+        askDataArray = [ask1,ask2,ask3]
+
+        //create a proper data source
+        askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
         //similarly other block can be defined for action in cell like edit on cell
-        arrayDataSource?.tableItemSelectionHandler = { index in
-            print("cell selected")
+        askDataSource?.tableItemSelectionHandler = { index in
+            print("AskTableViewCell selected")
         }
     }
     
     func setUp(){
         //set the searchview as the table header and set its delegate to self
         // Setup SearchController:
+        setUpSearchHeader()
+        
         setUpDataSource()
         setupViewAndQuery()
+    }
+    
+    func setUpSearchHeader(){
+        let searchHeaderView = AskSearchView.instanceFromNib()
+        searchHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:70)
+        searchHeaderView.delegate = self
+        searchHeaderView.backgroundColor = UIColor.blue
+        self.tableView.tableHeaderView = searchHeaderView
+        
+//        let superview = self.tableView
+        //adding height constraint
+//        searchHeaderView.translatesAutoresizingMaskIntoConstraints = false
+//       searchHeaderView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[view(>=height)]", options: [], metrics:["height":60], views: ["view":searchHeaderView]) )
     }
         
         //MARK:- CBLDataSourceRequirment protocol
@@ -65,9 +83,9 @@ class AskView: UIView,CBLDataSourceRequirment, UISearchResultsUpdating {
         
         func setUpDataSource(){
             //create a proper data source
-            cBLDataSource = AskCBLDataSource(tableView: self.tableView, array: listRows!)
+            askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
             //similarly other block can be defined for action in cell like edit on cell
-            cBLDataSource?.tableItemSelectionHandler = { index in
+            askDataSource?.tableItemSelectionHandler = { index in
                 print("AskTableViewCell selected")
             }
         }
@@ -92,21 +110,21 @@ class AskView: UIView,CBLDataSourceRequirment, UISearchResultsUpdating {
         }
     
     // MARK: - UISearchController
-    
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        print("updateSearchResults")
-//        let text = searchController.searchBar.text ?? ""
-//        if !text.isEmpty {
-//            listsLiveQuery.startKey = text
-//            listsLiveQuery.prefixMatchLevel = 1
-//        } else {
-//            listsLiveQuery.startKey = nil
-//            listsLiveQuery.prefixMatchLevel = 0
-//        }
-//        listsLiveQuery.endKey = listsLiveQuery.startKey
-//        listsLiveQuery.queryOptionsChanged()
-    }
+//    not using searchcontroller
+//
+//    func updateSearchResults(for searchController: UISearchController) {
+//        print("updateSearchResults")
+////        let text = searchController.searchBar.text ?? ""
+////        if !text.isEmpty {
+////            listsLiveQuery.startKey = text
+////            listsLiveQuery.prefixMatchLevel = 1
+////        } else {
+////            listsLiveQuery.startKey = nil
+////            listsLiveQuery.prefixMatchLevel = 0
+////        }
+////        listsLiveQuery.endKey = listsLiveQuery.startKey
+////        listsLiveQuery.queryOptionsChanged()
+//    }
 }
 
 extension AskView :AskSearchViewDelegate {

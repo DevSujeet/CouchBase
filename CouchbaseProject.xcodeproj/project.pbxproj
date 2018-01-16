@@ -26,6 +26,7 @@
 		BA863BB8200DD82F0007BD81 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA863BB7200DD82F0007BD81 /* AlertViewController.swift */; };
 		BA863BBC200DDA690007BD81 /* TitleWithBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA863BBB200DDA690007BD81 /* TitleWithBackView.swift */; };
 		BA863BBE200DDA740007BD81 /* TitleWithBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA863BBD200DDA740007BD81 /* TitleWithBackView.xib */; };
+		BA863BC1200E0A530007BD81 /* AskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA863BC0200E0A530007BD81 /* AskViewModel.swift */; };
 		BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90035B2005F4EA00E3A035 /* Ui.swift */; };
 		BA90035E2005F52900E3A035 /* TextDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90035D2005F52900E3A035 /* TextDialog.swift */; };
 		BA9003612007415200E3A035 /* DataListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9003602007415200E3A035 /* DataListViewController.swift */; };
@@ -109,6 +110,7 @@
 		BA863BB7200DD82F0007BD81 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		BA863BBB200DDA690007BD81 /* TitleWithBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithBackView.swift; sourceTree = "<group>"; };
 		BA863BBD200DDA740007BD81 /* TitleWithBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleWithBackView.xib; sourceTree = "<group>"; };
+		BA863BC0200E0A530007BD81 /* AskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewModel.swift; sourceTree = "<group>"; };
 		BA90035B2005F4EA00E3A035 /* Ui.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ui.swift; sourceTree = "<group>"; };
 		BA90035D2005F52900E3A035 /* TextDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDialog.swift; sourceTree = "<group>"; };
 		BA9003602007415200E3A035 /* DataListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 		BA84003F200C9F5C00986FF6 /* AskScene */ = {
 			isa = PBXGroup;
 			children = (
+				BA863BBF200E0A120007BD81 /* ViewModel */,
 				BA84004B200CA59500986FF6 /* Controller */,
 				BA840044200CA02500986FF6 /* AskView */,
 			);
@@ -286,6 +289,14 @@
 				BA863BBD200DDA740007BD81 /* TitleWithBackView.xib */,
 			);
 			path = TitleWithBack;
+			sourceTree = "<group>";
+		};
+		BA863BBF200E0A120007BD81 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA863BC0200E0A530007BD81 /* AskViewModel.swift */,
+			);
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		BA90035A2005F4CE00E3A035 /* UI */ = {
@@ -862,6 +873,7 @@
 				BA863BB8200DD82F0007BD81 /* AlertViewController.swift in Sources */,
 				BA9003682007433700E3A035 /* GenericCollectionViewProtocol.swift in Sources */,
 				BAA5030F200BC18D00A4AC73 /* Kingfisher+extension.swift in Sources */,
+				BA863BC1200E0A530007BD81 /* AskViewModel.swift in Sources */,
 				BAEC20252004EF7C00B79AB1 /* LoginViewController.swift in Sources */,
 				BA9003642007420D00E3A035 /* ListTableViewCell.swift in Sources */,
 				BA90037D2007456500E3A035 /* DictionaryDataProvider.swift in Sources */,

@@ -14,12 +14,15 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var usernameTextfeild: UITextField!{
         didSet{
             setLoginTextfield(textField: usernameTextfeild, withText: "Email")
+            usernameTextfeild.text = "test@email.com"
         }
     }
     
     @IBOutlet weak var passwordTextfield: UITextField!{
         didSet{
             setLoginTextfield(textField: passwordTextfield, withText: "Password")
+            passwordTextfield.text = "test"
+            passwordTextfield.isSecureTextEntry = true
         }
     }
     
