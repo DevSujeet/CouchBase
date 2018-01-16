@@ -9,6 +9,23 @@
 /* Begin PBXBuildFile section */
 		00521A16C7DDDFAA3517D65D /* Pods_CouchbaseProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F845A5EB87476EA6A1399E6D /* Pods_CouchbaseProject.framework */; };
 		8D5398E727A660825E9DB767 /* Pods_CouchbaseProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB3F78D728A24778D54F93 /* Pods_CouchbaseProjectTests.framework */; };
+		BA840039200C87A800986FF6 /* QIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA840038200C87A800986FF6 /* QIResponse.swift */; };
+		BA84003C200C8BAB00986FF6 /* MillisecondsToDateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84003B200C8BAB00986FF6 /* MillisecondsToDateTransform.swift */; };
+		BA84003E200C8BDF00986FF6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84003D200C8BDF00986FF6 /* Utility.swift */; };
+		BA840041200C9F9700986FF6 /* AskView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA840040200C9F9700986FF6 /* AskView.swift */; };
+		BA840043200C9FA700986FF6 /* AskView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA840042200C9FA700986FF6 /* AskView.xib */; };
+		BA840046200CA04C00986FF6 /* AskDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA840045200CA04C00986FF6 /* AskDataSource.swift */; };
+		BA840049200CA0B100986FF6 /* AskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA840047200CA0B100986FF6 /* AskTableViewCell.swift */; };
+		BA84004A200CA0B100986FF6 /* AskTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA840048200CA0B100986FF6 /* AskTableViewCell.xib */; };
+		BA84004D200CA61300986FF6 /* BaseAskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84004C200CA61300986FF6 /* BaseAskViewController.swift */; };
+		BA84004F200CC06200986FF6 /* TrackAskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84004E200CC06200986FF6 /* TrackAskViewController.swift */; };
+		BA840052200CF32200986FF6 /* AskSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA840051200CF32200986FF6 /* AskSearchView.swift */; };
+		BA840054200CF33300986FF6 /* AskSearchView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA840053200CF33300986FF6 /* AskSearchView.xib */; };
+		BA863BB2200D1C1F0007BD81 /* TitleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA863BB1200D1C1F0007BD81 /* TitleHeaderView.xib */; };
+		BA863BB4200D1C2C0007BD81 /* TitleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA863BB3200D1C2C0007BD81 /* TitleHeaderView.swift */; };
+		BA863BB8200DD82F0007BD81 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA863BB7200DD82F0007BD81 /* AlertViewController.swift */; };
+		BA863BBC200DDA690007BD81 /* TitleWithBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA863BBB200DDA690007BD81 /* TitleWithBackView.swift */; };
+		BA863BBE200DDA740007BD81 /* TitleWithBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA863BBD200DDA740007BD81 /* TitleWithBackView.xib */; };
 		BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90035B2005F4EA00E3A035 /* Ui.swift */; };
 		BA90035E2005F52900E3A035 /* TextDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90035D2005F52900E3A035 /* TextDialog.swift */; };
 		BA9003612007415200E3A035 /* DataListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9003602007415200E3A035 /* DataListViewController.swift */; };
@@ -31,6 +48,7 @@
 		BA9003962008EB0100E3A035 /* CBLTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9003942008EB0100E3A035 /* CBLTableViewCell.swift */; };
 		BA9003972008EB0100E3A035 /* CBLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA9003952008EB0100E3A035 /* CBLTableViewCell.xib */; };
 		BA90039B2008F31100E3A035 /* CBLDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90039A2008F31100E3A035 /* CBLDataHelper.swift */; };
+		BA93D8E5200C7FF500002D6A /* userQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93D8E4200C7FF500002D6A /* userQuery.swift */; };
 		BAA50304200BBF1D00A4AC73 /* UILabel+dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA50301200BBF1D00A4AC73 /* UILabel+dimension.swift */; };
 		BAA50305200BBF1D00A4AC73 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA50302200BBF1D00A4AC73 /* UIView+Border.swift */; };
 		BAA50306200BBF1D00A4AC73 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA50303200BBF1D00A4AC73 /* UIColor+Convenience.swift */; };
@@ -74,6 +92,23 @@
 		45F98B471B180B602EBE0DC7 /* Pods-CouchbaseProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchbaseProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchbaseProjectTests/Pods-CouchbaseProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89CB3F78D728A24778D54F93 /* Pods_CouchbaseProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchbaseProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		904000B52BA4720AAAE88741 /* Pods-CouchbaseProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchbaseProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchbaseProjectTests/Pods-CouchbaseProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		BA840038200C87A800986FF6 /* QIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QIResponse.swift; sourceTree = "<group>"; };
+		BA84003B200C8BAB00986FF6 /* MillisecondsToDateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MillisecondsToDateTransform.swift; sourceTree = "<group>"; };
+		BA84003D200C8BDF00986FF6 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		BA840040200C9F9700986FF6 /* AskView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskView.swift; sourceTree = "<group>"; };
+		BA840042200C9FA700986FF6 /* AskView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskView.xib; sourceTree = "<group>"; };
+		BA840045200CA04C00986FF6 /* AskDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskDataSource.swift; sourceTree = "<group>"; };
+		BA840047200CA0B100986FF6 /* AskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskTableViewCell.swift; sourceTree = "<group>"; };
+		BA840048200CA0B100986FF6 /* AskTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskTableViewCell.xib; sourceTree = "<group>"; };
+		BA84004C200CA61300986FF6 /* BaseAskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseAskViewController.swift; sourceTree = "<group>"; };
+		BA84004E200CC06200986FF6 /* TrackAskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackAskViewController.swift; sourceTree = "<group>"; };
+		BA840051200CF32200986FF6 /* AskSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskSearchView.swift; sourceTree = "<group>"; };
+		BA840053200CF33300986FF6 /* AskSearchView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskSearchView.xib; sourceTree = "<group>"; };
+		BA863BB1200D1C1F0007BD81 /* TitleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleHeaderView.xib; sourceTree = "<group>"; };
+		BA863BB3200D1C2C0007BD81 /* TitleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleHeaderView.swift; sourceTree = "<group>"; };
+		BA863BB7200DD82F0007BD81 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		BA863BBB200DDA690007BD81 /* TitleWithBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithBackView.swift; sourceTree = "<group>"; };
+		BA863BBD200DDA740007BD81 /* TitleWithBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleWithBackView.xib; sourceTree = "<group>"; };
 		BA90035B2005F4EA00E3A035 /* Ui.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ui.swift; sourceTree = "<group>"; };
 		BA90035D2005F52900E3A035 /* TextDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDialog.swift; sourceTree = "<group>"; };
 		BA9003602007415200E3A035 /* DataListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListViewController.swift; sourceTree = "<group>"; };
@@ -96,6 +131,7 @@
 		BA9003942008EB0100E3A035 /* CBLTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLTableViewCell.swift; sourceTree = "<group>"; };
 		BA9003952008EB0100E3A035 /* CBLTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLTableViewCell.xib; sourceTree = "<group>"; };
 		BA90039A2008F31100E3A035 /* CBLDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLDataHelper.swift; sourceTree = "<group>"; };
+		BA93D8E4200C7FF500002D6A /* userQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userQuery.swift; sourceTree = "<group>"; };
 		BAA50301200BBF1D00A4AC73 /* UILabel+dimension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+dimension.swift"; sourceTree = "<group>"; };
 		BAA50302200BBF1D00A4AC73 /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		BAA50303200BBF1D00A4AC73 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
@@ -160,6 +196,96 @@
 				18259786879FFE482262A1A9 /* Pods_CouchbaseProjectUITests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BA84003A200C8B8800986FF6 /* Transformers */ = {
+			isa = PBXGroup;
+			children = (
+				BA84003B200C8BAB00986FF6 /* MillisecondsToDateTransform.swift */,
+			);
+			path = Transformers;
+			sourceTree = "<group>";
+		};
+		BA84003F200C9F5C00986FF6 /* AskScene */ = {
+			isa = PBXGroup;
+			children = (
+				BA84004B200CA59500986FF6 /* Controller */,
+				BA840044200CA02500986FF6 /* AskView */,
+			);
+			path = AskScene;
+			sourceTree = "<group>";
+		};
+		BA840044200CA02500986FF6 /* AskView */ = {
+			isa = PBXGroup;
+			children = (
+				BA840050200CF2D200986FF6 /* SearchView */,
+				BA840045200CA04C00986FF6 /* AskDataSource.swift */,
+				BA840040200C9F9700986FF6 /* AskView.swift */,
+				BA840042200C9FA700986FF6 /* AskView.xib */,
+				BA840047200CA0B100986FF6 /* AskTableViewCell.swift */,
+				BA840048200CA0B100986FF6 /* AskTableViewCell.xib */,
+			);
+			path = AskView;
+			sourceTree = "<group>";
+		};
+		BA84004B200CA59500986FF6 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				BA84004C200CA61300986FF6 /* BaseAskViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		BA840050200CF2D200986FF6 /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				BA840051200CF32200986FF6 /* AskSearchView.swift */,
+				BA840053200CF33300986FF6 /* AskSearchView.xib */,
+			);
+			path = SearchView;
+			sourceTree = "<group>";
+		};
+		BA863BB0200D1BF00007BD81 /* TitleHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				BA863BB3200D1C2C0007BD81 /* TitleHeaderView.swift */,
+				BA863BB1200D1C1F0007BD81 /* TitleHeaderView.xib */,
+			);
+			path = TitleHeaderView;
+			sourceTree = "<group>";
+		};
+		BA863BB5200DD7080007BD81 /* TrackScene */ = {
+			isa = PBXGroup;
+			children = (
+				BA84004E200CC06200986FF6 /* TrackAskViewController.swift */,
+			);
+			path = TrackScene;
+			sourceTree = "<group>";
+		};
+		BA863BB6200DD81D0007BD81 /* AlertScene */ = {
+			isa = PBXGroup;
+			children = (
+				BA863BB7200DD82F0007BD81 /* AlertViewController.swift */,
+			);
+			path = AlertScene;
+			sourceTree = "<group>";
+		};
+		BA863BB9200DDA050007BD81 /* TableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				BA863BBA200DDA200007BD81 /* TitleWithBack */,
+				BA863BB0200D1BF00007BD81 /* TitleHeaderView */,
+			);
+			path = TableHeaderView;
+			sourceTree = "<group>";
+		};
+		BA863BBA200DDA200007BD81 /* TitleWithBack */ = {
+			isa = PBXGroup;
+			children = (
+				BA863BBB200DDA690007BD81 /* TitleWithBackView.swift */,
+				BA863BBD200DDA740007BD81 /* TitleWithBackView.xib */,
+			);
+			path = TitleWithBack;
 			sourceTree = "<group>";
 		};
 		BA90035A2005F4CE00E3A035 /* UI */ = {
@@ -276,6 +402,7 @@
 			isa = PBXGroup;
 			children = (
 				BA9003862008BFCC00E3A035 /* AppStyleGuide.swift */,
+				BA84003D200C8BDF00986FF6 /* Utility.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -315,6 +442,16 @@
 				BA90039A2008F31100E3A035 /* CBLDataHelper.swift */,
 			);
 			path = CBLData;
+			sourceTree = "<group>";
+		};
+		BA93D8E3200C7F4600002D6A /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA84003A200C8B8800986FF6 /* Transformers */,
+				BA93D8E4200C7FF500002D6A /* userQuery.swift */,
+				BA840038200C87A800986FF6 /* QIResponse.swift */,
+			);
+			path = DataModel;
 			sourceTree = "<group>";
 		};
 		BAA50300200BBE5100A4AC73 /* Extensions */ = {
@@ -357,9 +494,10 @@
 		BAEC1FEF2004A52000B79AB1 /* CouchbaseProject */ = {
 			isa = PBXGroup;
 			children = (
-				BA90038F2008E4E000E3A035 /* CBL */,
+				BA93D8E3200C7F4600002D6A /* DataModel */,
 				BA9003892008C33E00E3A035 /* Utility */,
 				BA9003882008C2F800E3A035 /* General */,
+				BA90038F2008E4E000E3A035 /* CBL */,
 				BAEC20222004EF3D00B79AB1 /* Scene */,
 				BAEC201E2004D09800B79AB1 /* Services */,
 				BAEC1FF02004A52000B79AB1 /* AppDelegate.swift */,
@@ -401,6 +539,10 @@
 		BAEC20222004EF3D00B79AB1 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
+				BA863BB9200DDA050007BD81 /* TableHeaderView */,
+				BA863BB6200DD81D0007BD81 /* AlertScene */,
+				BA863BB5200DD7080007BD81 /* TrackScene */,
+				BA84003F200C9F5C00986FF6 /* AskScene */,
 				BA90035F20073BD700E3A035 /* ListDataScene */,
 				BAEC20232004EF4E00B79AB1 /* LoginScene */,
 			);
@@ -544,9 +686,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA84004A200CA0B100986FF6 /* AskTableViewCell.xib in Resources */,
 				BAEC1FFB2004A52000B79AB1 /* LaunchScreen.storyboard in Resources */,
+				BA840054200CF33300986FF6 /* AskSearchView.xib in Resources */,
 				BA9003652007420D00E3A035 /* ListTableViewCell.xib in Resources */,
 				BAEC1FF82004A52000B79AB1 /* Assets.xcassets in Resources */,
+				BA840043200C9FA700986FF6 /* AskView.xib in Resources */,
+				BA863BBE200DDA740007BD81 /* TitleWithBackView.xib in Resources */,
+				BA863BB2200D1C1F0007BD81 /* TitleHeaderView.xib in Resources */,
 				BA9003972008EB0100E3A035 /* CBLTableViewCell.xib in Resources */,
 				BAEC1FF62004A52000B79AB1 /* Main.storyboard in Resources */,
 			);
@@ -711,6 +858,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BA84003E200C8BDF00986FF6 /* Utility.swift in Sources */,
+				BA863BB8200DD82F0007BD81 /* AlertViewController.swift in Sources */,
 				BA9003682007433700E3A035 /* GenericCollectionViewProtocol.swift in Sources */,
 				BAA5030F200BC18D00A4AC73 /* Kingfisher+extension.swift in Sources */,
 				BAEC20252004EF7C00B79AB1 /* LoginViewController.swift in Sources */,
@@ -718,10 +867,16 @@
 				BA90037D2007456500E3A035 /* DictionaryDataProvider.swift in Sources */,
 				BA9003722007448F00E3A035 /* CollectionDataSource.swift in Sources */,
 				BA90037E2007456500E3A035 /* ArrayDataProvider.swift in Sources */,
+				BA84004D200CA61300986FF6 /* BaseAskViewController.swift in Sources */,
+				BA84003C200C8BAB00986FF6 /* MillisecondsToDateTransform.swift in Sources */,
 				BA9003842008BF2D00E3A035 /* Flashable.swift in Sources */,
+				BA840046200CA04C00986FF6 /* AskDataSource.swift in Sources */,
+				BA840039200C87A800986FF6 /* QIResponse.swift in Sources */,
 				BA90038E2008CAAC00E3A035 /* LoginService.swift in Sources */,
 				BA90037A200744D900E3A035 /* TableArrayDataSource.swift in Sources */,
+				BA863BBC200DDA690007BD81 /* TitleWithBackView.swift in Sources */,
 				BA9003932008E69200E3A035 /* CBLTableViewController.swift in Sources */,
+				BA863BB4200D1C2C0007BD81 /* TitleHeaderView.swift in Sources */,
 				BA9003852008BF2D00E3A035 /* Jitterable.swift in Sources */,
 				BA90039B2008F31100E3A035 /* CBLDataHelper.swift in Sources */,
 				BA90035E2005F52900E3A035 /* TextDialog.swift in Sources */,
@@ -734,14 +889,19 @@
 				BAA5030A200BBFDD00A4AC73 /* PaddedLabel.swift in Sources */,
 				BAA50304200BBF1D00A4AC73 /* UILabel+dimension.swift in Sources */,
 				BAA50305200BBF1D00A4AC73 /* UIView+Border.swift in Sources */,
+				BA84004F200CC06200986FF6 /* TrackAskViewController.swift in Sources */,
 				BAA50306200BBF1D00A4AC73 /* UIColor+Convenience.swift in Sources */,
+				BA840041200C9F9700986FF6 /* AskView.swift in Sources */,
 				BA90038C2008C48D00E3A035 /* AuthenticatorProtocol.swift in Sources */,
 				BA900376200744BD00E3A035 /* TableDataSource.swift in Sources */,
 				BA9003742007449500E3A035 /* CollectionArrayDataSource.swift in Sources */,
 				BAA50310200BC18D00A4AC73 /* UIImage+Creation.swift in Sources */,
 				BA9003612007415200E3A035 /* DataListViewController.swift in Sources */,
+				BA840052200CF32200986FF6 /* AskSearchView.swift in Sources */,
 				BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */,
+				BA840049200CA0B100986FF6 /* AskTableViewCell.swift in Sources */,
 				BAEC20202004D0B700B79AB1 /* LoginWithReplicationSerices.swift in Sources */,
+				BA93D8E5200C7FF500002D6A /* userQuery.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

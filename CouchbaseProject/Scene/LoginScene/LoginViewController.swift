@@ -97,6 +97,11 @@ extension LoginViewController:AuthenticatorDelegate {
     
     func didFinishAuthenticating(with status: Bool, withParams: [String : String]) {
         //move to next screen.
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let mainController = storyboard.instantiateViewController(withIdentifier: "loginNavController") as? UINavigationController
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        appDelegate.window?.rootViewController = mainController
     }
     
     

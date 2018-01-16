@@ -20,6 +20,7 @@ import UIKit
  it also uses the generic class structure for table view.
  */
 
+//this is a sample data source for cbltbleviewcontroller
 class CBLDataSource: TableArrayDataSource<CBLQueryRow, CBLTableViewCell> {
     
     //Additional properties for further modification
@@ -29,21 +30,44 @@ class CBLDataSource: TableArrayDataSource<CBLQueryRow, CBLTableViewCell> {
     //        cell.delegate = cellActionDelegate
     //    }
 }
-class CBLTableViewController: UIViewController {
+protocol CBLDataSourceRequirment {
+    var database: CBLDatabase!{get set}
+    var listsLiveQuery: CBLLiveQuery!{get set}
+    var listRows : [CBLQueryRow]?{get set}
+    weak var tableView:UITableView!{get set}
+    
+    func setUpDataSource()
+    func setupViewAndQuery()
+}
+class CBLTableViewController: UIViewController,CBLDataSourceRequirment {
     
     @IBOutlet weak var tableView:UITableView!
     
     var database: CBLDatabase!
-    
     var listsLiveQuery: CBLLiveQuery!
     var listRows : [CBLQueryRow]?
 
+    var cBLDataSource:CBLDataSource?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        //both these method are to be overriden in subclass.
+        //create a proper data source
+        setUpDataSource()
+        //create view to reload the table view with cbldata.
+        setupViewAndQuery()
     }
 
+    func setUpDataSource() {
+//        //create a proper data source
+//        cBLDataSource = CBLDataSource(tableView: self.tableView, array: listRows!)
+//        //similarly other block can be defined for action in cell like edit on cell
+//        cBLDataSource?.tableItemSelectionHandler = { index in
+//            print("CBLTableViewCell selected")
+//        }
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -56,7 +80,7 @@ class CBLTableViewController: UIViewController {
      listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
      */
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print("change = \(change)")
+        print("change = \(String(describing: change))")
         if object as? NSObject == listsLiveQuery {
             reloadTaskLists()
         }
@@ -69,6 +93,8 @@ class CBLTableViewController: UIViewController {
      "name": name,
      "owner": username
      */
+    
+    /// to create a queryBuilder to get data using perodicate, sortdescriptor..note this is not a live query.
     func setupQuery() {
         let peridicate = NSPredicate(format: "source == %@","Applications developer" )
         let selectColumn = ["source","name","owner"]
@@ -96,21 +122,21 @@ class CBLTableViewController: UIViewController {
     
     
     func setupViewAndQuery() {
-        // TRAINING: Writing a View
-        let listsView = database.viewNamed("list/listsByName")
-        if listsView.mapBlock == nil {
-            listsView.setMapBlock({ (doc, emit) in
-                if let type: String = doc["source"] as? String, let name = doc["name"], let owner = doc["owner"]
-                {  //, type == "task-list"
-                    emit(type, [name,owner])
-                }
-            }, version: "1.0")
-        }
-        
-        // TRAINING: Running a Query
-        listsLiveQuery = listsView.createQuery().asLive()
-        listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
-        listsLiveQuery.start()
+//        // TRAINING: Writing a View
+//        let listsView = database.viewNamed("list/listsByName")
+//        if listsView.mapBlock == nil {
+//            listsView.setMapBlock({ (doc, emit) in
+//                if let type: String = doc["source"] as? String, let name = doc["name"], let owner = doc["owner"]
+//                {  //, type == "task-list"
+//                    emit(type, [name,owner])
+//                }
+//            }, version: "1.0")
+//        }
+//
+//        // TRAINING: Running a Query
+//        listsLiveQuery = listsView.createQuery().asLive()
+//        listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
+//        listsLiveQuery.start()
     }
     
     func reloadTaskLists() {

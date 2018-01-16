@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="TitleWithBackView" customModule="CouchbaseProject" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="340" height="50"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wls-Ht-6AA">
+                    <rect key="frame" x="16" y="15" width="260" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="I6I-Pc-sKg">
+                    <rect key="frame" x="290" y="5" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="2gi-fO-WUa"/>
+                        <constraint firstAttribute="width" secondItem="I6I-Pc-sKg" secondAttribute="height" multiplier="1:1" id="sbs-67-Arr"/>
+                    </constraints>
+                    <connections>
+                        <action selector="backButtonAction:" destination="iN0-l3-epB" eventType="touchUpInside" id="ulv-pI-tzL"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Gy-uH-kSn">
+                    <rect key="frame" x="16" y="48" width="314" height="2"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="2" id="YKZ-VF-Yue"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Wls-Ht-6AA" secondAttribute="trailing" constant="64" id="2LK-sD-GvC"/>
+                <constraint firstItem="I6I-Pc-sKg" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="CfY-Iv-IXj"/>
+                <constraint firstItem="Wls-Ht-6AA" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="M5U-Dt-0XS"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="8Gy-uH-kSn" secondAttribute="bottom" id="lJl-1S-e9H"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="I6I-Pc-sKg" secondAttribute="trailing" constant="10" id="mFq-l2-Q0w"/>
+                <constraint firstItem="Wls-Ht-6AA" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="pfS-bM-eeB"/>
+                <constraint firstItem="8Gy-uH-kSn" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="uA3-lO-gcm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Gy-uH-kSn" secondAttribute="trailing" constant="10" id="zfU-AM-t5y"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="backButton" destination="I6I-Pc-sKg" id="iEY-sT-fx5"/>
+                <outlet property="sepratorView" destination="8Gy-uH-kSn" id="1ga-v5-i7d"/>
+                <outlet property="titleLabel" destination="Wls-Ht-6AA" id="UYQ-ur-wpi"/>
+            </connections>
+            <point key="canvasLocation" x="16" y="-136"/>
+        </view>
+    </objects>
+</document>
