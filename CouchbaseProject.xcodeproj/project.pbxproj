@@ -444,14 +444,14 @@
 			path = CBLData;
 			sourceTree = "<group>";
 		};
-		BA93D8E3200C7F4600002D6A /* DataModel */ = {
+		BA93D8E3200C7F4600002D6A /* JSON Mapper */ = {
 			isa = PBXGroup;
 			children = (
 				BA84003A200C8B8800986FF6 /* Transformers */,
 				BA93D8E4200C7FF500002D6A /* userQuery.swift */,
 				BA840038200C87A800986FF6 /* QIResponse.swift */,
 			);
-			path = DataModel;
+			path = "JSON Mapper";
 			sourceTree = "<group>";
 		};
 		BAA50300200BBE5100A4AC73 /* Extensions */ = {
@@ -494,7 +494,7 @@
 		BAEC1FEF2004A52000B79AB1 /* CouchbaseProject */ = {
 			isa = PBXGroup;
 			children = (
-				BA93D8E3200C7F4600002D6A /* DataModel */,
+				BA93D8E3200C7F4600002D6A /* JSON Mapper */,
 				BA9003892008C33E00E3A035 /* Utility */,
 				BA9003882008C2F800E3A035 /* General */,
 				BA90038F2008E4E000E3A035 /* CBL */,
