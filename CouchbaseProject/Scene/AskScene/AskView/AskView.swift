@@ -13,7 +13,7 @@ protocol AskViewDelegate:NSObjectProtocol {
     func didBeginAsking()
 }
 
-class AskView: UIView,CBLDataSourceRequirment {//, UISearchResultsUpdating..not using search controller
+class AskView: UIView {//, UISearchResultsUpdating..not using search controller
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -59,8 +59,8 @@ class AskView: UIView,CBLDataSourceRequirment {//, UISearchResultsUpdating..not 
         // Setup SearchController:
         setUpSearchHeader()
         
-        setUpDataSource()
-        setupViewAndQuery()
+//        setUpDataSource()
+//        setupViewAndQuery()
     }
     
     func setUpSearchHeader(){
@@ -76,38 +76,38 @@ class AskView: UIView,CBLDataSourceRequirment {//, UISearchResultsUpdating..not 
 //       searchHeaderView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[view(>=height)]", options: [], metrics:["height":60], views: ["view":searchHeaderView]) )
     }
         
-        //MARK:- CBLDataSourceRequirment protocol
-        var database: CBLDatabase!
-        var listsLiveQuery: CBLLiveQuery!
-        var listRows : [CBLQueryRow]?
-        
-        func setUpDataSource(){
-            //create a proper data source
-            askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
-            //similarly other block can be defined for action in cell like edit on cell
-            askDataSource?.tableItemSelectionHandler = { index in
-                print("AskTableViewCell selected")
-            }
-        }
-    
-        func setupViewAndQuery(){
-            // TRAINING: Writing a View
-            let listsView = database.viewNamed("list/askList")
-            if listsView.mapBlock == nil {
-                listsView.setMapBlock({ (doc, emit) in
-                    if let type: String = doc["source"] as? String, let name = doc["name"], let owner = doc["owner"]
-                    {  //, type == "task-list"
-                        emit(type, [name,owner])
-                    }
-                }, version: "1.0")
-            }
-            
-            // TRAINING: Running a Query
-            listsLiveQuery = listsView.createQuery().asLive()
-            listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
-            listsLiveQuery.start()
-
-        }
+//        //MARK:- CBLDataSourceRequirment protocol
+//        var database: CBLDatabase!
+//        var listsLiveQuery: CBLLiveQuery!
+//        var listRows : [CBLQueryRow]?
+//
+//        func setUpDataSource(){
+//            //create a proper data source
+//            askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
+//            //similarly other block can be defined for action in cell like edit on cell
+//            askDataSource?.tableItemSelectionHandler = { index in
+//                print("AskTableViewCell selected")
+//            }
+//        }
+//
+//        func setupViewAndQuery(){
+//            // TRAINING: Writing a View
+//            let listsView = database.viewNamed("list/askList")
+//            if listsView.mapBlock == nil {
+//                listsView.setMapBlock({ (doc, emit) in
+//                    if let type: String = doc["source"] as? String, let name = doc["name"], let owner = doc["owner"]
+//                    {  //, type == "task-list"
+//                        emit(type, [name,owner])
+//                    }
+//                }, version: "1.0")
+//            }
+//
+//            // TRAINING: Running a Query
+//            listsLiveQuery = listsView.createQuery().asLive()
+//            listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
+//            listsLiveQuery.start()
+//
+//        }
     
     // MARK: - UISearchController
 //    not using searchcontroller

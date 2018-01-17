@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		00521A16C7DDDFAA3517D65D /* Pods_CouchbaseProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F845A5EB87476EA6A1399E6D /* Pods_CouchbaseProject.framework */; };
 		8D5398E727A660825E9DB767 /* Pods_CouchbaseProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB3F78D728A24778D54F93 /* Pods_CouchbaseProjectTests.framework */; };
+		BA5B3881200EDE550088543B /* CBLDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3880200EDE550088543B /* CBLDataManager.swift */; };
+		BA5B3883200EDF470088543B /* CBLFetchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3882200EDF470088543B /* CBLFetchResultController.swift */; };
+		BA5B3885200EE9910088543B /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3884200EE9910088543B /* CoreDataProvider.swift */; };
+		BA5B3889200F08150088543B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3888200F08150088543B /* Constants.swift */; };
 		BA840039200C87A800986FF6 /* QIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA840038200C87A800986FF6 /* QIResponse.swift */; };
 		BA84003C200C8BAB00986FF6 /* MillisecondsToDateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84003B200C8BAB00986FF6 /* MillisecondsToDateTransform.swift */; };
 		BA84003E200C8BDF00986FF6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84003D200C8BDF00986FF6 /* Utility.swift */; };
@@ -58,6 +62,7 @@
 		BAA5030E200BC18D00A4AC73 /* NSAttributedString+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5030B200BC18D00A4AC73 /* NSAttributedString+Default.swift */; };
 		BAA5030F200BC18D00A4AC73 /* Kingfisher+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5030C200BC18D00A4AC73 /* Kingfisher+extension.swift */; };
 		BAA50310200BC18D00A4AC73 /* UIImage+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5030D200BC18D00A4AC73 /* UIImage+Creation.swift */; };
+		BACBB9E6200E7DB000A44ED3 /* AskCBLChangeListner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACBB9E5200E7DB000A44ED3 /* AskCBLChangeListner.swift */; };
 		BAEC1FF12004A52000B79AB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEC1FF02004A52000B79AB1 /* AppDelegate.swift */; };
 		BAEC1FF62004A52000B79AB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAEC1FF42004A52000B79AB1 /* Main.storyboard */; };
 		BAEC1FF82004A52000B79AB1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BAEC1FF72004A52000B79AB1 /* Assets.xcassets */; };
@@ -93,6 +98,10 @@
 		45F98B471B180B602EBE0DC7 /* Pods-CouchbaseProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchbaseProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchbaseProjectTests/Pods-CouchbaseProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89CB3F78D728A24778D54F93 /* Pods_CouchbaseProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchbaseProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		904000B52BA4720AAAE88741 /* Pods-CouchbaseProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchbaseProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchbaseProjectTests/Pods-CouchbaseProjectTests.release.xcconfig"; sourceTree = "<group>"; };
+		BA5B3880200EDE550088543B /* CBLDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLDataManager.swift; sourceTree = "<group>"; };
+		BA5B3882200EDF470088543B /* CBLFetchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLFetchResultController.swift; sourceTree = "<group>"; };
+		BA5B3884200EE9910088543B /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
+		BA5B3888200F08150088543B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BA840038200C87A800986FF6 /* QIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QIResponse.swift; sourceTree = "<group>"; };
 		BA84003B200C8BAB00986FF6 /* MillisecondsToDateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MillisecondsToDateTransform.swift; sourceTree = "<group>"; };
 		BA84003D200C8BDF00986FF6 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
@@ -142,6 +151,7 @@
 		BAA5030B200BC18D00A4AC73 /* NSAttributedString+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Default.swift"; sourceTree = "<group>"; };
 		BAA5030C200BC18D00A4AC73 /* Kingfisher+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+extension.swift"; sourceTree = "<group>"; };
 		BAA5030D200BC18D00A4AC73 /* UIImage+Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Creation.swift"; sourceTree = "<group>"; };
+		BACBB9E5200E7DB000A44ED3 /* AskCBLChangeListner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskCBLChangeListner.swift; sourceTree = "<group>"; };
 		BAEC1FED2004A52000B79AB1 /* CouchbaseProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchbaseProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEC1FF02004A52000B79AB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BAEC1FF52004A52000B79AB1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -211,6 +221,7 @@
 		BA84003F200C9F5C00986FF6 /* AskScene */ = {
 			isa = PBXGroup;
 			children = (
+				BACBB9E4200E7B4600A44ED3 /* AskCBLDataListner */,
 				BA863BBF200E0A120007BD81 /* ViewModel */,
 				BA84004B200CA59500986FF6 /* Controller */,
 				BA840044200CA02500986FF6 /* AskView */,
@@ -335,6 +346,7 @@
 			children = (
 				BA90037C2007456500E3A035 /* ArrayDataProvider.swift */,
 				BA90037B2007456500E3A035 /* DictionaryDataProvider.swift */,
+				BA5B3884200EE9910088543B /* CoreDataProvider.swift */,
 			);
 			path = DataProvider;
 			sourceTree = "<group>";
@@ -451,6 +463,8 @@
 			isa = PBXGroup;
 			children = (
 				BA90039A2008F31100E3A035 /* CBLDataHelper.swift */,
+				BA5B3882200EDF470088543B /* CBLFetchResultController.swift */,
+				BA5B3880200EDE550088543B /* CBLDataManager.swift */,
 			);
 			path = CBLData;
 			sourceTree = "<group>";
@@ -478,6 +492,14 @@
 				BAA50302200BBF1D00A4AC73 /* UIView+Border.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		BACBB9E4200E7B4600A44ED3 /* AskCBLDataListner */ = {
+			isa = PBXGroup;
+			children = (
+				BACBB9E5200E7DB000A44ED3 /* AskCBLChangeListner.swift */,
+			);
+			path = AskCBLDataListner;
 			sourceTree = "<group>";
 		};
 		BAEC1FE42004A52000B79AB1 = {
@@ -512,6 +534,7 @@
 				BAEC20222004EF3D00B79AB1 /* Scene */,
 				BAEC201E2004D09800B79AB1 /* Services */,
 				BAEC1FF02004A52000B79AB1 /* AppDelegate.swift */,
+				BA5B3888200F08150088543B /* Constants.swift */,
 				BAEC1FF42004A52000B79AB1 /* Main.storyboard */,
 				BAEC1FF72004A52000B79AB1 /* Assets.xcassets */,
 				BAEC1FF92004A52000B79AB1 /* LaunchScreen.storyboard */,
@@ -876,8 +899,10 @@
 				BA863BC1200E0A530007BD81 /* AskViewModel.swift in Sources */,
 				BAEC20252004EF7C00B79AB1 /* LoginViewController.swift in Sources */,
 				BA9003642007420D00E3A035 /* ListTableViewCell.swift in Sources */,
+				BA5B3883200EDF470088543B /* CBLFetchResultController.swift in Sources */,
 				BA90037D2007456500E3A035 /* DictionaryDataProvider.swift in Sources */,
 				BA9003722007448F00E3A035 /* CollectionDataSource.swift in Sources */,
+				BACBB9E6200E7DB000A44ED3 /* AskCBLChangeListner.swift in Sources */,
 				BA90037E2007456500E3A035 /* ArrayDataProvider.swift in Sources */,
 				BA84004D200CA61300986FF6 /* BaseAskViewController.swift in Sources */,
 				BA84003C200C8BAB00986FF6 /* MillisecondsToDateTransform.swift in Sources */,
@@ -885,12 +910,14 @@
 				BA840046200CA04C00986FF6 /* AskDataSource.swift in Sources */,
 				BA840039200C87A800986FF6 /* QIResponse.swift in Sources */,
 				BA90038E2008CAAC00E3A035 /* LoginService.swift in Sources */,
+				BA5B3885200EE9910088543B /* CoreDataProvider.swift in Sources */,
 				BA90037A200744D900E3A035 /* TableArrayDataSource.swift in Sources */,
 				BA863BBC200DDA690007BD81 /* TitleWithBackView.swift in Sources */,
 				BA9003932008E69200E3A035 /* CBLTableViewController.swift in Sources */,
 				BA863BB4200D1C2C0007BD81 /* TitleHeaderView.swift in Sources */,
 				BA9003852008BF2D00E3A035 /* Jitterable.swift in Sources */,
 				BA90039B2008F31100E3A035 /* CBLDataHelper.swift in Sources */,
+				BA5B3889200F08150088543B /* Constants.swift in Sources */,
 				BA90035E2005F52900E3A035 /* TextDialog.swift in Sources */,
 				BAEC1FF12004A52000B79AB1 /* AppDelegate.swift in Sources */,
 				BAA50308200BBF7800A4AC73 /* Double+Kformatted.swift in Sources */,
@@ -909,6 +936,7 @@
 				BA9003742007449500E3A035 /* CollectionArrayDataSource.swift in Sources */,
 				BAA50310200BC18D00A4AC73 /* UIImage+Creation.swift in Sources */,
 				BA9003612007415200E3A035 /* DataListViewController.swift in Sources */,
+				BA5B3881200EDE550088543B /* CBLDataManager.swift in Sources */,
 				BA840052200CF32200986FF6 /* AskSearchView.swift in Sources */,
 				BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */,
 				BA840049200CA0B100986FF6 /* AskTableViewCell.swift in Sources */,

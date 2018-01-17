@@ -17,7 +17,7 @@ import Foundation
 let kLoginFlowEnabled = false
 let kEncryptionEnabled = false
 let kSyncEnabled = true
-let kSyncGatewayUrl = URL(string: "http://52.191.193.71/cuddle")! //172.18.8.115 //127.0.0.1//52.191.193.71:5984
+let kSyncGatewayUrl = URL(string: "http://52.191.193.71/ask")! //172.18.8.115 //127.0.0.1//52.191.193.71:5984
 let kLoggingEnabled = false
 let kUsePrebuiltDb = false
 let kConflictResolution = false
@@ -47,13 +47,19 @@ class CBLDataHelper:NSObject {
     }
     
     //MARK:- usage
-    func startDB(with username:String, session:[String:String]){
+    func startDB(with username:String, session:[String:String]?){
         if kLoggingEnabled {
             enableLogging()
         }
         try! openDatabase(username: username, withKey: nil, withNewKey: nil)
         //before starting replication, verify the channels.
-        startReplication(withSession: session)
+        if session != nil {
+            startReplication(withSession: session!)
+        }
+        else{
+            startReplication(withUsername: username, andPassword: nil)
+        }
+        
     }
     
 
@@ -317,8 +323,8 @@ class CBLDataHelper:NSObject {
     }
     
     @objc func replicationProgress(notification: NSNotification) {
-        UIApplication.shared.isNetworkActivityIndicatorVisible =
-            (pusher.status == .active || puller.status == .active)
+        print("replicationProgress notification..")
+        UIApplication.shared.isNetworkActivityIndicatorVisible = (pusher.status == .active || puller.status == .active)
         let appDelegate = UIApplication.shared.delegate
         let error = pusher.lastError as? NSError;
         if (error != syncError) {

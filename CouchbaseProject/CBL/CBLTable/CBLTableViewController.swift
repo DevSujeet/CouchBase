@@ -34,7 +34,7 @@ protocol CBLDataSourceRequirment {
     var database: CBLDatabase!{get set}
     var listsLiveQuery: CBLLiveQuery!{get set}
     var listRows : [CBLQueryRow]?{get set}
-    weak var tableView:UITableView!{get set}
+//    weak var tableView:UITableView!{get set}
     
     func setUpDataSource()
     func setupViewAndQuery()

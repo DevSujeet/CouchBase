@@ -11,12 +11,15 @@ import UIKit
 //most of the app has this similar structure.
 class TrackAskViewController: BaseAskViewController {
 
+    var askListner:AskCBLChangeListner?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         //create headerView
         createHeaderView()
+        askListner = AskCBLChangeListner()
     }
 
     override func didReceiveMemoryWarning() {
