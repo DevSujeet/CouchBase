@@ -141,4 +141,24 @@ class CBLFetchResultController :NSObject{
         listRows = listData as? [CBLQueryRow] ?? nil
         //        self.tableView.reloadData()
     }
+    
+    //MARK:-data base operation
+    //like update / delete to can be performed here
+    func addDocument(withProperties properties:[String : Any], withId docId:String) -> CBLSavedRevision? {
+        
+        guard let doc = database.document(withID: docId) else {
+//            Ui.showMessageDialog(onController: self, withTitle: "Error",
+//                                 withMessage: "Couldn't save task list")
+            return nil
+        }
+        
+        do {
+            return try doc.putProperties(properties)
+        } catch let error as NSError {
+//            Ui.showMessageDialog(onController: self, withTitle: "Error",
+//                                 withMessage: "Couldn't save task list", withError: error)
+            return nil
+        }
+    }
+    
 }

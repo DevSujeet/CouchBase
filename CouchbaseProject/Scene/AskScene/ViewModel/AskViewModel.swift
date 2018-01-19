@@ -10,10 +10,39 @@ import Foundation
 
 //this class is to seperate the data model from the actual data, eg the CBLQUery from couchbase or some json from a service.
 // any kind of actual data will be mapped to this view model so that the view is independent from the source data struct changes or vice versa.
+
+/*
+ {
+ "name": "Test",
+ "owner": "usertest",
+ "type": "task-list"
+ }
+ */
+
 class AskViewModel {
     var title:String?
+    var owner:String?
+    var type:String?
     
-    init(with title:String) {
+    init(with title:String,owner:String,type:String) {
         self.title = title
+        self.owner = owner
+        self.type = type
+    }
+}
+
+protocol askModelAdapter {
+    func getAskModel() -> AskViewModel
+    func getAskModelArray() -> [AskViewModel]
+}
+
+class CBLQuesyAskAdapter:askModelAdapter {
+    func getAskModel() -> AskViewModel {
+        let ask1 = AskViewModel(with: "ask1", owner: "test", type: "type")
+        return ask1
+    }
+    func getAskModelArray() -> [AskViewModel] {
+        let ask1 = AskViewModel(with: "ask1", owner: "test", type: "type")
+        return [ask1]
     }
 }

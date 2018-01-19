@@ -12,20 +12,29 @@ protocol AskSearchViewDelegate:NSObjectProtocol {
     func didBeginAsking()
     func didPressDone()
 }
-
+struct AskSearchSetting {
+    static let askSearchViewBGColor = UIColor(hex6:0xFBFBFB)
+    
+    static let searchTextBGColor = UIColor(hex6: 0xE8E8E8)
+    static let searchTextPlaceholder = "Have a question?"
+    static let searchTextPlaceholderFont = UIFont.systemFont(ofSize: 20, weight: .medium)
+    
+    static let doneBtnTitle = "Done"
+    static let doneButtonTextFont = UIFont.systemFont(ofSize: 20, weight: .regular)
+}
 class AskSearchView: UIView, UITextFieldDelegate {
 
     @IBOutlet weak var searchTextField: UITextField!{
         didSet{
             searchTextField.delegate = self
-            searchTextField.backgroundColor = UIColor(hex6: 0xE8E8E8)
+            searchTextField.backgroundColor = AskSearchSetting.searchTextBGColor
             searchTextField.rightViewMode = .always
             let mic = UIImageView(image: UIImage(named: "mic") )
             searchTextField.rightView = mic
             
-            let placeHolderText = "Have a question?"
+            let placeHolderText = AskSearchSetting.searchTextPlaceholder
             let placeHolderTextColor = UIColor.lightGray
-            let placeHolderTextFont = UIFont.systemFont(ofSize: 20, weight: .medium)
+            let placeHolderTextFont = AskSearchSetting.searchTextPlaceholderFont
             let attributedString = NSAttributedString.init(text: placeHolderText, color: placeHolderTextColor, font: placeHolderTextFont)
             searchTextField.attributedPlaceholder = attributedString
         }
@@ -33,9 +42,8 @@ class AskSearchView: UIView, UITextFieldDelegate {
     
     @IBOutlet weak var doneButton: UIButton!{
         didSet {
-            let doneButtonTextFont = UIFont.systemFont(ofSize: 20, weight: .regular)
-            doneButton.titleLabel?.text = "Done"
-            doneButton.titleLabel?.font = doneButtonTextFont
+            doneButton.titleLabel?.text = AskSearchSetting.doneBtnTitle
+            doneButton.titleLabel?.font = AskSearchSetting.doneButtonTextFont
         }
     }
     
@@ -55,6 +63,7 @@ class AskSearchView: UIView, UITextFieldDelegate {
     
     required init(coder aDecoder:NSCoder) {
         super.init(coder:aDecoder)!
+        self.backgroundColor = AskSearchSetting.askSearchViewBGColor
         //at this point the view from nib are not initialized.
     }
     //MARK:- button Action

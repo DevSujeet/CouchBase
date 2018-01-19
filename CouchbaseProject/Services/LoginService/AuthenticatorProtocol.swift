@@ -18,7 +18,7 @@ class AuthenticatorFactory {
         var authenticator:AuthenticatorProtocol?
         switch type {
         case .couchbase:
-            authenticator = LoginWithReplicationSerivice()
+            authenticator = CBLLoginWithReplicationSerivice()
         case .service:
             authenticator = LoginService()
 

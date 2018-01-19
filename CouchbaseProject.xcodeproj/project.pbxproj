@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		00521A16C7DDDFAA3517D65D /* Pods_CouchbaseProject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F845A5EB87476EA6A1399E6D /* Pods_CouchbaseProject.framework */; };
 		8D5398E727A660825E9DB767 /* Pods_CouchbaseProjectTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89CB3F78D728A24778D54F93 /* Pods_CouchbaseProjectTests.framework */; };
-		BA5B3881200EDE550088543B /* CBLDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3880200EDE550088543B /* CBLDataManager.swift */; };
 		BA5B3883200EDF470088543B /* CBLFetchResultController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3882200EDF470088543B /* CBLFetchResultController.swift */; };
 		BA5B3885200EE9910088543B /* CoreDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3884200EE9910088543B /* CoreDataProvider.swift */; };
 		BA5B3889200F08150088543B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B3888200F08150088543B /* Constants.swift */; };
+		BA5B388B200F6A660088543B /* UIView+Shadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA5B388A200F6A660088543B /* UIView+Shadow.swift */; };
 		BA840039200C87A800986FF6 /* QIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA840038200C87A800986FF6 /* QIResponse.swift */; };
 		BA84003C200C8BAB00986FF6 /* MillisecondsToDateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84003B200C8BAB00986FF6 /* MillisecondsToDateTransform.swift */; };
 		BA84003E200C8BDF00986FF6 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA84003D200C8BDF00986FF6 /* Utility.swift */; };
@@ -31,6 +31,18 @@
 		BA863BBC200DDA690007BD81 /* TitleWithBackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA863BBB200DDA690007BD81 /* TitleWithBackView.swift */; };
 		BA863BBE200DDA740007BD81 /* TitleWithBackView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA863BBD200DDA740007BD81 /* TitleWithBackView.xib */; };
 		BA863BC1200E0A530007BD81 /* AskViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA863BC0200E0A530007BD81 /* AskViewModel.swift */; };
+		BA8AEC4C2010D43E007ACC46 /* ResponsePathConfigurerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC4B2010D43E007ACC46 /* ResponsePathConfigurerManager.swift */; };
+		BA8AEC502010D574007ACC46 /* IResponseListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC4F2010D574007ACC46 /* IResponseListener.swift */; };
+		BA8AEC522010D5CA007ACC46 /* TrackActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC512010D5CA007ACC46 /* TrackActivity.swift */; };
+		BA8AEC552010D65B007ACC46 /* ResponseListenerRegistrationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC542010D65B007ACC46 /* ResponseListenerRegistrationService.swift */; };
+		BA8AEC5820119858007ACC46 /* IRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC5720119858007ACC46 /* IRequestManager.swift */; };
+		BA8AEC5A2011994D007ACC46 /* RequestManagerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC592011994D007ACC46 /* RequestManagerFactory.swift */; };
+		BA8AEC5D20119A5C007ACC46 /* IDataBaseResponseListner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC5C20119A5C007ACC46 /* IDataBaseResponseListner.swift */; };
+		BA8AEC5F20119ADA007ACC46 /* CouchDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC5E20119ADA007ACC46 /* CouchDatabaseManager.swift */; };
+		BA8AEC612011C71D007ACC46 /* IResultReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC602011C71D007ACC46 /* IResultReceiver.swift */; };
+		BA8AEC632011C759007ACC46 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC622011C759007ACC46 /* Result.swift */; };
+		BA8AEC672011F78C007ACC46 /* HTTPRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC662011F78C007ACC46 /* HTTPRequestManager.swift */; };
+		BA8AEC692011F7A0007ACC46 /* CouchBaseRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC682011F7A0007ACC46 /* CouchBaseRequestManager.swift */; };
 		BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90035B2005F4EA00E3A035 /* Ui.swift */; };
 		BA90035E2005F52900E3A035 /* TextDialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90035D2005F52900E3A035 /* TextDialog.swift */; };
 		BA9003612007415200E3A035 /* DataListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA9003602007415200E3A035 /* DataListViewController.swift */; };
@@ -98,10 +110,10 @@
 		45F98B471B180B602EBE0DC7 /* Pods-CouchbaseProjectTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchbaseProjectTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CouchbaseProjectTests/Pods-CouchbaseProjectTests.debug.xcconfig"; sourceTree = "<group>"; };
 		89CB3F78D728A24778D54F93 /* Pods_CouchbaseProjectTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CouchbaseProjectTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		904000B52BA4720AAAE88741 /* Pods-CouchbaseProjectTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CouchbaseProjectTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CouchbaseProjectTests/Pods-CouchbaseProjectTests.release.xcconfig"; sourceTree = "<group>"; };
-		BA5B3880200EDE550088543B /* CBLDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLDataManager.swift; sourceTree = "<group>"; };
 		BA5B3882200EDF470088543B /* CBLFetchResultController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLFetchResultController.swift; sourceTree = "<group>"; };
 		BA5B3884200EE9910088543B /* CoreDataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataProvider.swift; sourceTree = "<group>"; };
 		BA5B3888200F08150088543B /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		BA5B388A200F6A660088543B /* UIView+Shadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Shadow.swift"; sourceTree = "<group>"; };
 		BA840038200C87A800986FF6 /* QIResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QIResponse.swift; sourceTree = "<group>"; };
 		BA84003B200C8BAB00986FF6 /* MillisecondsToDateTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MillisecondsToDateTransform.swift; sourceTree = "<group>"; };
 		BA84003D200C8BDF00986FF6 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
@@ -120,6 +132,18 @@
 		BA863BBB200DDA690007BD81 /* TitleWithBackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleWithBackView.swift; sourceTree = "<group>"; };
 		BA863BBD200DDA740007BD81 /* TitleWithBackView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleWithBackView.xib; sourceTree = "<group>"; };
 		BA863BC0200E0A530007BD81 /* AskViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskViewModel.swift; sourceTree = "<group>"; };
+		BA8AEC4B2010D43E007ACC46 /* ResponsePathConfigurerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponsePathConfigurerManager.swift; sourceTree = "<group>"; };
+		BA8AEC4F2010D574007ACC46 /* IResponseListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IResponseListener.swift; sourceTree = "<group>"; };
+		BA8AEC512010D5CA007ACC46 /* TrackActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackActivity.swift; sourceTree = "<group>"; };
+		BA8AEC542010D65B007ACC46 /* ResponseListenerRegistrationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseListenerRegistrationService.swift; sourceTree = "<group>"; };
+		BA8AEC5720119858007ACC46 /* IRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IRequestManager.swift; sourceTree = "<group>"; };
+		BA8AEC592011994D007ACC46 /* RequestManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestManagerFactory.swift; sourceTree = "<group>"; };
+		BA8AEC5C20119A5C007ACC46 /* IDataBaseResponseListner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDataBaseResponseListner.swift; sourceTree = "<group>"; };
+		BA8AEC5E20119ADA007ACC46 /* CouchDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchDatabaseManager.swift; sourceTree = "<group>"; };
+		BA8AEC602011C71D007ACC46 /* IResultReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IResultReceiver.swift; sourceTree = "<group>"; };
+		BA8AEC622011C759007ACC46 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		BA8AEC662011F78C007ACC46 /* HTTPRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestManager.swift; sourceTree = "<group>"; };
+		BA8AEC682011F7A0007ACC46 /* CouchBaseRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchBaseRequestManager.swift; sourceTree = "<group>"; };
 		BA90035B2005F4EA00E3A035 /* Ui.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ui.swift; sourceTree = "<group>"; };
 		BA90035D2005F52900E3A035 /* TextDialog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextDialog.swift; sourceTree = "<group>"; };
 		BA9003602007415200E3A035 /* DataListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataListViewController.swift; sourceTree = "<group>"; };
@@ -310,6 +334,65 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		BA8AEC4A2010D405007ACC46 /* Architect */ = {
+			isa = PBXGroup;
+			children = (
+				BA8AEC5B20119A2A007ACC46 /* CouchbaseManager */,
+				BA8AEC5620119839007ACC46 /* RequestManager */,
+				BA8AEC532010D62E007ACC46 /* RegistrationService */,
+				BA8AEC4E2010D536007ACC46 /* Activity */,
+				BA8AEC4D2010D525007ACC46 /* PathConfigurer */,
+			);
+			path = Architect;
+			sourceTree = "<group>";
+		};
+		BA8AEC4D2010D525007ACC46 /* PathConfigurer */ = {
+			isa = PBXGroup;
+			children = (
+				BA8AEC4B2010D43E007ACC46 /* ResponsePathConfigurerManager.swift */,
+			);
+			path = PathConfigurer;
+			sourceTree = "<group>";
+		};
+		BA8AEC4E2010D536007ACC46 /* Activity */ = {
+			isa = PBXGroup;
+			children = (
+				BA8AEC4F2010D574007ACC46 /* IResponseListener.swift */,
+				BA8AEC512010D5CA007ACC46 /* TrackActivity.swift */,
+			);
+			path = Activity;
+			sourceTree = "<group>";
+		};
+		BA8AEC532010D62E007ACC46 /* RegistrationService */ = {
+			isa = PBXGroup;
+			children = (
+				BA8AEC542010D65B007ACC46 /* ResponseListenerRegistrationService.swift */,
+				BA8AEC602011C71D007ACC46 /* IResultReceiver.swift */,
+				BA8AEC622011C759007ACC46 /* Result.swift */,
+			);
+			path = RegistrationService;
+			sourceTree = "<group>";
+		};
+		BA8AEC5620119839007ACC46 /* RequestManager */ = {
+			isa = PBXGroup;
+			children = (
+				BA8AEC5720119858007ACC46 /* IRequestManager.swift */,
+				BA8AEC592011994D007ACC46 /* RequestManagerFactory.swift */,
+				BA8AEC662011F78C007ACC46 /* HTTPRequestManager.swift */,
+				BA8AEC682011F7A0007ACC46 /* CouchBaseRequestManager.swift */,
+			);
+			path = RequestManager;
+			sourceTree = "<group>";
+		};
+		BA8AEC5B20119A2A007ACC46 /* CouchbaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				BA8AEC5C20119A5C007ACC46 /* IDataBaseResponseListner.swift */,
+				BA8AEC5E20119ADA007ACC46 /* CouchDatabaseManager.swift */,
+			);
+			path = CouchbaseManager;
+			sourceTree = "<group>";
+		};
 		BA90035A2005F4CE00E3A035 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -464,7 +547,6 @@
 			children = (
 				BA90039A2008F31100E3A035 /* CBLDataHelper.swift */,
 				BA5B3882200EDF470088543B /* CBLFetchResultController.swift */,
-				BA5B3880200EDE550088543B /* CBLDataManager.swift */,
 			);
 			path = CBLData;
 			sourceTree = "<group>";
@@ -490,6 +572,7 @@
 				BAA50303200BBF1D00A4AC73 /* UIColor+Convenience.swift */,
 				BAA50301200BBF1D00A4AC73 /* UILabel+dimension.swift */,
 				BAA50302200BBF1D00A4AC73 /* UIView+Border.swift */,
+				BA5B388A200F6A660088543B /* UIView+Shadow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -527,6 +610,7 @@
 		BAEC1FEF2004A52000B79AB1 /* CouchbaseProject */ = {
 			isa = PBXGroup;
 			children = (
+				BA8AEC4A2010D405007ACC46 /* Architect */,
 				BA93D8E3200C7F4600002D6A /* JSON Mapper */,
 				BA9003892008C33E00E3A035 /* Utility */,
 				BA9003882008C2F800E3A035 /* General */,
@@ -894,22 +978,32 @@
 			files = (
 				BA84003E200C8BDF00986FF6 /* Utility.swift in Sources */,
 				BA863BB8200DD82F0007BD81 /* AlertViewController.swift in Sources */,
+				BA8AEC522010D5CA007ACC46 /* TrackActivity.swift in Sources */,
 				BA9003682007433700E3A035 /* GenericCollectionViewProtocol.swift in Sources */,
+				BA8AEC552010D65B007ACC46 /* ResponseListenerRegistrationService.swift in Sources */,
 				BAA5030F200BC18D00A4AC73 /* Kingfisher+extension.swift in Sources */,
 				BA863BC1200E0A530007BD81 /* AskViewModel.swift in Sources */,
+				BA8AEC5A2011994D007ACC46 /* RequestManagerFactory.swift in Sources */,
 				BAEC20252004EF7C00B79AB1 /* LoginViewController.swift in Sources */,
+				BA8AEC692011F7A0007ACC46 /* CouchBaseRequestManager.swift in Sources */,
 				BA9003642007420D00E3A035 /* ListTableViewCell.swift in Sources */,
 				BA5B3883200EDF470088543B /* CBLFetchResultController.swift in Sources */,
 				BA90037D2007456500E3A035 /* DictionaryDataProvider.swift in Sources */,
+				BA8AEC4C2010D43E007ACC46 /* ResponsePathConfigurerManager.swift in Sources */,
 				BA9003722007448F00E3A035 /* CollectionDataSource.swift in Sources */,
+				BA5B388B200F6A660088543B /* UIView+Shadow.swift in Sources */,
 				BACBB9E6200E7DB000A44ED3 /* AskCBLChangeListner.swift in Sources */,
+				BA8AEC502010D574007ACC46 /* IResponseListener.swift in Sources */,
 				BA90037E2007456500E3A035 /* ArrayDataProvider.swift in Sources */,
 				BA84004D200CA61300986FF6 /* BaseAskViewController.swift in Sources */,
 				BA84003C200C8BAB00986FF6 /* MillisecondsToDateTransform.swift in Sources */,
 				BA9003842008BF2D00E3A035 /* Flashable.swift in Sources */,
+				BA8AEC612011C71D007ACC46 /* IResultReceiver.swift in Sources */,
 				BA840046200CA04C00986FF6 /* AskDataSource.swift in Sources */,
+				BA8AEC5820119858007ACC46 /* IRequestManager.swift in Sources */,
 				BA840039200C87A800986FF6 /* QIResponse.swift in Sources */,
 				BA90038E2008CAAC00E3A035 /* LoginService.swift in Sources */,
+				BA8AEC672011F78C007ACC46 /* HTTPRequestManager.swift in Sources */,
 				BA5B3885200EE9910088543B /* CoreDataProvider.swift in Sources */,
 				BA90037A200744D900E3A035 /* TableArrayDataSource.swift in Sources */,
 				BA863BBC200DDA690007BD81 /* TitleWithBackView.swift in Sources */,
@@ -920,6 +1014,7 @@
 				BA5B3889200F08150088543B /* Constants.swift in Sources */,
 				BA90035E2005F52900E3A035 /* TextDialog.swift in Sources */,
 				BAEC1FF12004A52000B79AB1 /* AppDelegate.swift in Sources */,
+				BA8AEC632011C759007ACC46 /* Result.swift in Sources */,
 				BAA50308200BBF7800A4AC73 /* Double+Kformatted.swift in Sources */,
 				BAA5030E200BC18D00A4AC73 /* NSAttributedString+Default.swift in Sources */,
 				BA9003872008BFCC00E3A035 /* AppStyleGuide.swift in Sources */,
@@ -936,12 +1031,13 @@
 				BA9003742007449500E3A035 /* CollectionArrayDataSource.swift in Sources */,
 				BAA50310200BC18D00A4AC73 /* UIImage+Creation.swift in Sources */,
 				BA9003612007415200E3A035 /* DataListViewController.swift in Sources */,
-				BA5B3881200EDE550088543B /* CBLDataManager.swift in Sources */,
 				BA840052200CF32200986FF6 /* AskSearchView.swift in Sources */,
 				BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */,
 				BA840049200CA0B100986FF6 /* AskTableViewCell.swift in Sources */,
 				BAEC20202004D0B700B79AB1 /* LoginWithReplicationSerices.swift in Sources */,
+				BA8AEC5F20119ADA007ACC46 /* CouchDatabaseManager.swift in Sources */,
 				BA93D8E5200C7FF500002D6A /* userQuery.swift in Sources */,
+				BA8AEC5D20119A5C007ACC46 /* IDataBaseResponseListner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

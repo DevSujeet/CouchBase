@@ -29,7 +29,7 @@ protocol loginWithReplicationProtocol {
 //let kUsePrebuiltDb = true
 //let kConflictResolution = false
 
-class LoginWithReplicationSerivice:loginWithReplicationProtocol,AuthenticatorProtocol {
+class CBLLoginWithReplicationSerivice:loginWithReplicationProtocol,AuthenticatorProtocol {
     var database: CBLDatabase!
     
     var pusher: CBLReplication!

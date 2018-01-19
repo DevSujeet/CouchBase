@@ -13,6 +13,7 @@ import UIKit
 struct BaseAskViewControllerSetting {
     static let askViewTopConstraintTopMargin = CGFloat(30)
     static let askViewBottomConstraintFromTopMargin = CGFloat(90)
+    static let askViewBorderColor = UIColor(hex6: 0xE8E8E8)
 }
 class BaseAskViewController: CBLTableViewController {
     
@@ -51,7 +52,7 @@ class BaseAskViewController: CBLTableViewController {
         askView.delegate = self
         askView.layer.cornerRadius = 8
         askView.layer.borderWidth = 1
-        askView.layer.borderColor = UIColor.gray.cgColor
+        askView.layer.borderColor = BaseAskViewControllerSetting.askViewBorderColor.cgColor
         askView.clipsToBounds = true
         self.view.addSubview(askView)
         

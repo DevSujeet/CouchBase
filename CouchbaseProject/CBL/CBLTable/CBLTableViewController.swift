@@ -52,12 +52,12 @@ class CBLTableViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-        //both these method are to be overriden in subclass.
-        //create a proper data source
-        setUpDataSource()
-        //create view to reload the table view with cbldata.
-        setupViewAndQuery()
+//        // Do any additional setup after loading the view.
+//        //both these method are to be overriden in subclass.
+//        //create a proper data source
+//        setUpDataSource()
+//        //create view to reload the table view with cbldata.
+//        setupViewAndQuery()
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,85 +65,5 @@ class CBLTableViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    func setUpDataSource() {
-//        //create a proper data source
-//        cBLDataSource = CBLDataSource(tableView: self.tableView, array: listRows!)
-//        //similarly other block can be defined for action in cell like edit on cell
-//        cBLDataSource?.tableItemSelectionHandler = { index in
-//            print("CBLTableViewCell selected")
-//        }
-    }
-
-    // MARK: - KVO
-    
-    // TRAINING: Responding to Live Query changes
-    /*
-     from setupandview query
-     listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
-     */
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-        print("change = \(String(describing: change))")
-        if object as? NSObject == listsLiveQuery {
-            reloadTaskLists()
-        }
-    }
-    
-    // MARK: - Database
-    
-    /*
-     "source": "Applications developer",
-     "name": name,
-     "owner": username
-     */
-    
-    /// to create a queryBuilder to get data using perodicate, sortdescriptor..note this is not a live query.
-    func setupQuery() {
-        let peridicate = NSPredicate(format: "source == %@","Applications developer" )
-        let selectColumn = ["source","name","owner"]
-        let sortDesc : NSSortDescriptor = NSSortDescriptor(key: "name", ascending: true)
-        //        let queryBuilder = CBLQueryBuilder(database: database, select: selectColumn, where: <#T##String#>, orderBy: <#T##[Any]?#>)
-        let queryBuilder = try! CBLQueryBuilder(database: database, select: selectColumn, wherePredicate: peridicate, orderBy:[sortDesc])
-        let queryObj : CBLQuery = queryBuilder.createQuery(withContext: nil) //it is not a live query
-        
-        queryObj.descending = true
-        
-        //        queryObj.skip = startindex as! UInt
-        //        queryObj.limit = limit
-        let result : CBLQueryEnumerator = try! queryObj.run()
-        
-        var listData = [AnyObject]()
-        
-        while let row = result.nextRow() {
-            
-            listData.append(row)
-        }
-        
-        listRows = listData as? [CBLQueryRow] ?? nil
-        self.tableView.reloadData()
-    }
-    
-    
-    func setupViewAndQuery() {
-//        // TRAINING: Writing a View
-//        let listsView = database.viewNamed("list/listsByName")
-//        if listsView.mapBlock == nil {
-//            listsView.setMapBlock({ (doc, emit) in
-//                if let type: String = doc["source"] as? String, let name = doc["name"], let owner = doc["owner"]
-//                {  //, type == "task-list"
-//                    emit(type, [name,owner])
-//                }
-//            }, version: "1.0")
-//        }
-//
-//        // TRAINING: Running a Query
-//        listsLiveQuery = listsView.createQuery().asLive()
-//        listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
-//        listsLiveQuery.start()
-    }
-    
-    func reloadTaskLists() {
-        listRows = listsLiveQuery.rows?.allObjects as? [CBLQueryRow] ?? nil
-        tableView.reloadData()
-    }
-
+   
 }

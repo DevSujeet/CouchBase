@@ -19,7 +19,10 @@ class TrackAskViewController: BaseAskViewController {
         // Do any additional setup after loading the view.
         //create headerView
         createHeaderView()
-        askListner = AskCBLChangeListner()
+//        askListner = AskCBLChangeListner()
+        
+        let testTrckActivity = TrackActivity()
+        testTrckActivity.getTrackInformation()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,9 +32,8 @@ class TrackAskViewController: BaseAskViewController {
     
     func createHeaderView() {
         let headerview = TitleHeaderView.instanceFromNib()
-        headerview.backgroundColor = UIColor.red
         headerview.delegate = self
-        headerview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 80)
+        headerview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 85)
         headerview.setUp(with: "Tracking", date: nil)
         self.tableView.tableHeaderView = headerview
         

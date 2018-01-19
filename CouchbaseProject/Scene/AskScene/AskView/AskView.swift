@@ -32,8 +32,7 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
     }
     
     required init(coder aDecoder:NSCoder) {
-        super.init(coder:aDecoder)!
-//        setUp()        
+        super.init(coder:aDecoder)!       
     }
 
     func setupTest(){
@@ -41,9 +40,9 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
         setUpSearchHeader()
         
         //let dummy data
-        let ask1 = AskViewModel(with: "ask1")
-        let ask2 = AskViewModel(with: "ask2")
-        let ask3 = AskViewModel(with: "ask3")
+        let ask1 = AskViewModel(with: "ask1", owner: "test", type: "type")
+        let ask2 = AskViewModel(with: "ask2", owner: "test", type: "type")
+        let ask3 = AskViewModel(with: "ask3", owner: "test", type: "type")
         askDataArray = [ask1,ask2,ask3]
 
         //create a proper data source
@@ -67,64 +66,10 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
         let searchHeaderView = AskSearchView.instanceFromNib()
         searchHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:70)
         searchHeaderView.delegate = self
-        searchHeaderView.backgroundColor = UIColor.blue
         self.tableView.tableHeaderView = searchHeaderView
-        
-//        let superview = self.tableView
-        //adding height constraint
-//        searchHeaderView.translatesAutoresizingMaskIntoConstraints = false
-//       searchHeaderView.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[view(>=height)]", options: [], metrics:["height":60], views: ["view":searchHeaderView]) )
+
     }
-        
-//        //MARK:- CBLDataSourceRequirment protocol
-//        var database: CBLDatabase!
-//        var listsLiveQuery: CBLLiveQuery!
-//        var listRows : [CBLQueryRow]?
-//
-//        func setUpDataSource(){
-//            //create a proper data source
-//            askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
-//            //similarly other block can be defined for action in cell like edit on cell
-//            askDataSource?.tableItemSelectionHandler = { index in
-//                print("AskTableViewCell selected")
-//            }
-//        }
-//
-//        func setupViewAndQuery(){
-//            // TRAINING: Writing a View
-//            let listsView = database.viewNamed("list/askList")
-//            if listsView.mapBlock == nil {
-//                listsView.setMapBlock({ (doc, emit) in
-//                    if let type: String = doc["source"] as? String, let name = doc["name"], let owner = doc["owner"]
-//                    {  //, type == "task-list"
-//                        emit(type, [name,owner])
-//                    }
-//                }, version: "1.0")
-//            }
-//
-//            // TRAINING: Running a Query
-//            listsLiveQuery = listsView.createQuery().asLive()
-//            listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
-//            listsLiveQuery.start()
-//
-//        }
     
-    // MARK: - UISearchController
-//    not using searchcontroller
-//
-//    func updateSearchResults(for searchController: UISearchController) {
-//        print("updateSearchResults")
-////        let text = searchController.searchBar.text ?? ""
-////        if !text.isEmpty {
-////            listsLiveQuery.startKey = text
-////            listsLiveQuery.prefixMatchLevel = 1
-////        } else {
-////            listsLiveQuery.startKey = nil
-////            listsLiveQuery.prefixMatchLevel = 0
-////        }
-////        listsLiveQuery.endKey = listsLiveQuery.startKey
-////        listsLiveQuery.queryOptionsChanged()
-//    }
 }
 
 extension AskView :AskSearchViewDelegate {
