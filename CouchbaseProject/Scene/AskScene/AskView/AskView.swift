@@ -13,17 +13,15 @@ protocol AskViewDelegate:NSObjectProtocol {
     func didBeginAsking()
 }
 
+//The view that is hold the container where user can create a ask query through voice or through typing there content.
 class AskView: UIView {//, UISearchResultsUpdating..not using search controller
 
     @IBOutlet weak var tableView: UITableView!
     
     weak var delegate:AskViewDelegate?
     
-    var askDataArray:[AskViewModel]?
+    var askDataArray:[AskViewModel]? = []
     var askDataSource:AskDataSource?
-    ///----------for test purpose------
-    let arrayData = ["ask1A","ask1AB","ask1AC","ask1AD"]
-    var arrayDataSource:ArrayDataSource?
     //----------------------------------
     //MARK:- view creation
     class func instanceFromNib() -> AskView {
@@ -35,15 +33,9 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
         super.init(coder:aDecoder)!       
     }
 
-    func setupTest(){
+    func setup(){
         // Setup SearchController:
         setUpSearchHeader()
-        
-        //let dummy data
-        let ask1 = AskViewModel(with: "ask1", owner: "test", type: "type")
-        let ask2 = AskViewModel(with: "ask2", owner: "test", type: "type")
-        let ask3 = AskViewModel(with: "ask3", owner: "test", type: "type")
-        askDataArray = [ask1,ask2,ask3]
 
         //create a proper data source
         askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
@@ -52,15 +44,7 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
             print("AskTableViewCell selected")
         }
     }
-    
-    func setUp(){
-        //set the searchview as the table header and set its delegate to self
-        // Setup SearchController:
-        setUpSearchHeader()
-        
-//        setUpDataSource()
-//        setupViewAndQuery()
-    }
+
     
     func setUpSearchHeader(){
         let searchHeaderView = AskSearchView.instanceFromNib()
@@ -80,10 +64,86 @@ extension AskView :AskSearchViewDelegate {
         if (delegate != nil){
             self.delegate?.didBeginAsking()
         }
+        StartConnection()
     }
     func didPressDone(){
         if (delegate != nil){
             self.delegate?.doneButtonPressed()
         }
+        stopConnection()
     }
+}
+
+extension AskView : ResponseListenerProtocol {
+    
+    var responseListiner :ResponseListenerRegistrationService {
+        get {
+            return ResponseListenerRegistrationService.shared
+        }
+    }
+    
+    var requestPath: RequestPath {
+        get{
+            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
+        }
+    }
+    
+    func stopConnection() {
+        responseListiner.stop(requestPath: requestPath, responseListner: self)
+    }
+    
+    func StartConnection(){
+        let requestPath = self.requestPath as! CBLRequestPath
+        requestPath.mapBlock = {(doc,emit) in
+            
+            if let type = doc["type"] as? String ,type == "task-list" {
+                emit(type,doc)
+            }
+        }
+        responseListiner.start(requestPath: requestPath, responseListner: self)
+    }
+    
+    //MARK:-IResponsePathConfigurer
+    
+    func getResponseListenerPath() -> String? {
+        return "ask"
+    }
+    
+    func getResponseListenerPathArgs() -> [String : Any]? {
+        return [:]
+    }
+    
+    
+    //MARK:- IResponseListener protocol
+    func onStart(result: Result) {
+        print("Ask onStart")
+    }
+    
+    func onChange(result: Result) {
+        print("Ask onChange")
+        let askItems = result.result as? [CBLQueryRow] ?? []
+        let count = askItems.count
+        //remove previous data
+        askDataArray = []
+        for index in 0...count-1 {
+            let askItem = AskViewModel(with: "my sales + \(index)", owner: "sujeet", type: "ask")
+            askDataArray?.append(askItem)
+        }
+
+        //TODO:
+        //create  datasource with updated data array...finc out mech to insert data
+        //without creating a new instance of datasource.
+        askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
+        self.tableView.reloadData()
+        print(result.path)
+    }
+    
+    func onError(result: Result) {
+        print("Ask onError")
+    }
+    
+    func onFinished(result: Result) {
+        print("Ask onFinished")
+    }
+    
 }

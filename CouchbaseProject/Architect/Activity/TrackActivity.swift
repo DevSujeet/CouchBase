@@ -9,17 +9,24 @@
 import Foundation
 
 
-protocol AbstractActivity:IResponseListener,IResponsePathConfigurer {
+protocol ResponseListenerProtocol:IResponseListener,IResponsePathConfigurer {
         
 }
 
-class TrackActivity:AbstractActivity {
+class TrackActivity:ResponseListenerProtocol {
 
     let responseListiner = ResponseListenerRegistrationService.shared
     
     //test method
     func getTrackInformation() {
-        let requestPath = ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
+        let requestPath = ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
+        
+        requestPath.mapBlock = {(doc,emit) in
+            
+            if let type = doc["type"] as? String ,type == "task-list" {
+                emit(type,doc)
+            }
+        }
         responseListiner.start(requestPath: requestPath, responseListner: self)
     }
     
@@ -27,7 +34,7 @@ class TrackActivity:AbstractActivity {
     //MARK:-IResponsePathConfigurer
     
     func getResponseListenerPath() -> String? {
-        return "track"
+        return "ask"
     }
     
     func getResponseListenerPathArgs() -> [String : Any]? {

@@ -48,7 +48,9 @@ final class CouchBaseRequestManager:IRequestManager,IDataBaseResponseListner {
     }
     
     func stop(with responsePath:RequestPath) {
-        
+        if let dataBaseManager = dataBases![responsePath.path] {
+            dataBaseManager.stopListening()
+        }
     }
     
     //MARK:- IDataBaseResponseListner

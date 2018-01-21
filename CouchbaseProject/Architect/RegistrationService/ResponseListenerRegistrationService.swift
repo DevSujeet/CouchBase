@@ -45,6 +45,11 @@ class ResponseListenerRegistrationService : IResultReciever {
     func stop(requestPath:RequestPath,responseListner:IResponseListener){
         //first register the
         self.deRegister(requestPath: requestPath, responseListener: responseListner)
+        
+        //get Requestmanager from factory
+        let requestManager = RequestManagerFactory.getRequestManager(requestPath: requestPath)
+        
+        requestManager.stop(with: requestPath)
     }
     
     //MARK:- IResultReciever

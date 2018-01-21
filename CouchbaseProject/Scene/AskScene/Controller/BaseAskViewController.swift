@@ -47,7 +47,7 @@ class BaseAskViewController: CBLTableViewController {
     
     private func createAskViewAndSetup() {
         askView = AskView.instanceFromNib()
-        askView.setupTest()
+        askView.setup()
         
         askView.delegate = self
         askView.layer.cornerRadius = 8

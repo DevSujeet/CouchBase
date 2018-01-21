@@ -22,7 +22,7 @@ struct AskSearchSetting {
     static let doneBtnTitle = "Done"
     static let doneButtonTextFont = UIFont.systemFont(ofSize: 20, weight: .regular)
 }
-class AskSearchView: UIView, UITextFieldDelegate {
+class AskSearchView: UIView, UITextFieldDelegate{
 
     @IBOutlet weak var searchTextField: UITextField!{
         didSet{
@@ -74,6 +74,7 @@ class AskSearchView: UIView, UITextFieldDelegate {
         if (delegate != nil) {
             self.delegate?.didPressDone()
         }
+
     }
     
     //MARK:-UITextFieldDelegate
@@ -91,13 +92,15 @@ class AskSearchView: UIView, UITextFieldDelegate {
         return true
     }
     
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+    func textFieldDidBeginEditing(_ textField: UITextField) {
         //change the contraint to revel the done button.
         textFieldTraillingSpaceConstraint.constant = 80
+        
+        //notify the delegate
         if (delegate != nil) {
             delegate?.didBeginAsking()
         }
-        return true
+
     }
     
     func textFieldDidEndEditing(_ textField: UITextField, reason: UITextFieldDidEndEditingReason) {
@@ -105,3 +108,5 @@ class AskSearchView: UIView, UITextFieldDelegate {
     }
 
 }
+
+

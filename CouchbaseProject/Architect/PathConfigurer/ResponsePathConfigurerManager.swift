@@ -7,6 +7,10 @@
 //
 
 import Foundation
+enum RequestType {
+    case HTTP
+    case CBL
+}
 
 class RequestPath {
     var path:String
@@ -18,10 +22,21 @@ class RequestPath {
     }
 }
 
+class CBLRequestPath:RequestPath {
+    var mapBlock:CBLMapBlock!
+}
+
 class ResponsePathConfigurerManager {
-    class func configure(requestPathConfigurer:IResponsePathConfigurer) -> RequestPath {
-        let requestPath = RequestPath(withPath: requestPathConfigurer.getResponseListenerPath()!, pathArgs: requestPathConfigurer.getResponseListenerPathArgs()!)
-        return requestPath
+    class func configure(requestPathConfigurer:IResponsePathConfigurer,type:RequestType = .CBL) -> RequestPath {
+        var requestPath:RequestPath?
+        switch type {
+        case .HTTP:
+            requestPath = RequestPath(withPath: requestPathConfigurer.getResponseListenerPath()!, pathArgs: requestPathConfigurer.getResponseListenerPathArgs()!)
+        case .CBL:
+            requestPath = CBLRequestPath(withPath: requestPathConfigurer.getResponseListenerPath()!, pathArgs: requestPathConfigurer.getResponseListenerPathArgs()!)
+        }
+        
+        return requestPath!
     }
 }
 

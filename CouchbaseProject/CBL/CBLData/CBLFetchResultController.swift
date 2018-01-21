@@ -71,6 +71,7 @@ class CBLFetchResultController :NSObject{
     var listsLiveQuery: CBLLiveQuery!
     var listRows : [CBLQueryRow]?
     var mapBlock:CBLMapBlock!   //to be provided by the caller
+    
     weak var delegate:CBLFetchResultControllerDelegate?
     
     func setupViewAndQuery(){
@@ -78,7 +79,6 @@ class CBLFetchResultController :NSObject{
         if listsView.mapBlock == nil {
             listsView.setMapBlock(self.mapBlock, version: self.viewVersion!)
         }
-        
         listsLiveQuery = listsView.createQuery().asLive()
         listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
         listsLiveQuery.start()

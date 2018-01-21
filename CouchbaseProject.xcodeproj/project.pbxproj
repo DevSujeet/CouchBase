@@ -66,6 +66,14 @@
 		BA9003972008EB0100E3A035 /* CBLTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA9003952008EB0100E3A035 /* CBLTableViewCell.xib */; };
 		BA90039B2008F31100E3A035 /* CBLDataHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90039A2008F31100E3A035 /* CBLDataHelper.swift */; };
 		BA93D8E5200C7FF500002D6A /* userQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA93D8E4200C7FF500002D6A /* userQuery.swift */; };
+		BA986F8520144ED9003C3D1B /* TrackTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA986F8320144ED9003C3D1B /* TrackTableViewCell.swift */; };
+		BA986F8620144ED9003C3D1B /* TrackTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA986F8420144ED9003C3D1B /* TrackTableViewCell.xib */; };
+		BA986F8920144F6E003C3D1B /* TrackViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA986F8820144F6E003C3D1B /* TrackViewModel.swift */; };
+		BA986F8C2014500E003C3D1B /* TrackDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA986F8B2014500E003C3D1B /* TrackDataSource.swift */; };
+		BA986F8E2014584E003C3D1B /* AlertDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA986F8D2014584E003C3D1B /* AlertDataSource.swift */; };
+		BA986F93201458A3003C3D1B /* AlertTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA986F91201458A3003C3D1B /* AlertTableViewCell.swift */; };
+		BA986F94201458A3003C3D1B /* AlertTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BA986F92201458A3003C3D1B /* AlertTableViewCell.xib */; };
+		BA986F9620145AB0003C3D1B /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA986F9520145AB0003C3D1B /* AlertViewModel.swift */; };
 		BAA50304200BBF1D00A4AC73 /* UILabel+dimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA50301200BBF1D00A4AC73 /* UILabel+dimension.swift */; };
 		BAA50305200BBF1D00A4AC73 /* UIView+Border.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA50302200BBF1D00A4AC73 /* UIView+Border.swift */; };
 		BAA50306200BBF1D00A4AC73 /* UIColor+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA50303200BBF1D00A4AC73 /* UIColor+Convenience.swift */; };
@@ -167,6 +175,14 @@
 		BA9003952008EB0100E3A035 /* CBLTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CBLTableViewCell.xib; sourceTree = "<group>"; };
 		BA90039A2008F31100E3A035 /* CBLDataHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CBLDataHelper.swift; sourceTree = "<group>"; };
 		BA93D8E4200C7FF500002D6A /* userQuery.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userQuery.swift; sourceTree = "<group>"; };
+		BA986F8320144ED9003C3D1B /* TrackTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTableViewCell.swift; sourceTree = "<group>"; };
+		BA986F8420144ED9003C3D1B /* TrackTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrackTableViewCell.xib; sourceTree = "<group>"; };
+		BA986F8820144F6E003C3D1B /* TrackViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewModel.swift; sourceTree = "<group>"; };
+		BA986F8B2014500E003C3D1B /* TrackDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDataSource.swift; sourceTree = "<group>"; };
+		BA986F8D2014584E003C3D1B /* AlertDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataSource.swift; sourceTree = "<group>"; };
+		BA986F91201458A3003C3D1B /* AlertTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertTableViewCell.swift; sourceTree = "<group>"; };
+		BA986F92201458A3003C3D1B /* AlertTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AlertTableViewCell.xib; sourceTree = "<group>"; };
+		BA986F9520145AB0003C3D1B /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
 		BAA50301200BBF1D00A4AC73 /* UILabel+dimension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+dimension.swift"; sourceTree = "<group>"; };
 		BAA50302200BBF1D00A4AC73 /* UIView+Border.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Border.swift"; sourceTree = "<group>"; };
 		BAA50303200BBF1D00A4AC73 /* UIColor+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Convenience.swift"; sourceTree = "<group>"; };
@@ -295,7 +311,11 @@
 		BA863BB5200DD7080007BD81 /* TrackScene */ = {
 			isa = PBXGroup;
 			children = (
+				BA986F8A20144FEF003C3D1B /* DataSource */,
+				BA986F8720144F4A003C3D1B /* ViewModel */,
 				BA84004E200CC06200986FF6 /* TrackAskViewController.swift */,
+				BA986F8320144ED9003C3D1B /* TrackTableViewCell.swift */,
+				BA986F8420144ED9003C3D1B /* TrackTableViewCell.xib */,
 			);
 			path = TrackScene;
 			sourceTree = "<group>";
@@ -303,7 +323,11 @@
 		BA863BB6200DD81D0007BD81 /* AlertScene */ = {
 			isa = PBXGroup;
 			children = (
+				BA986F9020145884003C3D1B /* AlertViewModel */,
+				BA986F8F2014586E003C3D1B /* AlertDataSource */,
 				BA863BB7200DD82F0007BD81 /* AlertViewController.swift */,
+				BA986F91201458A3003C3D1B /* AlertTableViewCell.swift */,
+				BA986F92201458A3003C3D1B /* AlertTableViewCell.xib */,
 			);
 			path = AlertScene;
 			sourceTree = "<group>";
@@ -561,6 +585,38 @@
 			path = "JSON Mapper";
 			sourceTree = "<group>";
 		};
+		BA986F8720144F4A003C3D1B /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA986F8820144F6E003C3D1B /* TrackViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		BA986F8A20144FEF003C3D1B /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BA986F8B2014500E003C3D1B /* TrackDataSource.swift */,
+			);
+			path = DataSource;
+			sourceTree = "<group>";
+		};
+		BA986F8F2014586E003C3D1B /* AlertDataSource */ = {
+			isa = PBXGroup;
+			children = (
+				BA986F8D2014584E003C3D1B /* AlertDataSource.swift */,
+			);
+			path = AlertDataSource;
+			sourceTree = "<group>";
+		};
+		BA986F9020145884003C3D1B /* AlertViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				BA986F9520145AB0003C3D1B /* AlertViewModel.swift */,
+			);
+			path = AlertViewModel;
+			sourceTree = "<group>";
+		};
 		BAA50300200BBE5100A4AC73 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,12 +863,14 @@
 				BA84004A200CA0B100986FF6 /* AskTableViewCell.xib in Resources */,
 				BAEC1FFB2004A52000B79AB1 /* LaunchScreen.storyboard in Resources */,
 				BA840054200CF33300986FF6 /* AskSearchView.xib in Resources */,
+				BA986F8620144ED9003C3D1B /* TrackTableViewCell.xib in Resources */,
 				BA9003652007420D00E3A035 /* ListTableViewCell.xib in Resources */,
 				BAEC1FF82004A52000B79AB1 /* Assets.xcassets in Resources */,
 				BA840043200C9FA700986FF6 /* AskView.xib in Resources */,
 				BA863BBE200DDA740007BD81 /* TitleWithBackView.xib in Resources */,
 				BA863BB2200D1C1F0007BD81 /* TitleHeaderView.xib in Resources */,
 				BA9003972008EB0100E3A035 /* CBLTableViewCell.xib in Resources */,
+				BA986F94201458A3003C3D1B /* AlertTableViewCell.xib in Resources */,
 				BAEC1FF62004A52000B79AB1 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -987,8 +1045,11 @@
 				BAEC20252004EF7C00B79AB1 /* LoginViewController.swift in Sources */,
 				BA8AEC692011F7A0007ACC46 /* CouchBaseRequestManager.swift in Sources */,
 				BA9003642007420D00E3A035 /* ListTableViewCell.swift in Sources */,
+				BA986F9620145AB0003C3D1B /* AlertViewModel.swift in Sources */,
 				BA5B3883200EDF470088543B /* CBLFetchResultController.swift in Sources */,
 				BA90037D2007456500E3A035 /* DictionaryDataProvider.swift in Sources */,
+				BA986F8520144ED9003C3D1B /* TrackTableViewCell.swift in Sources */,
+				BA986F8C2014500E003C3D1B /* TrackDataSource.swift in Sources */,
 				BA8AEC4C2010D43E007ACC46 /* ResponsePathConfigurerManager.swift in Sources */,
 				BA9003722007448F00E3A035 /* CollectionDataSource.swift in Sources */,
 				BA5B388B200F6A660088543B /* UIView+Shadow.swift in Sources */,
@@ -1010,6 +1071,7 @@
 				BA9003932008E69200E3A035 /* CBLTableViewController.swift in Sources */,
 				BA863BB4200D1C2C0007BD81 /* TitleHeaderView.swift in Sources */,
 				BA9003852008BF2D00E3A035 /* Jitterable.swift in Sources */,
+				BA986F93201458A3003C3D1B /* AlertTableViewCell.swift in Sources */,
 				BA90039B2008F31100E3A035 /* CBLDataHelper.swift in Sources */,
 				BA5B3889200F08150088543B /* Constants.swift in Sources */,
 				BA90035E2005F52900E3A035 /* TextDialog.swift in Sources */,
@@ -1023,6 +1085,7 @@
 				BAA5030A200BBFDD00A4AC73 /* PaddedLabel.swift in Sources */,
 				BAA50304200BBF1D00A4AC73 /* UILabel+dimension.swift in Sources */,
 				BAA50305200BBF1D00A4AC73 /* UIView+Border.swift in Sources */,
+				BA986F8920144F6E003C3D1B /* TrackViewModel.swift in Sources */,
 				BA84004F200CC06200986FF6 /* TrackAskViewController.swift in Sources */,
 				BAA50306200BBF1D00A4AC73 /* UIColor+Convenience.swift in Sources */,
 				BA840041200C9F9700986FF6 /* AskView.swift in Sources */,
@@ -1032,6 +1095,7 @@
 				BAA50310200BC18D00A4AC73 /* UIImage+Creation.swift in Sources */,
 				BA9003612007415200E3A035 /* DataListViewController.swift in Sources */,
 				BA840052200CF32200986FF6 /* AskSearchView.swift in Sources */,
+				BA986F8E2014584E003C3D1B /* AlertDataSource.swift in Sources */,
 				BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */,
 				BA840049200CA0B100986FF6 /* AskTableViewCell.swift in Sources */,
 				BAEC20202004D0B700B79AB1 /* LoginWithReplicationSerices.swift in Sources */,

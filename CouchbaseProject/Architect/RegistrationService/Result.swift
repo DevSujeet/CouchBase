@@ -19,7 +19,7 @@ class Result {
     
     var result:Any?
     
-    var error:Any?
+    var error:NSError?
     
     init(withPath path:String) {
         self.path = path

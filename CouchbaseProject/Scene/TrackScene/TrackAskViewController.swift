@@ -10,8 +10,9 @@ import UIKit
 //A test class that uses the BaseAskViewController to display cbl data and a header view as table header view.
 //most of the app has this similar structure.
 class TrackAskViewController: BaseAskViewController {
-
-    var askListner:AskCBLChangeListner?
+    
+    var trackDataArray:[TrackViewModel]? = []
+    var trackDataSource:TrackDataSource?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,12 +20,21 @@ class TrackAskViewController: BaseAskViewController {
         // Do any additional setup after loading the view.
         //create headerView
         createHeaderView()
-//        askListner = AskCBLChangeListner()
         
-        let testTrckActivity = TrackActivity()
-        testTrckActivity.getTrackInformation()
+        //link up the data source
+        //create a proper data source
+        trackDataSource = TrackDataSource(tableView: self.tableView, array: trackDataArray!)
+        //similarly other block can be defined for action in cell like edit on cell
+        trackDataSource?.tableItemSelectionHandler = { index in
+            print("TrackTableViewCell selected")
+        }
+        
+        StartConnection()
     }
 
+    deinit {
+        stopConnection()
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -36,10 +46,7 @@ class TrackAskViewController: BaseAskViewController {
         headerview.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 85)
         headerview.setUp(with: "Tracking", date: nil)
         self.tableView.tableHeaderView = headerview
-        
-//        headerview.translatesAutoresizingMaskIntoConstraints = false
-//        headerview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "V:[view(height)]", options: [], metrics:["height":100], views: ["view":headerview]) )
-//        headerview.addConstraints(NSLayoutConstraint.constraints(withVisualFormat: "H:[view(width)]", options: [], metrics:["width":UIScreen.main.bounds.width], views: ["view":headerview]) )
+
     }
 }
 
@@ -55,4 +62,81 @@ extension TrackAskViewController:TitleHeaderViewDelegate {
     func didPressProfileIcon() {
         print("profile screen in not implemented yet")
     }
+}
+
+
+extension TrackAskViewController: ResponseListenerProtocol {
+    
+    var responseListiner :ResponseListenerRegistrationService {
+        get {
+            return ResponseListenerRegistrationService.shared
+        }
+    }
+    
+    var requestPath: RequestPath {
+        get{
+            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
+        }
+    }
+    
+    func stopConnection() {
+        responseListiner.stop(requestPath: requestPath, responseListner: self)
+    }
+    
+    func StartConnection(){
+        let requestPath = self.requestPath as! CBLRequestPath
+        requestPath.mapBlock = {(doc,emit) in
+            
+            if let type = doc["type"] as? String ,type == "task-list" {
+                emit(type,doc)
+            }
+        }
+        responseListiner.start(requestPath: requestPath, responseListner: self)
+    }
+    
+    //MARK:-IResponsePathConfigurer
+    
+    func getResponseListenerPath() -> String? {
+        return "track"
+    }
+    
+    func getResponseListenerPathArgs() -> [String : Any]? {
+        return [:]
+    }
+    
+    
+    //MARK:- IResponseListener protocol
+    func onStart(result: Result) {
+        print("TrackAskViewController onStart")
+    }
+    
+    func onChange(result: Result) {
+        print("TrackAskViewController onChange")
+        
+        let trackItems = result.result as? [CBLQueryRow] ?? []
+        let count = trackItems.count
+        //remove previous data
+        trackDataArray = []
+        for index in 0...count-1 {
+            let trackItem = TrackViewModel()
+            trackDataArray?.append(trackItem)
+        }
+
+        //TODO:
+        //create  datasource with updated data array...finc out mech to insert data
+        //without creating a new instance of datasource.
+        trackDataSource = TrackDataSource(tableView: self.tableView, array: trackDataArray!)
+        
+        self.tableView.reloadData()
+        print(result.path)
+    }
+    
+    func onError(result: Result) {
+        print("TrackAskViewController onError")
+    }
+    
+    func onFinished(result: Result) {
+        print("TrackAskViewController onFinished")
+    }
+    
 }

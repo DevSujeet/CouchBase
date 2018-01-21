@@ -17,7 +17,7 @@ import Foundation
 let kLoginFlowEnabled = false
 let kEncryptionEnabled = false
 let kSyncEnabled = true
-let kSyncGatewayUrl = URL(string: "http://52.191.193.71/ask")! //172.18.8.115 //127.0.0.1//52.191.193.71:5984
+let kSyncGatewayUrl = URL(string: "http://127.0.0.1:4984/ask")! //172.18.8.115 //127.0.0.1//52.191.193.71:5984
 let kLoggingEnabled = false
 let kUsePrebuiltDb = false
 let kConflictResolution = false
@@ -297,12 +297,7 @@ class CBLDataHelper:NSObject {
         puller.continuous = true  // Runs forever in background
         NotificationCenter.default.addObserver(self, selector: #selector(replicationProgress(notification:)),
                                                name: NSNotification.Name.cblReplicationChange, object: puller)
-        
-//        if kLoginFlowEnabled {
-//            let authenticator = CBLAuthenticator.basicAuthenticator(withName: username, password: password!)
-//            pusher.authenticator = authenticator
-//            puller.authenticator = authenticator
-//        }
+
         
         pusher.start()
         puller.start()
@@ -323,7 +318,7 @@ class CBLDataHelper:NSObject {
     }
     
     @objc func replicationProgress(notification: NSNotification) {
-        print("replicationProgress notification..")
+        print("replicationProgress notification..CBLDataHelper")
         UIApplication.shared.isNetworkActivityIndicatorVisible = (pusher.status == .active || puller.status == .active)
         let appDelegate = UIApplication.shared.delegate
         let error = pusher.lastError as? NSError;
