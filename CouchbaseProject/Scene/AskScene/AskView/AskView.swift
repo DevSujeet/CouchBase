@@ -57,15 +57,20 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
 }
 
 extension AskView :AskSearchViewDelegate {
+    
     func didAskQuestion(withText question:String){
-        
+
+        createAskQuery(with: question)
+//        let serviceReq = self.
     }
+    
     func didBeginAsking() {
         if (delegate != nil){
             self.delegate?.didBeginAsking()
         }
         StartConnection()
     }
+    
     func didPressDone(){
         if (delegate != nil){
             self.delegate?.doneButtonPressed()
@@ -82,50 +87,49 @@ extension AskView : ResponseListenerProtocol {
         }
     }
     
-    var requestPath: RequestPath {
+    var serviceRequest: ServiceRequest {
         get{
-            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
+            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
         }
     }
     
     func stopConnection() {
-        responseListiner.stop(requestPath: requestPath, responseListner: self)
+        responseListiner.stop(requestPath: serviceRequest, responseListner: self)
     }
     
     func StartConnection(){
-        let requestPath = self.requestPath as! CBLRequestPath
-        requestPath.mapBlock = {(doc,emit) in
-            
-            if let type = doc["type"] as? String ,type == "task-list" {
-                emit(type,doc)
-            }
-        }
+        let requestPath = self.serviceRequest
         responseListiner.start(requestPath: requestPath, responseListner: self)
     }
     
     //MARK:-IResponsePathConfigurer
     
-    func getResponseListenerPath() -> String? {
-        return "ask"
+    func getResponseListenerPath() -> PathNames {
+        return .ask
     }
     
-    func getResponseListenerPathArgs() -> [String : Any]? {
-        return [:]
+    func getResponseListenerPathArgs() -> RequestPathArgs {
+        let requestPathArgs = RequestPathArgs(with: nil, selectArgs: nil, sortOrder: nil, sortBy: nil, operationType: .listen, dataProp: nil)    //create a builder to create a specific requestPath.
+        requestPathArgs.operationType = .listen
+        return requestPathArgs
     }
     
+    func getRequestType() ->RequestType {
+        return .CBL
+    }
     
     //MARK:- IResponseListener protocol
-    func onStart(result: Result) {
+    func onStart(result: Response) {
         print("Ask onStart")
     }
     
-    func onChange(result: Result) {
+    func onChange(result: Response) {
         print("Ask onChange")
         let askItems = result.result as? [CBLQueryRow] ?? []
         let count = askItems.count
         //remove previous data
         askDataArray = []
-        for index in 0...count-1 {
+        for index in 0..<count {
             let askItem = AskViewModel(with: "my sales + \(index)", owner: "sujeet", type: "ask")
             askDataArray?.append(askItem)
         }
@@ -138,12 +142,32 @@ extension AskView : ResponseListenerProtocol {
         print(result.path)
     }
     
-    func onError(result: Result) {
+    func onError(result: Response) {
         print("Ask onError")
     }
     
-    func onFinished(result: Result) {
+    func onFinished(result: Response) {
         print("Ask onFinished")
     }
-    
+
+}
+
+extension AskView {
+    //operation
+    func createAskQuery(with query:String) {
+        //create a query object
+        let ask = AskModel(JSON: [:])
+        ask?.name = query
+        
+        let dataProp:[String:Any] = (ask?.toJSON())!
+        let date:NSDate = NSDate()
+        let dateString = Utility.dateToString(format: "yyyy-MM-dd HH:mm:ss", date: date as Date)
+        let reqPathArgs = RequestPathArgs(with: dateString, selectArgs: nil, sortOrder: nil, sortBy: nil, operationType: .create, dataProp: nil)
+        reqPathArgs.dataProp = dataProp
+        
+        let serviceRequest = ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
+        serviceRequest.pathArgs = reqPathArgs
+        
+        responseListiner.start(requestPath: serviceRequest, responseListner: self)
+    }
 }

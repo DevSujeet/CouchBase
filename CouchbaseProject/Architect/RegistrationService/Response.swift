@@ -12,10 +12,12 @@ import Foundation
     class wraps the response from the database or HTTP
  contains result response, error, and the path(as the key that indentifys..who called for the service.)
  */
-class Result {
+class Response {
     //that will determine which activity(Iresponselistner) called for the action.
     //as path is the key , get Iresponselistner from the dictionary
     var path:String!
+    
+//    var request:ServiceRequest
     
     var result:Any?
     

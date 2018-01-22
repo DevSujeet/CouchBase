@@ -11,7 +11,7 @@ import Foundation
 
 final class CouchBaseRequestManager:IRequestManager,IDataBaseResponseListner {
     
-    var dataBases:[String:CouchDatabaseManager]?
+    var dataBases:[String:DatabaseManagerProtocol]?
     
     class func getInstance() -> CouchBaseRequestManager {
         return shared
@@ -32,42 +32,44 @@ final class CouchBaseRequestManager:IRequestManager,IDataBaseResponseListner {
     //MARK:- IRequestManager
     var iResultReciever: IResultReciever?
     
-    func start(with responsePath: RequestPath, resultReciever: IResultReciever) {
+    func start(with request: ServiceRequest, resultReciever: IResultReciever) {
         
         iResultReciever = resultReciever
-        if let dataBaseManager = dataBases![responsePath.path] {
+        if let dataBaseManager = dataBases![(request.path?.rawValue)!] {
+            dataBaseManager.update(serviceRequest: request)
              dataBaseManager.execute()
-        }else {
+        } else {
             //create a new instance of DataBaseManager
-            let dataBaseManager = CouchDatabaseManager(withRequestPath: responsePath, dataBaseResponseListener: self)
+            let dataBaseManager = CouchbaseManagerFactory().getCouchBaseDataManager(request: request, dataBaseResponseListener: self)
             //add in the dictionary
-            dataBases![responsePath.path] = dataBaseManager
+            dataBases![(request.path?.rawValue)!] = dataBaseManager
             //execute on data base
+            dataBaseManager.update(serviceRequest: request)
             dataBaseManager.execute()
         }
     }
     
-    func stop(with responsePath:RequestPath) {
-        if let dataBaseManager = dataBases![responsePath.path] {
+    func stop(with request:ServiceRequest) {
+        if let dataBaseManager = dataBases![(request.path?.rawValue)!] {
             dataBaseManager.stopListening()
         }
     }
     
     //MARK:- IDataBaseResponseListner
     //TODO:-  thread..lookout
-    func onStart(result: Result) {
+    func onStart(result: Response) {
         iResultReciever?.onStart(result: result)
     }
     
-    func onChange(result: Result) {
+    func onChange(result: Response) {
         iResultReciever?.onChange(result: result)
     }
     
-    func onError(result: Result) {
+    func onError(result: Response) {
         iResultReciever?.onError(result: result)
     }
     
-    func onFinished(result: Result) {
+    func onFinished(result: Response) {
         iResultReciever?.onFinished(result: result)
     }
 }

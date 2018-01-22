@@ -10,10 +10,19 @@ import Foundation
 
 class  RequestManagerFactory
 {
-    static func getRequestManager(requestPath:RequestPath) ->IRequestManager {
+    static func getRequestManager(request:ServiceRequest) ->IRequestManager {
         //based on some paramenter...return couch or httpmanager
-        let testManager = CouchBaseRequestManager.getInstance()
-        return testManager
+       let requestType = request.requestType! 
+            switch requestType {
+            case .HTTP:
+                let httpManager = HTTPRequestManager()
+                return httpManager
+            case .CBL:
+                let CBRequestManager = CouchBaseRequestManager.getInstance()
+                return CBRequestManager
+            }
+        
+   
     }
 }
 

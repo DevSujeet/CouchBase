@@ -65,9 +65,9 @@ extension AlertViewController: ResponseListenerProtocol {
         }
     }
     
-    var requestPath: RequestPath {
+    var requestPath: ServiceRequest {
         get{
-            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
+            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self) 
         }
     }
     
@@ -76,40 +76,45 @@ extension AlertViewController: ResponseListenerProtocol {
     }
     
     func StartConnection(){
-        let requestPath = self.requestPath as! CBLRequestPath
-        requestPath.mapBlock = {(doc,emit) in
-            
-            if let type = doc["type"] as? String ,type == "task-list" {
-                emit(type,doc)
-            }
-        }
+        let requestPath = self.requestPath
+        
+//        requestPath.mapBlock = {(doc,emit) in
+//            
+//            if let type = doc["type"] as? String ,type == "task-list" {
+//                emit(type,doc)
+//            }
+//        }
+        
         responseListiner.start(requestPath: requestPath, responseListner: self)
     }
     
     //MARK:-IResponsePathConfigurer
     
-    func getResponseListenerPath() -> String? {
-        return "alert"
+    func getResponseListenerPath() -> PathNames {
+        return .alert
     }
     
-    func getResponseListenerPathArgs() -> [String : Any]? {
-        return [:]
+    func getResponseListenerPathArgs() -> RequestPathArgs {
+        return RequestPathArgs(with: nil, selectArgs: nil, sortOrder: nil, sortBy: nil, operationType: .listen, dataProp: nil)    //create a builder to create a specific requestPath.
     }
     
+    func getRequestType() ->RequestType {
+        return .HTTP
+    }
     
     //MARK:- IResponseListener protocol
-    func onStart(result: Result) {
+    func onStart(result: Response) {
         print("AlertViewController onStart")
     }
     
-    func onChange(result: Result) {
+    func onChange(result: Response) {
         print("AlertViewController onChange")
         
         let trackItems = result.result as? [CBLQueryRow] ?? []
         let count = trackItems.count
         //remove previous data
         alertDataArray = []
-        for index in 0...count {
+        for index in 0..<count {
             let alertItem = AlertViewModel()
             alertDataArray?.append(alertItem)
         }
@@ -123,11 +128,11 @@ extension AlertViewController: ResponseListenerProtocol {
         print(result.path)
     }
     
-    func onError(result: Result) {
+    func onError(result: Response) {
         print("AlertViewController onError")
     }
     
-    func onFinished(result: Result) {
+    func onFinished(result: Response) {
         print("AlertViewController onFinished")
     }
     

@@ -29,7 +29,10 @@ class TrackAskViewController: BaseAskViewController {
             print("TrackTableViewCell selected")
         }
         
-        StartConnection()
+        let askModel = AskModel(JSON: [:])
+        let string = askModel?.toJSON()
+        print(string)
+        startConnection()
     }
 
     deinit {
@@ -73,9 +76,9 @@ extension TrackAskViewController: ResponseListenerProtocol {
         }
     }
     
-    var requestPath: RequestPath {
+    var requestPath: ServiceRequest {
         get{
-            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
+            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
         }
     }
     
@@ -83,41 +86,44 @@ extension TrackAskViewController: ResponseListenerProtocol {
         responseListiner.stop(requestPath: requestPath, responseListner: self)
     }
     
-    func StartConnection(){
-        let requestPath = self.requestPath as! CBLRequestPath
-        requestPath.mapBlock = {(doc,emit) in
-            
-            if let type = doc["type"] as? String ,type == "task-list" {
-                emit(type,doc)
-            }
-        }
+    func startConnection(){
+        let requestPath = self.requestPath
+//        requestPath.mapBlock = {(doc,emit) in
+//
+//            if let type = doc["type"] as? String ,type == "task-list" {
+//                emit(type,doc)
+//            }
+//        }
         responseListiner.start(requestPath: requestPath, responseListner: self)
     }
     
     //MARK:-IResponsePathConfigurer
     
-    func getResponseListenerPath() -> String? {
-        return "track"
+    func getResponseListenerPath() -> PathNames {
+        return .track
     }
     
-    func getResponseListenerPathArgs() -> [String : Any]? {
-        return [:]
+    func getResponseListenerPathArgs() -> RequestPathArgs {
+        return RequestPathArgs(with: nil, selectArgs: nil, sortOrder: nil, sortBy: nil, operationType: .listen, dataProp: nil)    //create a builder to create a specific requestPath.
     }
     
+    func getRequestType() ->RequestType {
+        return .CBL
+    }
     
     //MARK:- IResponseListener protocol
-    func onStart(result: Result) {
+    func onStart(result: Response) {
         print("TrackAskViewController onStart")
     }
     
-    func onChange(result: Result) {
+    func onChange(result: Response) {
         print("TrackAskViewController onChange")
         
         let trackItems = result.result as? [CBLQueryRow] ?? []
         let count = trackItems.count
         //remove previous data
         trackDataArray = []
-        for index in 0...count-1 {
+        for index in 0..<count {
             let trackItem = TrackViewModel()
             trackDataArray?.append(trackItem)
         }
@@ -131,11 +137,11 @@ extension TrackAskViewController: ResponseListenerProtocol {
         print(result.path)
     }
     
-    func onError(result: Result) {
+    func onError(result: Response) {
         print("TrackAskViewController onError")
     }
     
-    func onFinished(result: Result) {
+    func onFinished(result: Response) {
         print("TrackAskViewController onFinished")
     }
     

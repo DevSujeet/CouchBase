@@ -14,49 +14,51 @@ protocol ResponseListenerProtocol:IResponseListener,IResponsePathConfigurer {
 }
 
 class TrackActivity:ResponseListenerProtocol {
-
     let responseListiner = ResponseListenerRegistrationService.shared
     
     //test method
     func getTrackInformation() {
-        let requestPath = ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
+        let requestPath = ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
         
-        requestPath.mapBlock = {(doc,emit) in
-            
-            if let type = doc["type"] as? String ,type == "task-list" {
-                emit(type,doc)
-            }
-        }
+//        requestPath.mapBlock = {(doc,emit) in
+//            
+//            if let type = doc["type"] as? String ,type == "task-list" {
+//                emit(type,doc)
+//            }
+//        }
         responseListiner.start(requestPath: requestPath, responseListner: self)
     }
     
     
     //MARK:-IResponsePathConfigurer
     
-    func getResponseListenerPath() -> String? {
-        return "ask"
+    func getResponseListenerPath() -> PathNames {
+        return .ask
     }
     
-    func getResponseListenerPathArgs() -> [String : Any]? {
-        return [:]
+    func getResponseListenerPathArgs() -> RequestPathArgs {
+        return RequestPathArgs(with: nil, selectArgs: nil, sortOrder: nil, sortBy: nil, operationType: .listen, dataProp: nil)    //create a builder to create a specific requestPath.
     }
     
+    func getRequestType() ->RequestType {
+        return .HTTP
+    }
 
     //MARK:- IResponseListener protocol
-    func onStart(result: Result) {
+    func onStart(result: Response) {
         print("TrackActivity onStart")
     }
     
-    func onChange(result: Result) {
+    func onChange(result: Response) {
         print("TrackActivity onChange")
         print(result.path)
     }
     
-    func onError(result: Result) {
+    func onError(result: Response) {
         print("TrackActivity onError")
     }
     
-    func onFinished(result: Result) {
+    func onFinished(result: Response) {
         print("TrackActivity onFinished")
     }
 

@@ -12,9 +12,9 @@ protocol IRequestManager {
     
     var iResultReciever:IResultReciever? {get set}
     
-    func start(with responsePath:RequestPath, resultReciever:IResultReciever)
+    func start(with request:ServiceRequest, resultReciever:IResultReciever)
     
-    func stop(with responsePath:RequestPath)
+    func stop(with request:ServiceRequest)
 }
 
 
