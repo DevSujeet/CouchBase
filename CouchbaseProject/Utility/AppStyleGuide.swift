@@ -11,5 +11,6 @@ import Foundation
 struct AppStyleGuide {
     //login Screen //665978
     static let loginScreenBGColor = UIColor.init(hex6: 0x665978)
+    static let alertScreenBGColor = UIColor.init(hex6: 0x665978)
     
 }

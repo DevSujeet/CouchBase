@@ -17,6 +17,11 @@ class AlertViewController: BaseAskViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         createHeaderView()
+        //set up zero state images
+        self.view.backgroundColor = AppStyleGuide.alertScreenBGColor
+        self.tableView.backgroundColor = AppStyleGuide.alertScreenBGColor
+        emptyStateImageView.image = UIImage(named:ZeroStateInfo.zeroStateAlert)
+        emptyStateLabel.text = ZeroStateInfo.ZeroStateAlertLabel
         
         //link up the data source
         //create a proper data source
@@ -41,6 +46,7 @@ class AlertViewController: BaseAskViewController {
 
     func createHeaderView(){
         let headerView = TitleWithBackView.instanceFromNib()
+        headerView.backgroundColor = AppStyleGuide.alertScreenBGColor
         headerView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 60)
         headerView.setUp(withTitle: "Alert")
         headerView.delegate = self
@@ -113,10 +119,10 @@ extension AlertViewController: ResponseListenerProtocol {
         print("AlertViewController onChange")
         
         let trackItems = result.result as? [CBLQueryRow] ?? []
-        let count = trackItems.count
+        self.cardCount = trackItems.count
         //remove previous data
         alertDataArray = []
-        for index in 0..<count {
+        for index in 0..<cardCount {
             let alertItem = AlertViewModel()
             alertDataArray?.append(alertItem)
         }

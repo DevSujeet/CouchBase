@@ -11,6 +11,18 @@ import UIKit
 
 //URL(string: "http://127.0.0.1:4984/ask")!
 
+struct ZeroStateInfo {
+    static let zeroStateAlert = "AlertZeroState"
+    static let zeroStateTrack = "TrackZeroState"
+    static let zeroStateAsk = "AskZeroState"
+    
+    static let ZeroStateAlertLabel = "When cuddle finds stuff that require your attention they  will show up here."
+    static let ZeroStateTrackLabel = "When you ask cuddleto track insights they show up here."
+    static let ZeroStateAsKLabel = "how can I help you?"
+    static let ZeroStateLabelColor = UIColor(hex6:0xA8A8A8)
+
+}
+
 struct Constants {
     //To keep track of version changes
     static let CBLVersionHistory:[String] = []

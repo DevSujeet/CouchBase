@@ -10,7 +10,9 @@ import UIKit
 protocol TitleWithBackViewDelegate:NSObjectProtocol {
     func didPressedBackButton()
 }
-
+struct TitleWithBackViewSetting {
+    static let backImageName = "backArrow"
+}
 class TitleWithBackView: UIView {
     
     weak var delegate:TitleWithBackViewDelegate?
@@ -24,8 +26,10 @@ class TitleWithBackView: UIView {
     
     @IBOutlet weak var backButton: UIButton!{
         didSet {
+            backButton.setImage(UIImage(named:TitleWithBackViewSetting.backImageName), for: .normal)
             backButton.layer.cornerRadius = 20
             backButton.backgroundColor = UIColor(hex6: 0xE8E8E8)
+            backButton.dropShadow()
         }
     }
     

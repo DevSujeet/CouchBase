@@ -41,17 +41,48 @@ protocol CBLDataSourceRequirment {
 }
 class CBLTableViewController: UIViewController {
     
-    @IBOutlet weak var tableView:UITableView!
+    @IBOutlet weak var tableView:UITableView!{
+        didSet {
+            tableView.separatorStyle = .none
+        }
+    }
+    let emptyStateImageView:UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
-    var database: CBLDatabase!
-    var listsLiveQuery: CBLLiveQuery!
-    var listRows : [CBLQueryRow]?
-
-    var cBLDataSource:CBLDataSource?
+    let emptyStateLabel:UILabel = {
+        let label = UILabel(frame: CGRect(x: 0,y: 0,width: 300,height: 20))
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 18, weight: .regular)
+        label.textColor = ZeroStateInfo.ZeroStateLabelColor
+        label.numberOfLines = 0
+        return label
+        
+    }()
+    
+    let emptyStateTitleLabel:UILabel = {
+        let label = UILabel(frame: CGRect(x: 0,y: 0,width: 300,height: 20))
+        return label
+        
+    }()
+    
+    var cardCount = 0{
+        didSet {
+            if cardCount > 0 {
+                self.emptyStateImageView.isHidden = true
+                self.emptyStateLabel.isHidden = true
+                self.emptyStateTitleLabel.isHidden = true
+            }else {
+                
+                self.emptyStateImageView.isHidden = false
+                self.emptyStateLabel.isHidden = false
+                self.emptyStateTitleLabel.isHidden = false
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        addConstraintsToZeroState()
 //        // Do any additional setup after loading the view.
 //        //both these method are to be overriden in subclass.
 //        //create a proper data source
@@ -60,6 +91,38 @@ class CBLTableViewController: UIViewController {
 //        setupViewAndQuery()
     }
 
+    func addConstraintsToZeroState() {
+        self.view.addSubview(emptyStateImageView)
+        self.view.addSubview(emptyStateLabel)
+        
+        emptyStateImageView.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let imageWidhtConstraint = NSLayoutConstraint(item: emptyStateImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
+        
+        let imageHeightConstraint = NSLayoutConstraint(item: emptyStateImageView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
+        
+        let imageCenterXConstraint =  NSLayoutConstraint(item: emptyStateImageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+        
+        let imageCenterYConstraint = NSLayoutConstraint(item: emptyStateImageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.70, constant: 0)
+        
+        let labelWidhtConstraint = NSLayoutConstraint(item: emptyStateLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+        
+        let labelCenterXconstraint = NSLayoutConstraint(item: emptyStateLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
+        
+        let verticalLabelImageDistanceConstraint = NSLayoutConstraint(item: emptyStateLabel, attribute: .top, relatedBy: .equal, toItem: emptyStateImageView, attribute: .bottom, multiplier: 1, constant: 20)
+        
+        emptyStateImageView.addConstraint(imageWidhtConstraint)
+        emptyStateImageView.addConstraint(imageHeightConstraint)
+        
+        view.addConstraint(imageCenterXConstraint)
+        view.addConstraint(imageCenterYConstraint)
+        
+        emptyStateLabel.addConstraint(labelWidhtConstraint)
+        view.addConstraint(labelCenterXconstraint)
+        view.addConstraint(verticalLabelImageDistanceConstraint)
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

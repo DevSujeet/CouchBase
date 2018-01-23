@@ -20,6 +20,9 @@ class TrackAskViewController: BaseAskViewController {
         // Do any additional setup after loading the view.
         //create headerView
         createHeaderView()
+        //set up zero state images
+        emptyStateImageView.image = UIImage(named:ZeroStateInfo.zeroStateTrack)
+        emptyStateLabel.text = ZeroStateInfo.ZeroStateTrackLabel
         
         //link up the data source
         //create a proper data source
@@ -122,10 +125,10 @@ extension TrackAskViewController: ResponseListenerProtocol {
         print("TrackAskViewController onChange")
         
         let trackItems = result.result as? [CBLQueryRow] ?? []
-        let count = trackItems.count
+        self.cardCount = trackItems.count
         //remove previous data
         trackDataArray = []
-        for index in 0..<count {
+        for index in 0..<cardCount {
             let trackItem = TrackViewModel()
             trackDataArray?.append(trackItem)
         }

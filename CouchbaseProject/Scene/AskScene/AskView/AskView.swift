@@ -17,7 +17,11 @@ protocol AskViewDelegate:NSObjectProtocol {
 //The view that is hold the container where user can create a ask query through voice or through typing there content.
 class AskView: UIView {//, UISearchResultsUpdating..not using search controller
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!{
+        didSet {
+            tableView.separatorStyle = .none
+        }
+    }
     
     weak var delegate:AskViewDelegate?
     
