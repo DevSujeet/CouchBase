@@ -23,6 +23,7 @@ class TrackAskViewController: BaseAskViewController {
         //set up zero state images
         emptyStateImageView.image = UIImage(named:ZeroStateInfo.zeroStateTrack)
         emptyStateLabel.text = ZeroStateInfo.ZeroStateTrackLabel
+        emptyStateTitleLabel.text = ZeroStateInfo.ZeroStateTrackTitleLabel
         
         //link up the data source
         //create a proper data source

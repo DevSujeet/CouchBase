@@ -17,7 +17,8 @@ struct ZeroStateInfo {
     static let zeroStateAsk = "AskZeroState"
     
     static let ZeroStateAlertLabel = "When cuddle finds stuff that require your attention they  will show up here."
-    static let ZeroStateTrackLabel = "When you ask cuddleto track insights they show up here."
+    static let ZeroStateTrackTitleLabel = "This is your dashboard."
+    static let ZeroStateTrackLabel = "When you ask cuddle to track insights they show up here."
     static let ZeroStateAsKLabel = "how can I help you?"
     static let ZeroStateLabelColor = UIColor(hex6:0xA8A8A8)
 

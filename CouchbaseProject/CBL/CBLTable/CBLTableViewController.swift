@@ -46,6 +46,7 @@ class CBLTableViewController: UIViewController {
             tableView.separatorStyle = .none
         }
     }
+    
     let emptyStateImageView:UIImageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
     
     let emptyStateLabel:UILabel = {
@@ -60,8 +61,21 @@ class CBLTableViewController: UIViewController {
     
     let emptyStateTitleLabel:UILabel = {
         let label = UILabel(frame: CGRect(x: 0,y: 0,width: 300,height: 20))
+        label.textAlignment = .center
+        label.font = UIFont.systemFont(ofSize: 22, weight: .bold)
+        label.textColor = ZeroStateInfo.ZeroStateLabelColor
+        label.numberOfLines = 0
         return label
         
+    }()
+    
+    let emptyStateViewStack:UIStackView = {
+        let vStackView = UIStackView()
+        vStackView.axis = .vertical
+        vStackView.distribution = .fillProportionally
+        vStackView.alignment = .fill
+        vStackView.spacing = 10
+        return vStackView
     }()
     
     var cardCount = 0{
@@ -92,11 +106,14 @@ class CBLTableViewController: UIViewController {
     }
 
     func addConstraintsToZeroState() {
+        emptyStateViewStack.addArrangedSubview(emptyStateTitleLabel)
+        emptyStateViewStack.addArrangedSubview(emptyStateLabel)
         self.view.addSubview(emptyStateImageView)
-        self.view.addSubview(emptyStateLabel)
+        self.view.addSubview(emptyStateViewStack)
         
         emptyStateImageView.translatesAutoresizingMaskIntoConstraints = false
         emptyStateLabel.translatesAutoresizingMaskIntoConstraints = false
+        emptyStateViewStack.translatesAutoresizingMaskIntoConstraints = false
         
         let imageWidhtConstraint = NSLayoutConstraint(item: emptyStateImageView, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 60)
         
@@ -105,12 +122,12 @@ class CBLTableViewController: UIViewController {
         let imageCenterXConstraint =  NSLayoutConstraint(item: emptyStateImageView, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
         
         let imageCenterYConstraint = NSLayoutConstraint(item: emptyStateImageView, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 0.70, constant: 0)
+        //...
+        let viewStackWidhtConstraint = NSLayoutConstraint(item: emptyStateViewStack, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
         
-        let labelWidhtConstraint = NSLayoutConstraint(item: emptyStateLabel, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 250)
+        let viewStackCenterXconstraint = NSLayoutConstraint(item: emptyStateViewStack, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
         
-        let labelCenterXconstraint = NSLayoutConstraint(item: emptyStateLabel, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
-        
-        let verticalLabelImageDistanceConstraint = NSLayoutConstraint(item: emptyStateLabel, attribute: .top, relatedBy: .equal, toItem: emptyStateImageView, attribute: .bottom, multiplier: 1, constant: 20)
+        let verticalStackToImageDistanceConstraint = NSLayoutConstraint(item: emptyStateViewStack, attribute: .top, relatedBy: .equal, toItem: emptyStateImageView, attribute: .bottom, multiplier: 1, constant: 20)
         
         emptyStateImageView.addConstraint(imageWidhtConstraint)
         emptyStateImageView.addConstraint(imageHeightConstraint)
@@ -118,9 +135,9 @@ class CBLTableViewController: UIViewController {
         view.addConstraint(imageCenterXConstraint)
         view.addConstraint(imageCenterYConstraint)
         
-        emptyStateLabel.addConstraint(labelWidhtConstraint)
-        view.addConstraint(labelCenterXconstraint)
-        view.addConstraint(verticalLabelImageDistanceConstraint)
+        emptyStateViewStack.addConstraint(viewStackWidhtConstraint)
+        view.addConstraint(viewStackCenterXconstraint)
+        view.addConstraint(verticalStackToImageDistanceConstraint)
     }
     
     override func didReceiveMemoryWarning() {
