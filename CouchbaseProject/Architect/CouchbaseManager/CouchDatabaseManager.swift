@@ -67,10 +67,13 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
             self.delete(id: self.serviceRequest.pathArgs!.documentID!)
         case .monitor:
             self.monitor(id: self.serviceRequest.pathArgs!.documentID!)
+            createCBLMonitorView(mapBlock: self.mapBlock)
+            createCBLDocumentLiveQuery()
+            monitorLiveQuery.start()
         case .listen:
             self.listen()
             createCBLView(mapBlock:self.mapBlock)
-            createCBLLiveQuery()
+            createCBListLLiveQuery()
             //start listening to the changes on the database.
             listsLiveQuery.start()
         }
@@ -135,9 +138,11 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     
     
     private var listsView:CBLView?
+    private var monitorView:CBLView?
     private var listsLiveQuery: CBLLiveQuery!
     private var monitorLiveQuery: CBLLiveQuery!
     private var listRows : [CBLQueryRow]?
+    private var monitoredRows :[CBLQueryRow]?
     var mapBlock:CBLMapBlock!
     
     private func createCBLView(mapBlock:CBLMapBlock!) {
@@ -147,9 +152,21 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
         }
     }
     
-    private func createCBLLiveQuery(){
+    private func createCBLMonitorView(mapBlock:CBLMapBlock!) {
+        monitorView = database.viewNamed((self.serviceRequest.pathArgs?.operationType)!.rawValue)
+        if monitorView?.mapBlock == nil {
+            monitorView?.setMapBlock(mapBlock, version: Constants.CBLVersion)
+        }
+    }
+    
+    private func createCBListLLiveQuery(){
         listsLiveQuery = listsView?.createQuery().asLive()
         listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
+    }
+    
+    private func createCBLDocumentLiveQuery(){
+        monitorLiveQuery = monitorView?.createQuery().asLive()
+        monitorLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
     }
     
     override internal func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -158,7 +175,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
             reloadTaskLists()
         }
         if object as? NSObject == monitorLiveQuery {
-            reloadTaskLists()
+            reloadDocument()
         }
     }
     
@@ -169,9 +186,17 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
         let count = listRows?.count ?? 12
         print("list row count = \(count)") 
         testresult.result = listRows
+        self.dataBaseResponseListener.onListen(result:testresult )
+    }
+    //monitoredRows
+    private func reloadDocument() {
+        monitoredRows = monitorLiveQuery.rows?.allObjects as? [CBLQueryRow] ?? nil
+        let testresult = Response(withPath: (serviceRequest.path?.rawValue)!)
+        let count = listRows?.count ?? 12
+        print("list row count = \(count)")
+        testresult.result = listRows
         self.dataBaseResponseListener.onChange(result:testresult )
     }
-    
     
     //MARK:- couchbase creation sepcific changes
     //changes which involves the Database creation and starting replication
@@ -195,7 +220,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
         
         try database = CBLManager.sharedInstance().openDatabaseNamed(dbname, with: options)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CBLDataHelper.observeDatabaseChange), name:Notification.Name.cblDatabaseChange, object: database)
+//        NotificationCenter.default.addObserver(self, selector: #selector(CBLDataHelper.observeDatabaseChange), name:Notification.Name.cblDatabaseChange, object: database)
     }
 
     

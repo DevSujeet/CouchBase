@@ -18,10 +18,10 @@ class Response {
     var path:String!
     
 //    var request:ServiceRequest
-    
+    var success:Bool? = false
     var result:Any?
     
-    var error:NSError?
+    var error:Error?
     
     init(withPath path:String) {
         self.path = path

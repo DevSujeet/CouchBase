@@ -10,6 +10,8 @@ import Foundation
 
 protocol IDataBaseResponseListner {
     func onStart(result:Response)
+    func onCreate(result:Response)
+    func onListen(result:Response)
     func onChange(result:Response)
     func onError(result:Response)
     func onFinished(result:Response)

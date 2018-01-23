@@ -115,8 +115,10 @@ extension TrackAskViewController: ResponseListenerProtocol {
     func onStart(result: Response) {
         print("TrackAskViewController onStart")
     }
-    
-    func onChange(result: Response) {
+     func onCreate(result:Response){
+        print("TrackAskViewController onCreate")
+    }
+    func onListen(result:Response) {
         print("TrackAskViewController onChange")
         
         let trackItems = result.result as? [CBLQueryRow] ?? []
@@ -127,7 +129,7 @@ extension TrackAskViewController: ResponseListenerProtocol {
             let trackItem = TrackViewModel()
             trackDataArray?.append(trackItem)
         }
-
+        
         //TODO:
         //create  datasource with updated data array...finc out mech to insert data
         //without creating a new instance of datasource.
@@ -135,6 +137,26 @@ extension TrackAskViewController: ResponseListenerProtocol {
         
         self.tableView.reloadData()
         print(result.path)
+    }
+    func onChange(result: Response) {
+//        print("TrackAskViewController onChange")
+//
+//        let trackItems = result.result as? [CBLQueryRow] ?? []
+//        let count = trackItems.count
+//        //remove previous data
+//        trackDataArray = []
+//        for index in 0..<count {
+//            let trackItem = TrackViewModel()
+//            trackDataArray?.append(trackItem)
+//        }
+//
+//        //TODO:
+//        //create  datasource with updated data array...finc out mech to insert data
+//        //without creating a new instance of datasource.
+//        trackDataSource = TrackDataSource(tableView: self.tableView, array: trackDataArray!)
+//
+//        self.tableView.reloadData()
+//        print(result.path)
     }
     
     func onError(result: Response) {

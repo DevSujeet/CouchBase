@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 protocol AskViewDelegate:NSObjectProtocol {
     func doneButtonPressed()
@@ -123,17 +124,66 @@ extension AskView : ResponseListenerProtocol {
         print("Ask onStart")
     }
     
-    func onChange(result: Response) {
-        print("Ask onChange")
+    func onCreate(result:Response){
+        print("Ask onCreate")
+        if result.success! {
+            print("objectcreated successfully")
+            let createdID = result.result as! String
+            print("createdID = \(createdID)")
+            //once ID is created start monitoring the changes to this object
+        }else{
+            print("objectcreated failed")
+        }
+    }
+    
+    func onListen(result:Response) {
+        print("Ask onListen")
         let askItems = result.result as? [CBLQueryRow] ?? []
         let count = askItems.count
+        print("askItems count = \(count)")
         //remove previous data
         askDataArray = []
-        for index in 0..<count {
-            let askItem = AskViewModel(with: "my sales + \(index)", owner: "sujeet", type: "ask")
-            askDataArray?.append(askItem)
+        for askItem in askItems {
+            
+            let data = askItem.value(forKey: "value")
+//
+            if let parsedObject = Mapper<AskModel>().map(JSONObject:data) {
+                print("parsedObject = \(parsedObject)")
+                let askItem = AskViewModel(with: parsedObject.name!, owner: parsedObject.owner!, type: parsedObject.type!)
+                askDataArray?.append(askItem)
+            }
+            
         }
 
+        askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
+        self.tableView.reloadData()
+        print(result.path)
+    }
+    
+    func onChange(result: Response) //TO LISTEN TO A SINGLE DOCUMENT IN THE DB
+    {
+        print("Ask onListen")
+        let askItems = result.result as? [CBLQueryRow] ?? []
+        //        let count = askItems.count
+        //remove previous data
+        askDataArray = []
+        for askItem in askItems {
+            //            let qtext = askItem.value(forKey: "key") as? String
+            //
+            let data = askItem.value(forKey: "value")
+            //
+            if let parsedObject = Mapper<AskModel>().map(JSONObject:data) {
+                print("parsedObject = \(parsedObject)")
+                let askItem = AskViewModel(with: parsedObject.name!, owner: parsedObject.owner!, type: parsedObject.type!)
+                askDataArray?.append(askItem)
+            }
+            
+        }
+        //        for index in 0..<count {
+        //            let askItem = AskViewModel(with: "my sales + \(index)", owner: "sujeet", type: "ask")
+        //            askDataArray?.append(askItem)
+        //        }
+        
         //TODO:
         //create  datasource with updated data array...finc out mech to insert data
         //without creating a new instance of datasource.
@@ -141,6 +191,7 @@ extension AskView : ResponseListenerProtocol {
         self.tableView.reloadData()
         print(result.path)
     }
+    
     
     func onError(result: Response) {
         print("Ask onError")

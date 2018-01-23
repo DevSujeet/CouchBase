@@ -32,7 +32,7 @@ class TrackDataBaseManager: CouchDatabaseManager  {
     
     override func listen() {
         self.mapBlock = {(doc,emit) in
-            if let email = doc["type"] as? String ,email == "task-list" {
+            if let email = doc["type"] as? String ,email == "sujeet@gmail.com" {
                 emit(email,doc)
             }
         }

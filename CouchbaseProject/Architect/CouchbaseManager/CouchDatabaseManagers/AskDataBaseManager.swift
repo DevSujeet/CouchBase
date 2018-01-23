@@ -12,16 +12,20 @@ class AskDataBaseManager: CouchDatabaseManager {
     
     override func create(request: ServiceRequest) {
         let document = database.document(withID: (request.pathArgs?.documentID)!)
-        
         let properties = request.pathArgs?.dataProp
+        
+        let onCreateResult = Response(withPath: (serviceRequest.path?.rawValue)!)
         do {
             try document?.putProperties(properties!)
+            onCreateResult.success = true
+            onCreateResult.result = request.pathArgs?.documentID    //the id of the object created
         } catch(let error) {
+            onCreateResult.success = false
+            onCreateResult.error = error
             print("error in creation = \(error)")
         }
         
-            
-        
+        self.dataBaseResponseListener.onCreate(result:onCreateResult)
     }
     
     override func read(id: String) {
@@ -37,17 +41,18 @@ class AskDataBaseManager: CouchDatabaseManager {
     }
     
     override func monitor(id: String) {
+        print("monitored ID ie name = \(id)")
         self.mapBlock = {(doc,emit) in
-            if let email = doc["type"] as? String ,email == "task" {
-                emit(email,doc)
+            if let type = doc["name"] as? String ,type == id {
+                emit(type,doc)
             }
         }
     }
     
     override func listen() {
         self.mapBlock = {(doc,emit) in
-            if let email = doc["type"] as? String ,email == "task-list" {
-                emit(email,doc)
+            if let type = doc["type"] as? String ,type == "ask" {
+                emit(type,doc)
             }
         }
     }

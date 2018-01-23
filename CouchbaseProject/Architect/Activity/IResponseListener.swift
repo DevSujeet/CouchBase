@@ -10,7 +10,9 @@ import Foundation
 
 protocol IResponseListener {
     func onStart(result:Response)
-    func onChange(result:Response)
+    func onCreate(result:Response)
+    func onListen(result:Response)
+    func onChange(result:Response)  //to listen to changes in a single doc.
     func onError(result:Response)
     func onFinished(result:Response)
 }

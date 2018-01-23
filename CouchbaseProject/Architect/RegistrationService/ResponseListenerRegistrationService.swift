@@ -59,12 +59,21 @@ class ResponseListenerRegistrationService : IResultReciever {
         responseListener?.onStart(result: result)
     }
     
+    func onCreate(result:Response){
+        //get the listener from the dictionary
+        let responseListener = self.responseListeners[result.path]
+        responseListener?.onCreate(result: result)
+    }
     func onChange(result:Response){
         //get the listener from the dictionary
         let responseListener = self.responseListeners[result.path]
         responseListener?.onChange(result: result)
     }
     
+    func onListen(result:Response) {
+        let responseListener = self.responseListeners[result.path]
+        responseListener?.onListen(result: result)
+    }
     func onError(result:Response){
         //get the listener from the dictionary
         let responseListener = self.responseListeners[result.path]

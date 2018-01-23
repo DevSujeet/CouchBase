@@ -60,6 +60,12 @@ final class CouchBaseRequestManager:IRequestManager,IDataBaseResponseListner {
     func onStart(result: Response) {
         iResultReciever?.onStart(result: result)
     }
+    func onCreate(result:Response){
+        iResultReciever?.onCreate(result: result)
+    }
+    func onListen(result:Response) {
+        iResultReciever?.onListen(result: result)
+    }
     
     func onChange(result: Response) {
         iResultReciever?.onChange(result: result)

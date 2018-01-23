@@ -32,6 +32,6 @@ class AskTableViewCell: UITableViewCell,ConfigurableCell {
     
     func configure(_ item: AskViewModel, at indexPath: IndexPath) {
         //        dataTitleLabel.text = item
-        titleLabel.text = "AskTableViewCell"
+        titleLabel.text = item.title
     }
 }

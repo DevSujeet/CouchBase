@@ -106,8 +106,10 @@ extension AlertViewController: ResponseListenerProtocol {
     func onStart(result: Response) {
         print("AlertViewController onStart")
     }
-    
-    func onChange(result: Response) {
+    func onCreate(result:Response){
+        print("AlertViewController onCreate")
+    }
+    func onListen(result:Response) {
         print("AlertViewController onChange")
         
         let trackItems = result.result as? [CBLQueryRow] ?? []
@@ -126,6 +128,27 @@ extension AlertViewController: ResponseListenerProtocol {
         
         self.tableView.reloadData()
         print(result.path)
+    }
+    
+    func onChange(result: Response) {
+//        print("AlertViewController onChange")
+//        
+//        let trackItems = result.result as? [CBLQueryRow] ?? []
+//        let count = trackItems.count
+//        //remove previous data
+//        alertDataArray = []
+//        for index in 0..<count {
+//            let alertItem = AlertViewModel()
+//            alertDataArray?.append(alertItem)
+//        }
+//        
+//        //TODO:
+//        //create  datasource with updated data array...finc out mech to insert data
+//        //without creating a new instance of datasource.
+//        alertDataSource = AlertDataSource(tableView: self.tableView, array: alertDataArray!)
+//        
+//        self.tableView.reloadData()
+//        print(result.path)
     }
     
     func onError(result: Response) {

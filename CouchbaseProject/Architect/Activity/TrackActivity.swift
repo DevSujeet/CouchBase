@@ -48,7 +48,13 @@ class TrackActivity:ResponseListenerProtocol {
     func onStart(result: Response) {
         print("TrackActivity onStart")
     }
-    
+    func onCreate(result:Response){
+        print("TrackActivity onCreate")
+    }
+    func onListen(result:Response) {
+        print("TrackActivity onListen")
+        print(result.path)
+    }
     func onChange(result: Response) {
         print("TrackActivity onChange")
         print(result.path)
