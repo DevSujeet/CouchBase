@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Scene/AlertScene/AlertViewController.swift"
-            timestampString = "538408093.614719"
+            timestampString = "538410463.145293"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
@@ -26,39 +26,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538408093.615043"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "145"
-            endingLineNumber = "145"
-            landmarkName = "onCreate(result:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538408093.615343"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "243"
-            endingLineNumber = "243"
-            landmarkName = "createAskQuery(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538408093.6154391"
+            timestampString = "538410463.145624"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "187"
@@ -74,7 +42,7 @@
                   moduleName = "CouchbaseProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-                  timestampString = "538408093.845099"
+                  timestampString = "538410463.352807"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "187"
@@ -89,7 +57,7 @@
                   moduleName = "CouchbaseProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-                  timestampString = "538408093.846799"
+                  timestampString = "538410463.354511"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "187"
@@ -106,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538408093.615517"
+            timestampString = "538410463.146036"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
@@ -122,7 +90,7 @@
                   moduleName = "CouchbaseProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-                  timestampString = "538408093.850693"
+                  timestampString = "538410463.358048"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
@@ -137,7 +105,7 @@
                   moduleName = "CouchbaseProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-                  timestampString = "538408093.852241"
+                  timestampString = "538410463.359683"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
@@ -154,11 +122,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538408093.616148"
+            timestampString = "538410463.146301"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "reloadDocument()"
             landmarkType = "7">
          </BreakpointContent>
@@ -170,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538408093.616473"
+            timestampString = "538410463.146372"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -185,40 +153,8 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538408093.616546"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "227"
-            endingLineNumber = "227"
-            landmarkName = "createAskQuery(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538408093.616613"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "createAskQuery(with:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538408093.616679"
+            timestampString = "538410463.146822"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -234,27 +170,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManagers/AskDataBaseManager.swift"
-            timestampString = "538408093.6169651"
+            timestampString = "538410463.1468951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "monitor(id:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManagers/AskDataBaseManager.swift"
-            timestampString = "538408093.617191"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
             landmarkName = "monitor(id:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -266,27 +186,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538408093.617247"
+            timestampString = "538410463.14709"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "177"
-            endingLineNumber = "177"
-            landmarkName = "createCBLDocumentLiveQuery()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538408093.617496"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
             landmarkName = "createCBLDocumentLiveQuery()"
             landmarkType = "7">
          </BreakpointContent>

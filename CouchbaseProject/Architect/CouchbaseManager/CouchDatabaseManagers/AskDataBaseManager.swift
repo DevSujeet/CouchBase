@@ -47,6 +47,7 @@ class AskDataBaseManager: CouchDatabaseManager {
             if let query = doc["query"] {
                 if let queryObject = Mapper<Query>().map(JSONObject:query) {
                     if let docId = queryObject.id {
+                        print("emitting docId = \(docId)")
                         emit(docId,doc)
                     }
                 }

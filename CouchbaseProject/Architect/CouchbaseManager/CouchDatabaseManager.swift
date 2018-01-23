@@ -171,8 +171,8 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
         monitorLiveQuery = monitorView?.createQuery().asLive()
         let docID = self.serviceRequest.pathArgs?.documentID
         print("listening to doc = \(docID)")
-        monitorLiveQuery.startKeyDocID = docID
-        monitorLiveQuery.endKeyDocID = docID
+//        monitorLiveQuery.startKeyDocID = docID
+//        monitorLiveQuery.endKeyDocID = docID
         let keys = [docID]
         monitorLiveQuery.keys = keys
         monitorLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
@@ -201,6 +201,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     private func reloadDocument() {
         monitoredRows = monitorLiveQuery.rows?.allObjects as? [CBLQueryRow] ?? nil
         let testresult = Response(withPath: (serviceRequest.path?.rawValue)!)
+        testresult.request = self.serviceRequest
         let count = monitoredRows?.count ?? 12
         print("reloadDocument list row count = \(count)")
         testresult.result = monitoredRows

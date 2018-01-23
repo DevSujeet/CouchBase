@@ -79,7 +79,7 @@ extension AskView :AskSearchViewDelegate {
             self.delegate?.didBeginAsking()
         }
         let date = Date()
-        let dateString = Utility.dateToString(format: "yyyy-mm-dd HH:mm.ss", date: date) + "-Sujeet"
+        let dateString = Utility.dateToString(format: Constants.docIDDateFormat, date: date) + "-Sujeet"
         self.documentId = dateString
         self.baseOperation = .create
 //        StartConnection()
@@ -189,8 +189,7 @@ extension AskView : ResponseListenerProtocol {
         //remove previous data
         askDataArray = []
         for askItem in askItems {
-            //            let qtext = askItem.value(forKey: "key") as? String
-            //
+
             let data = askItem.value(forKey: "value")
             //
             if let parsedObject = Mapper<UserQuery>().map(JSONObject:data) {
@@ -201,9 +200,6 @@ extension AskView : ResponseListenerProtocol {
             
         }
 
-        //TODO:
-        //create  datasource with updated data array...finc out mech to insert data
-        //without creating a new instance of datasource.
         askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
         self.tableView.reloadData()
         print(result.path)
@@ -225,8 +221,8 @@ extension AskView {
     func createAskQuery(with query:String) {
         //create a query object
         let date:Date = Date()
-        let dateString = Utility.dateToString(format: "yyyy-MM-dd HH:mm:ss", date: date as Date)
-        let docId = dateString + "-Sujeet"
+//        let dateString = Utility.dateToString(format: Constants.docIDDateFormat, date: date as Date)
+        let docId = self.documentId
         let userQuery = UserQuery(JSON: [:])
         userQuery?.query?.id = docId
         userQuery?.query?.deviceType = "iPhone"

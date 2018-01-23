@@ -30,4 +30,6 @@ struct Constants {
     //Current version of CBL view/indexes
     static let CBLVersion = "1"
     static let kSyncGatewayUrl = "http://172.18.40.23:4984/"///"http://127.0.0.1:4984/" //"http://52.191.193.71/"
+    
+    static let docIDDateFormat = "yyyy-mm-dd hh:mm:ss"
 }
