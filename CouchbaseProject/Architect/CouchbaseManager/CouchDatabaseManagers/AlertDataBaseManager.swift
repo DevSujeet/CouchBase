@@ -33,7 +33,7 @@ class AlertDataBaseManager: CouchDatabaseManager  {
     
     /// create and listen to all changes on the view.
     override func listen() {
-        self.mapBlock = {(doc,emit) in
+        self.listenMapBlock = {(doc,emit) in
             if let email = doc["type"] as? String ,email == "task-list" {
                 emit(email,doc)
             }

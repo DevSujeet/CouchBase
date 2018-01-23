@@ -17,7 +17,7 @@ class Response {
     //as path is the key , get Iresponselistner from the dictionary
     var path:String!
     
-//    var request:ServiceRequest
+    var request:ServiceRequest?
     var success:Bool? = false
     var result:Any?
     

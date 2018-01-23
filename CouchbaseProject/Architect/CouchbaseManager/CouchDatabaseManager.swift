@@ -43,7 +43,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
         let urlPath = Constants.kSyncGatewayUrl + (serviceRequest.path?.rawValue)!
         print("urlPath = \(urlPath)")
         syncgatewayURL = URL(string:urlPath)
-        
+        self.serviceRequest = request
 //        self.mapBlock = self.requestPath.mapBlock //set up the query map block
         self.dataBaseResponseListener = dataBaseResponseListener
     }
@@ -67,12 +67,12 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
             self.delete(id: self.serviceRequest.pathArgs!.documentID!)
         case .monitor:
             self.monitor(id: self.serviceRequest.pathArgs!.documentID!)
-            createCBLMonitorView(mapBlock: self.mapBlock)
+            createCBLMonitorView(mapBlock: self.monitorMapBlock)
             createCBLDocumentLiveQuery()
             monitorLiveQuery.start()
         case .listen:
             self.listen()
-            createCBLView(mapBlock:self.mapBlock)
+            createCBLView(mapBlock:self.listenMapBlock)
             createCBListLLiveQuery()
             //start listening to the changes on the database.
             listsLiveQuery.start()
@@ -93,6 +93,8 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
             print("stop delete")
         case .monitor:
             print("stop monitor")
+            monitorLiveQuery.stop()
+            stopAndCloseDatabase()
         case .listen:
             print("stop listen")
             listsLiveQuery.stop()
@@ -126,7 +128,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     }
     
     func listen() {
-        self.mapBlock = {(doc,emit) in
+        self.listenMapBlock = {(doc,emit) in
             if let email = doc["email"] as? String ,email == "sujeet@gmail.com" {
                 emit(email,doc)
             }
@@ -143,7 +145,8 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     private var monitorLiveQuery: CBLLiveQuery!
     private var listRows : [CBLQueryRow]?
     private var monitoredRows :[CBLQueryRow]?
-    var mapBlock:CBLMapBlock!
+    var listenMapBlock:CBLMapBlock!
+    var monitorMapBlock:CBLMapBlock!
     
     private func createCBLView(mapBlock:CBLMapBlock!) {
         listsView = database.viewNamed((self.serviceRequest.pathArgs?.operationType)!.rawValue)
@@ -166,6 +169,12 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     
     private func createCBLDocumentLiveQuery(){
         monitorLiveQuery = monitorView?.createQuery().asLive()
+        let docID = self.serviceRequest.pathArgs?.documentID
+        print("listening to doc = \(docID)")
+        monitorLiveQuery.startKeyDocID = docID
+        monitorLiveQuery.endKeyDocID = docID
+        let keys = [docID]
+        monitorLiveQuery.keys = keys
         monitorLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
     }
     
@@ -192,9 +201,9 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     private func reloadDocument() {
         monitoredRows = monitorLiveQuery.rows?.allObjects as? [CBLQueryRow] ?? nil
         let testresult = Response(withPath: (serviceRequest.path?.rawValue)!)
-        let count = listRows?.count ?? 12
-        print("list row count = \(count)")
-        testresult.result = listRows
+        let count = monitoredRows?.count ?? 12
+        print("reloadDocument list row count = \(count)")
+        testresult.result = monitoredRows
         self.dataBaseResponseListener.onChange(result:testresult )
     }
     
@@ -220,7 +229,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
         
         try database = CBLManager.sharedInstance().openDatabaseNamed(dbname, with: options)
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(CBLDataHelper.observeDatabaseChange), name:Notification.Name.cblDatabaseChange, object: database)
+        NotificationCenter.default.addObserver(self, selector: #selector(CouchDatabaseManager.observeDatabaseChange), name:Notification.Name.cblDatabaseChange, object: database)
     }
 
     
@@ -256,7 +265,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
             
             accessDocuments.append(changedDoc!);
             
-            NotificationCenter.default.addObserver(self, selector: #selector(CBLDataHelper.handleAccessChange), name: NSNotification.Name.cblDocumentChange, object: changedDoc);
+            NotificationCenter.default.addObserver(self, selector: #selector(CouchDatabaseManager.handleAccessChange), name: NSNotification.Name.cblDocumentChange, object: changedDoc);
         }
     }
     

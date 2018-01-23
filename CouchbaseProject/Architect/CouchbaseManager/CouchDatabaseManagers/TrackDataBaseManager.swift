@@ -31,7 +31,7 @@ class TrackDataBaseManager: CouchDatabaseManager  {
     }
     
     override func listen() {
-        self.mapBlock = {(doc,emit) in
+        self.listenMapBlock = {(doc,emit) in
             if let email = doc["type"] as? String ,email == "sujeet@gmail.com" {
                 emit(email,doc)
             }

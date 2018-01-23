@@ -60,6 +60,30 @@ class RequestPathArgsBuilder {
     func setDocoumentId(documentID:String?){
         self.documentID = documentID
     }
+    
+    func setSelectArgs(selectArgs:[String]?){
+        self.selectArgs = selectArgs
+    }
+    
+    func setSortOrder(sortOrder:String?){
+        self.sortOrder = sortOrder
+    }
+    
+    func setSortBy(sortBy:[String]?){
+        self.sortBy = sortBy
+    }
+    
+    func setOperationType(operationType:BaseOperation?){
+        self.operationType = operationType
+    }
+    
+    func setDataProp(dataProp:[String:Any]?) {
+        self.dataProp = dataProp
+    }
+    
+    func buildPathArgs()->RequestPathArgs {
+        return RequestPathArgs(with: documentID, selectArgs: selectArgs, sortOrder: sortOrder, sortBy: sortBy, operationType: operationType, dataProp: dataProp)
+    }
 }
 
 class ServiceRequest {

@@ -27,6 +27,13 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
     
     var askDataArray:[AskViewModel]? = []
     var askDataSource:AskDataSource?
+    
+    var documentId:String?
+    var baseOperation:BaseOperation?    //to lnow whicj operarion is taking place now
+    var dataProperties:[String:Any]?    //used while creating a object
+    
+    var serviceRequest:ServiceRequest?
+
     //----------------------------------
     //MARK:- view creation
     class func instanceFromNib() -> AskView {
@@ -42,7 +49,7 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
         // Setup SearchController:
         setUpSearchHeader()
 
-        //create a proper data source
+        //create a proper data source and action defination on cell action.
         askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
         //similarly other block can be defined for action in cell like edit on cell
         askDataSource?.tableItemSelectionHandler = { index in
@@ -50,15 +57,13 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
         }
     }
 
-    
+    //setup header view for search module. Has a search bar to allow asking question.
     func setUpSearchHeader(){
         let searchHeaderView = AskSearchView.instanceFromNib()
         searchHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:70)
         searchHeaderView.delegate = self
         self.tableView.tableHeaderView = searchHeaderView
-
     }
-    
 }
 
 extension AskView :AskSearchViewDelegate {
@@ -73,7 +78,11 @@ extension AskView :AskSearchViewDelegate {
         if (delegate != nil){
             self.delegate?.didBeginAsking()
         }
-        StartConnection()
+        let date = Date()
+        let dateString = Utility.dateToString(format: "yyyy-mm-dd HH:mm.ss", date: date) + "-Sujeet"
+        self.documentId = dateString
+        self.baseOperation = .create
+//        StartConnection()
     }
     
     func didPressDone(){
@@ -91,20 +100,17 @@ extension AskView : ResponseListenerProtocol {
             return ResponseListenerRegistrationService.shared
         }
     }
+
+    //MARK- ask view actions
     
-    var serviceRequest: ServiceRequest {
-        get{
-            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
-        }
-    }
     
     func stopConnection() {
-        responseListiner.stop(requestPath: serviceRequest, responseListner: self)
+        responseListiner.stop(requestPath: self.serviceRequest!, responseListner: self)
     }
     
     func StartConnection(){
-        let requestPath = self.serviceRequest
-        responseListiner.start(requestPath: requestPath, responseListner: self)
+        self.serviceRequest = ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
+        responseListiner.start(requestPath: self.serviceRequest!, responseListner: self)
     }
     
     //MARK:-IResponsePathConfigurer
@@ -114,8 +120,11 @@ extension AskView : ResponseListenerProtocol {
     }
     
     func getResponseListenerPathArgs() -> RequestPathArgs {
-        let requestPathArgs = RequestPathArgs(with: nil, selectArgs: nil, sortOrder: nil, sortBy: nil, operationType: .listen, dataProp: nil)    //create a builder to create a specific requestPath.
-        requestPathArgs.operationType = .listen
+        let requestPathArgsBuilder = RequestPathArgsBuilder() //create a builder to create a specific requestPath.
+        requestPathArgsBuilder.setOperationType(operationType: self.baseOperation)
+        requestPathArgsBuilder.setDocoumentId(documentID: self.documentId)
+        requestPathArgsBuilder.setDataProp(dataProp: dataProperties)
+        let requestPathArgs = requestPathArgsBuilder.buildPathArgs()
         return requestPathArgs
     }
     
@@ -135,9 +144,17 @@ extension AskView : ResponseListenerProtocol {
             let createdID = result.result as! String
             print("createdID = \(createdID)")
             //once ID is created start monitoring the changes to this object
+            stopConnection()
+            //after stopping the connection..start listening to the new document for changes
+            self.dataProperties = nil
+            self.baseOperation = .monitor
+            StartConnection()
         }else{
             print("objectcreated failed")
+            stopConnection()
         }
+        
+           //STOP THE CONNECTION
     }
     
     func onListen(result:Response) {
@@ -176,18 +193,14 @@ extension AskView : ResponseListenerProtocol {
             //
             let data = askItem.value(forKey: "value")
             //
-            if let parsedObject = Mapper<AskModel>().map(JSONObject:data) {
+            if let parsedObject = Mapper<UserQuery>().map(JSONObject:data) {
                 print("parsedObject = \(parsedObject)")
-                let askItem = AskViewModel(with: parsedObject.name!, owner: parsedObject.owner!, type: parsedObject.type!)
+                let askItem = AskViewModel(with: (parsedObject.query?.query)!, owner: (parsedObject.query?.query)!, type: (parsedObject.query?.query)!)
                 askDataArray?.append(askItem)
             }
             
         }
-        //        for index in 0..<count {
-        //            let askItem = AskViewModel(with: "my sales + \(index)", owner: "sujeet", type: "ask")
-        //            askDataArray?.append(askItem)
-        //        }
-        
+
         //TODO:
         //create  datasource with updated data array...finc out mech to insert data
         //without creating a new instance of datasource.
@@ -208,21 +221,25 @@ extension AskView : ResponseListenerProtocol {
 }
 
 extension AskView {
-    //operation
+    //operations on Ask
     func createAskQuery(with query:String) {
         //create a query object
-        let ask = AskModel(JSON: [:])
-        ask?.name = query
-        
-        let dataProp:[String:Any] = (ask?.toJSON())!
-        let date:NSDate = NSDate()
+        let date:Date = Date()
         let dateString = Utility.dateToString(format: "yyyy-MM-dd HH:mm:ss", date: date as Date)
-        let reqPathArgs = RequestPathArgs(with: dateString, selectArgs: nil, sortOrder: nil, sortBy: nil, operationType: .create, dataProp: nil)
-        reqPathArgs.dataProp = dataProp
+        let docId = dateString + "-Sujeet"
+        let userQuery = UserQuery(JSON: [:])
+        userQuery?.query?.id = docId
+        userQuery?.query?.deviceType = "iPhone"
+        userQuery?.query?.query = query
+        userQuery?.query?.userId = "sujeet@cuddle.ai"
         
-        let serviceRequest = ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
-        serviceRequest.pathArgs = reqPathArgs
+        userQuery?.user?.name = "sujeet"
+        userQuery?.user?.email = "sujeet@cuddle.ai"
+        userQuery?.user?.created = date
+        let dataProp:[String:Any] = (userQuery?.toJSON())!
+        print("dataProp = \(dataProp)")
+        self.dataProperties = dataProp
         
-        responseListiner.start(requestPath: serviceRequest, responseListner: self)
+        StartConnection() 
     }
 }

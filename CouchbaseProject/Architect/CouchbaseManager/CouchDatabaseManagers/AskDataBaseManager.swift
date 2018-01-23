@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class AskDataBaseManager: CouchDatabaseManager {
     
@@ -42,15 +43,19 @@ class AskDataBaseManager: CouchDatabaseManager {
     
     override func monitor(id: String) {
         print("monitored ID ie name = \(id)")
-        self.mapBlock = {(doc,emit) in
-            if let type = doc["name"] as? String ,type == id {
-                emit(type,doc)
+        self.monitorMapBlock = {(doc,emit) in
+            if let query = doc["query"] {
+                if let queryObject = Mapper<Query>().map(JSONObject:query) {
+                    if let docId = queryObject.id {
+                        emit(docId,doc)
+                    }
+                }
             }
         }
     }
     
     override func listen() {
-        self.mapBlock = {(doc,emit) in
+        self.listenMapBlock = {(doc,emit) in
             if let type = doc["type"] as? String ,type == "ask" {
                 emit(type,doc)
             }

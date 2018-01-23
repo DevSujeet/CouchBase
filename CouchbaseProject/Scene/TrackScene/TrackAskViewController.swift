@@ -34,9 +34,9 @@ class TrackAskViewController: BaseAskViewController {
         }
         
         let askModel = AskModel(JSON: [:])
-        let string = askModel?.toJSON()
-        print(string)
-        startConnection()
+        let askString = askModel?.toJSON()
+        print(askString)
+//        startConnection()
     }
 
     deinit {
@@ -70,7 +70,6 @@ extension TrackAskViewController:TitleHeaderViewDelegate {
         print("profile screen in not implemented yet")
     }
 }
-
 
 extension TrackAskViewController: ResponseListenerProtocol {
     
