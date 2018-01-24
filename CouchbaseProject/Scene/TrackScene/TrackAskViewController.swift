@@ -20,6 +20,10 @@ class TrackAskViewController: BaseAskViewController {
         // Do any additional setup after loading the view.
         //create headerView
         createHeaderView()
+        //set up zero state images
+        emptyStateImageView.image = UIImage(named:ZeroStateInfo.zeroStateTrack)
+        emptyStateLabel.text = ZeroStateInfo.ZeroStateTrackLabel
+        emptyStateTitleLabel.text = ZeroStateInfo.ZeroStateTrackTitleLabel
         
         //link up the data source
         //create a proper data source
@@ -29,7 +33,10 @@ class TrackAskViewController: BaseAskViewController {
             print("TrackTableViewCell selected")
         }
         
-        StartConnection()
+        let askModel = AskModel(JSON: [:])
+        let askString = askModel?.toJSON()
+        print(askString)
+//        startConnection()
     }
 
     deinit {
@@ -64,7 +71,6 @@ extension TrackAskViewController:TitleHeaderViewDelegate {
     }
 }
 
-
 extension TrackAskViewController: ResponseListenerProtocol {
     
     var responseListiner :ResponseListenerRegistrationService {
@@ -73,9 +79,9 @@ extension TrackAskViewController: ResponseListenerProtocol {
         }
     }
     
-    var requestPath: RequestPath {
+    var requestPath: ServiceRequest {
         get{
-            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
+            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
         }
     }
     
@@ -83,45 +89,50 @@ extension TrackAskViewController: ResponseListenerProtocol {
         responseListiner.stop(requestPath: requestPath, responseListner: self)
     }
     
-    func StartConnection(){
-        let requestPath = self.requestPath as! CBLRequestPath
-        requestPath.mapBlock = {(doc,emit) in
-            
-            if let type = doc["type"] as? String ,type == "task-list" {
-                emit(type,doc)
-            }
-        }
+    func startConnection(){
+        let requestPath = self.requestPath
+//        requestPath.mapBlock = {(doc,emit) in
+//
+//            if let type = doc["type"] as? String ,type == "task-list" {
+//                emit(type,doc)
+//            }
+//        }
         responseListiner.start(requestPath: requestPath, responseListner: self)
     }
     
     //MARK:-IResponsePathConfigurer
     
-    func getResponseListenerPath() -> String? {
-        return "track"
+    func getResponseListenerPath() -> PathNames {
+        return .track
     }
     
-    func getResponseListenerPathArgs() -> [String : Any]? {
-        return [:]
+    func getResponseListenerPathArgs() -> RequestPathArgs {
+        return RequestPathArgs(with: nil, selectArgs: nil, sortOrder: nil, sortBy: nil, operationType: .listen, dataProp: nil)    //create a builder to create a specific requestPath.
     }
     
+    func getRequestType() ->RequestType {
+        return .CBL
+    }
     
     //MARK:- IResponseListener protocol
-    func onStart(result: Result) {
+    func onStart(result: Response) {
         print("TrackAskViewController onStart")
     }
-    
-    func onChange(result: Result) {
+     func onCreate(result:Response){
+        print("TrackAskViewController onCreate")
+    }
+    func onListen(result:Response) {
         print("TrackAskViewController onChange")
         
         let trackItems = result.result as? [CBLQueryRow] ?? []
-        let count = trackItems.count
+        self.cardCount = trackItems.count
         //remove previous data
         trackDataArray = []
-        for index in 0...count-1 {
+        for index in 0..<cardCount {
             let trackItem = TrackViewModel()
             trackDataArray?.append(trackItem)
         }
-
+        
         //TODO:
         //create  datasource with updated data array...finc out mech to insert data
         //without creating a new instance of datasource.
@@ -130,12 +141,32 @@ extension TrackAskViewController: ResponseListenerProtocol {
         self.tableView.reloadData()
         print(result.path)
     }
+    func onChange(result: Response) {
+//        print("TrackAskViewController onChange")
+//
+//        let trackItems = result.result as? [CBLQueryRow] ?? []
+//        let count = trackItems.count
+//        //remove previous data
+//        trackDataArray = []
+//        for index in 0..<count {
+//            let trackItem = TrackViewModel()
+//            trackDataArray?.append(trackItem)
+//        }
+//
+//        //TODO:
+//        //create  datasource with updated data array...finc out mech to insert data
+//        //without creating a new instance of datasource.
+//        trackDataSource = TrackDataSource(tableView: self.tableView, array: trackDataArray!)
+//
+//        self.tableView.reloadData()
+//        print(result.path)
+    }
     
-    func onError(result: Result) {
+    func onError(result: Response) {
         print("TrackAskViewController onError")
     }
     
-    func onFinished(result: Result) {
+    func onFinished(result: Response) {
         print("TrackAskViewController onFinished")
     }
     

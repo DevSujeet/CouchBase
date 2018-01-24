@@ -40,7 +40,7 @@
 		BA8AEC5D20119A5C007ACC46 /* IDataBaseResponseListner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC5C20119A5C007ACC46 /* IDataBaseResponseListner.swift */; };
 		BA8AEC5F20119ADA007ACC46 /* CouchDatabaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC5E20119ADA007ACC46 /* CouchDatabaseManager.swift */; };
 		BA8AEC612011C71D007ACC46 /* IResultReceiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC602011C71D007ACC46 /* IResultReceiver.swift */; };
-		BA8AEC632011C759007ACC46 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC622011C759007ACC46 /* Result.swift */; };
+		BA8AEC632011C759007ACC46 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC622011C759007ACC46 /* Response.swift */; };
 		BA8AEC672011F78C007ACC46 /* HTTPRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC662011F78C007ACC46 /* HTTPRequestManager.swift */; };
 		BA8AEC692011F7A0007ACC46 /* CouchBaseRequestManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA8AEC682011F7A0007ACC46 /* CouchBaseRequestManager.swift */; };
 		BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */ = {isa = PBXBuildFile; fileRef = BA90035B2005F4EA00E3A035 /* Ui.swift */; };
@@ -82,6 +82,13 @@
 		BAA5030E200BC18D00A4AC73 /* NSAttributedString+Default.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5030B200BC18D00A4AC73 /* NSAttributedString+Default.swift */; };
 		BAA5030F200BC18D00A4AC73 /* Kingfisher+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5030C200BC18D00A4AC73 /* Kingfisher+extension.swift */; };
 		BAA50310200BC18D00A4AC73 /* UIImage+Creation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAA5030D200BC18D00A4AC73 /* UIImage+Creation.swift */; };
+		BAB691DE201606FB0061B3D2 /* CouchbaseManagerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691DD201606FB0061B3D2 /* CouchbaseManagerFactory.swift */; };
+		BAB691E22016081E0061B3D2 /* AskDataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691E12016081E0061B3D2 /* AskDataBaseManager.swift */; };
+		BAB691E4201608290061B3D2 /* TrackDataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691E3201608290061B3D2 /* TrackDataBaseManager.swift */; };
+		BAB691E6201608360061B3D2 /* AlertDataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691E5201608360061B3D2 /* AlertDataBaseManager.swift */; };
+		BAB691E9201626EC0061B3D2 /* AskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691E8201626EC0061B3D2 /* AskModel.swift */; };
+		BAB691EC20185B1F0061B3D2 /* AskIntentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691EB20185B1F0061B3D2 /* AskIntentView.swift */; };
+		BAB691EE20185B810061B3D2 /* AskIntentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB691ED20185B810061B3D2 /* AskIntentView.xib */; };
 		BACBB9E6200E7DB000A44ED3 /* AskCBLChangeListner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACBB9E5200E7DB000A44ED3 /* AskCBLChangeListner.swift */; };
 		BAEC1FF12004A52000B79AB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEC1FF02004A52000B79AB1 /* AppDelegate.swift */; };
 		BAEC1FF62004A52000B79AB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAEC1FF42004A52000B79AB1 /* Main.storyboard */; };
@@ -149,7 +156,7 @@
 		BA8AEC5C20119A5C007ACC46 /* IDataBaseResponseListner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IDataBaseResponseListner.swift; sourceTree = "<group>"; };
 		BA8AEC5E20119ADA007ACC46 /* CouchDatabaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchDatabaseManager.swift; sourceTree = "<group>"; };
 		BA8AEC602011C71D007ACC46 /* IResultReceiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IResultReceiver.swift; sourceTree = "<group>"; };
-		BA8AEC622011C759007ACC46 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		BA8AEC622011C759007ACC46 /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		BA8AEC662011F78C007ACC46 /* HTTPRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPRequestManager.swift; sourceTree = "<group>"; };
 		BA8AEC682011F7A0007ACC46 /* CouchBaseRequestManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchBaseRequestManager.swift; sourceTree = "<group>"; };
 		BA90035B2005F4EA00E3A035 /* Ui.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ui.swift; sourceTree = "<group>"; };
@@ -191,6 +198,13 @@
 		BAA5030B200BC18D00A4AC73 /* NSAttributedString+Default.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Default.swift"; sourceTree = "<group>"; };
 		BAA5030C200BC18D00A4AC73 /* Kingfisher+extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Kingfisher+extension.swift"; sourceTree = "<group>"; };
 		BAA5030D200BC18D00A4AC73 /* UIImage+Creation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Creation.swift"; sourceTree = "<group>"; };
+		BAB691DD201606FB0061B3D2 /* CouchbaseManagerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CouchbaseManagerFactory.swift; sourceTree = "<group>"; };
+		BAB691E12016081E0061B3D2 /* AskDataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskDataBaseManager.swift; sourceTree = "<group>"; };
+		BAB691E3201608290061B3D2 /* TrackDataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDataBaseManager.swift; sourceTree = "<group>"; };
+		BAB691E5201608360061B3D2 /* AlertDataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataBaseManager.swift; sourceTree = "<group>"; };
+		BAB691E8201626EC0061B3D2 /* AskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskModel.swift; sourceTree = "<group>"; };
+		BAB691EB20185B1F0061B3D2 /* AskIntentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskIntentView.swift; sourceTree = "<group>"; };
+		BAB691ED20185B810061B3D2 /* AskIntentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskIntentView.xib; sourceTree = "<group>"; };
 		BACBB9E5200E7DB000A44ED3 /* AskCBLChangeListner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskCBLChangeListner.swift; sourceTree = "<group>"; };
 		BAEC1FED2004A52000B79AB1 /* CouchbaseProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchbaseProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEC1FF02004A52000B79AB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -272,12 +286,11 @@
 		BA840044200CA02500986FF6 /* AskView */ = {
 			isa = PBXGroup;
 			children = (
+				BAB691EA20185AE90061B3D2 /* AskCellView */,
 				BA840050200CF2D200986FF6 /* SearchView */,
 				BA840045200CA04C00986FF6 /* AskDataSource.swift */,
 				BA840040200C9F9700986FF6 /* AskView.swift */,
 				BA840042200C9FA700986FF6 /* AskView.xib */,
-				BA840047200CA0B100986FF6 /* AskTableViewCell.swift */,
-				BA840048200CA0B100986FF6 /* AskTableViewCell.xib */,
 			);
 			path = AskView;
 			sourceTree = "<group>";
@@ -392,7 +405,7 @@
 			children = (
 				BA8AEC542010D65B007ACC46 /* ResponseListenerRegistrationService.swift */,
 				BA8AEC602011C71D007ACC46 /* IResultReceiver.swift */,
-				BA8AEC622011C759007ACC46 /* Result.swift */,
+				BA8AEC622011C759007ACC46 /* Response.swift */,
 			);
 			path = RegistrationService;
 			sourceTree = "<group>";
@@ -413,6 +426,7 @@
 			children = (
 				BA8AEC5C20119A5C007ACC46 /* IDataBaseResponseListner.swift */,
 				BA8AEC5E20119ADA007ACC46 /* CouchDatabaseManager.swift */,
+				BAB691E0201607E90061B3D2 /* CouchDatabaseManagers */,
 			);
 			path = CouchbaseManager;
 			sourceTree = "<group>";
@@ -633,6 +647,36 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		BAB691E0201607E90061B3D2 /* CouchDatabaseManagers */ = {
+			isa = PBXGroup;
+			children = (
+				BAB691DD201606FB0061B3D2 /* CouchbaseManagerFactory.swift */,
+				BAB691E12016081E0061B3D2 /* AskDataBaseManager.swift */,
+				BAB691E3201608290061B3D2 /* TrackDataBaseManager.swift */,
+				BAB691E5201608360061B3D2 /* AlertDataBaseManager.swift */,
+			);
+			path = CouchDatabaseManagers;
+			sourceTree = "<group>";
+		};
+		BAB691E7201626DA0061B3D2 /* TestAsk */ = {
+			isa = PBXGroup;
+			children = (
+				BAB691E8201626EC0061B3D2 /* AskModel.swift */,
+			);
+			path = TestAsk;
+			sourceTree = "<group>";
+		};
+		BAB691EA20185AE90061B3D2 /* AskCellView */ = {
+			isa = PBXGroup;
+			children = (
+				BA840047200CA0B100986FF6 /* AskTableViewCell.swift */,
+				BA840048200CA0B100986FF6 /* AskTableViewCell.xib */,
+				BAB691EB20185B1F0061B3D2 /* AskIntentView.swift */,
+				BAB691ED20185B810061B3D2 /* AskIntentView.xib */,
+			);
+			path = AskCellView;
+			sourceTree = "<group>";
+		};
 		BACBB9E4200E7B4600A44ED3 /* AskCBLDataListner */ = {
 			isa = PBXGroup;
 			children = (
@@ -666,6 +710,7 @@
 		BAEC1FEF2004A52000B79AB1 /* CouchbaseProject */ = {
 			isa = PBXGroup;
 			children = (
+				BAB691E7201626DA0061B3D2 /* TestAsk */,
 				BA8AEC4A2010D405007ACC46 /* Architect */,
 				BA93D8E3200C7F4600002D6A /* JSON Mapper */,
 				BA9003892008C33E00E3A035 /* Utility */,
@@ -861,6 +906,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA84004A200CA0B100986FF6 /* AskTableViewCell.xib in Resources */,
+				BAB691EE20185B810061B3D2 /* AskIntentView.xib in Resources */,
 				BAEC1FFB2004A52000B79AB1 /* LaunchScreen.storyboard in Resources */,
 				BA840054200CF33300986FF6 /* AskSearchView.xib in Resources */,
 				BA986F8620144ED9003C3D1B /* TrackTableViewCell.xib in Resources */,
@@ -1042,14 +1088,17 @@
 				BAA5030F200BC18D00A4AC73 /* Kingfisher+extension.swift in Sources */,
 				BA863BC1200E0A530007BD81 /* AskViewModel.swift in Sources */,
 				BA8AEC5A2011994D007ACC46 /* RequestManagerFactory.swift in Sources */,
+				BAB691DE201606FB0061B3D2 /* CouchbaseManagerFactory.swift in Sources */,
 				BAEC20252004EF7C00B79AB1 /* LoginViewController.swift in Sources */,
 				BA8AEC692011F7A0007ACC46 /* CouchBaseRequestManager.swift in Sources */,
 				BA9003642007420D00E3A035 /* ListTableViewCell.swift in Sources */,
+				BAB691E4201608290061B3D2 /* TrackDataBaseManager.swift in Sources */,
 				BA986F9620145AB0003C3D1B /* AlertViewModel.swift in Sources */,
 				BA5B3883200EDF470088543B /* CBLFetchResultController.swift in Sources */,
 				BA90037D2007456500E3A035 /* DictionaryDataProvider.swift in Sources */,
 				BA986F8520144ED9003C3D1B /* TrackTableViewCell.swift in Sources */,
 				BA986F8C2014500E003C3D1B /* TrackDataSource.swift in Sources */,
+				BAB691E9201626EC0061B3D2 /* AskModel.swift in Sources */,
 				BA8AEC4C2010D43E007ACC46 /* ResponsePathConfigurerManager.swift in Sources */,
 				BA9003722007448F00E3A035 /* CollectionDataSource.swift in Sources */,
 				BA5B388B200F6A660088543B /* UIView+Shadow.swift in Sources */,
@@ -1061,6 +1110,7 @@
 				BA9003842008BF2D00E3A035 /* Flashable.swift in Sources */,
 				BA8AEC612011C71D007ACC46 /* IResultReceiver.swift in Sources */,
 				BA840046200CA04C00986FF6 /* AskDataSource.swift in Sources */,
+				BAB691E6201608360061B3D2 /* AlertDataBaseManager.swift in Sources */,
 				BA8AEC5820119858007ACC46 /* IRequestManager.swift in Sources */,
 				BA840039200C87A800986FF6 /* QIResponse.swift in Sources */,
 				BA90038E2008CAAC00E3A035 /* LoginService.swift in Sources */,
@@ -1076,7 +1126,7 @@
 				BA5B3889200F08150088543B /* Constants.swift in Sources */,
 				BA90035E2005F52900E3A035 /* TextDialog.swift in Sources */,
 				BAEC1FF12004A52000B79AB1 /* AppDelegate.swift in Sources */,
-				BA8AEC632011C759007ACC46 /* Result.swift in Sources */,
+				BA8AEC632011C759007ACC46 /* Response.swift in Sources */,
 				BAA50308200BBF7800A4AC73 /* Double+Kformatted.swift in Sources */,
 				BAA5030E200BC18D00A4AC73 /* NSAttributedString+Default.swift in Sources */,
 				BA9003872008BFCC00E3A035 /* AppStyleGuide.swift in Sources */,
@@ -1097,6 +1147,8 @@
 				BA840052200CF32200986FF6 /* AskSearchView.swift in Sources */,
 				BA986F8E2014584E003C3D1B /* AlertDataSource.swift in Sources */,
 				BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */,
+				BAB691E22016081E0061B3D2 /* AskDataBaseManager.swift in Sources */,
+				BAB691EC20185B1F0061B3D2 /* AskIntentView.swift in Sources */,
 				BA840049200CA0B100986FF6 /* AskTableViewCell.swift in Sources */,
 				BAEC20202004D0B700B79AB1 /* LoginWithReplicationSerices.swift in Sources */,
 				BA8AEC5F20119ADA007ACC46 /* CouchDatabaseManager.swift in Sources */,

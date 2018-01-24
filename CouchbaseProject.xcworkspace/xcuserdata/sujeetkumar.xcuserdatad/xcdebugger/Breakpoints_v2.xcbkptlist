@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Scene/AskScene/AskCBLDataListner/AskCBLChangeListner.swift"
-            timestampString = "538123941.513302"
+            filePath = "CouchbaseProject/Scene/AlertScene/AlertViewController.swift"
+            timestampString = "538478892.257955"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "controller(_:didFetchUpdatedList:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Architect/Activity/TrackActivity.swift"
-            timestampString = "538206943.578728"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "onChange(result:)"
+            startingLineNumber = "124"
+            endingLineNumber = "124"
+            landmarkName = "onListen(result:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -42,12 +26,108 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538206943.579013"
+            timestampString = "538478892.2582951"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "142"
-            endingLineNumber = "142"
-            landmarkName = "onError(result:)"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
+            landmarkName = "onChange(result:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CouchbaseProject.AskView.onChange(result: CouchbaseProject.Response) -&gt; ()"
+                  moduleName = "CouchbaseProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
+                  timestampString = "538411502.695328"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "224">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Array&lt;__ObjC.CBLQueryRow&gt; in CouchbaseProject.AskView.onChange(result: CouchbaseProject.Response) -&gt; ()"
+                  moduleName = "CouchbaseProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
+                  timestampString = "538411502.696901"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "68">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
+            timestampString = "538478892.2584"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "reloadDocument()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "CouchbaseProject.CouchDatabaseManager.(reloadDocument in _E93C32215B5B1332FFD6B8812E53F4D5)() -&gt; ()"
+                  moduleName = "CouchbaseProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
+                  timestampString = "538411502.708189"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "implicit closure #1 : @autoclosure () throws -&gt; Swift.Optional&lt;Swift.Array&lt;__ObjC.CBLQueryRow&gt;&gt; in CouchbaseProject.CouchDatabaseManager.(reloadDocument in _E93C32215B5B1332FFD6B8812E53F4D5)() -&gt; ()"
+                  moduleName = "CouchbaseProject"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
+                  timestampString = "538411502.70976"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "202"
+                  endingLineNumber = "202"
+                  offsetFromSymbolStart = "4">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
+            timestampString = "538478892.258624"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
+            landmarkName = "reloadDocument()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,12 +138,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538206943.579219"
+            timestampString = "538478892.258701"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "onChange(result:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "didAskQuestion(withText:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -73,13 +153,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Architect/RegistrationService/ResponseListenerRegistrationService.swift"
-            timestampString = "538206943.579277"
+            filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
+            timestampString = "538478892.2589639"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "register(requestPath:responseListener:)"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
+            landmarkName = "init(withRequest:dataBaseResponseListener:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -89,13 +169,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Architect/RegistrationService/ResponseListenerRegistrationService.swift"
-            timestampString = "538206943.579459"
+            filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManagers/AskDataBaseManager.swift"
+            timestampString = "538478892.259104"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "deRegister(requestPath:responseListener:)"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "monitor(id:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -105,45 +185,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Scene/AlertScene/AlertViewController.swift"
-            timestampString = "538206943.579514"
+            filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
+            timestampString = "538478892.2593451"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "33"
-            endingLineNumber = "33"
-            landmarkName = "deinit"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Scene/AlertScene/AlertViewController.swift"
-            timestampString = "538206943.580029"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
-            landmarkName = "didPressedBackButton()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "CouchbaseProject/Scene/AlertScene/AlertViewController.swift"
-            timestampString = "538206943.580255"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "176"
+            endingLineNumber = "176"
+            landmarkName = "createCBLDocumentLiveQuery()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

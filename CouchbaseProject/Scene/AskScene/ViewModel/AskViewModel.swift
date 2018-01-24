@@ -23,11 +23,16 @@ class AskViewModel {
     var title:String?
     var owner:String?
     var type:String?
+    var userQuery:UserQuery?
     
     init(with title:String,owner:String,type:String) {
         self.title = title
         self.owner = owner
         self.type = type
+    }
+    
+    init(withQuery query:UserQuery) {
+        self.userQuery = query
     }
 }
 
@@ -41,6 +46,7 @@ class CBLQuesyAskAdapter:askModelAdapter {
         let ask1 = AskViewModel(with: "ask1", owner: "test", type: "type")
         return ask1
     }
+    
     func getAskModelArray() -> [AskViewModel] {
         let ask1 = AskViewModel(with: "ask1", owner: "test", type: "type")
         return [ask1]

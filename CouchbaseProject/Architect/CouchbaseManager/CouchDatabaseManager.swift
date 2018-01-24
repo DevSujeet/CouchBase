@@ -8,64 +8,174 @@
 
 import Foundation
 
+protocol DatabaseOperationProtocol {
+    func create(request:ServiceRequest)
+    func read(id:String)
+    func update(request:ServiceRequest)
+    func delete(id:String)
+    func monitor(id:String)
+    func listen()
+}
+
+
+protocol DatabaseManagerProtocol:DatabaseOperationProtocol {
+    func execute()
+    func stopListening()
+    func update(serviceRequest:ServiceRequest)
+}
 /*
  based on:-
  That each track/feed/alert/ will have there own instance of couchDB bucket.
  */
-class CouchDatabaseManager :NSObject {
+class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     
     var dataBaseResponseListener:IDataBaseResponseListner!  //acts as a delegate
     var syncgatewayURL:URL?
     
-    var requestPath:CBLRequestPath! {
+    var serviceRequest:ServiceRequest! {
         didSet{
             
         }
     }
     
-    init(withRequestPath path:RequestPath, dataBaseResponseListener:IDataBaseResponseListner ) {
-        self.requestPath = path as! CBLRequestPath
-        let urlPath = Constants.kSyncGatewayUrl + requestPath.path
+    init(withRequest request:ServiceRequest, dataBaseResponseListener:IDataBaseResponseListner ) {
+        self.serviceRequest = request
+        let urlPath = Constants.kSyncGatewayUrl + (serviceRequest.path?.rawValue)!
         print("urlPath = \(urlPath)")
-        syncgatewayURL = URL(string:Constants.kSyncGatewayUrl + requestPath.path)
-        
-        self.mapBlock = self.requestPath.mapBlock //set up the query map block
+        syncgatewayURL = URL(string:urlPath)
+        self.serviceRequest = request
+//        self.mapBlock = self.requestPath.mapBlock //set up the query map block
         self.dataBaseResponseListener = dataBaseResponseListener
     }
     
+    //MARK:- DatabaseManagerProtocol
+    
     func execute() {
-        try! createDB(WithName: requestPath.path)
+        try! createDB(WithName: (serviceRequest.path?.rawValue)!)
         startReplication()
-        createCBLView()
-        createCBLLiveQuery()
-        //start listening to the changes ont he database.
-        listsLiveQuery.start()
+        
+        let actionType = serviceRequest.pathArgs!.operationType!
+        switch actionType {
+            
+        case .create:
+            self.create(request: self.serviceRequest)
+        case .read:
+            self.read(id: self.serviceRequest.pathArgs!.documentID!)
+        case .update:
+            self.update(request: self.serviceRequest)
+        case .delete:
+            self.delete(id: self.serviceRequest.pathArgs!.documentID!)
+        case .monitor:
+            self.monitor(id: self.serviceRequest.pathArgs!.documentID!)
+            createCBLMonitorView(mapBlock: self.monitorMapBlock)
+            createCBLDocumentLiveQuery()
+            monitorLiveQuery.start()
+        case .listen:
+            self.listen()
+            createCBLView(mapBlock:self.listenMapBlock)
+            createCBListLLiveQuery()
+            //start listening to the changes on the database.
+            listsLiveQuery.start()
+        }
+  
     }
     
     func stopListening() {
-        listsLiveQuery.stop()
-        stopAndCloseDatabase()
+        let actionType = serviceRequest.pathArgs!.operationType!
+        switch actionType {
+        case .create:
+            print("stop create")
+        case .read:
+            print("stop read")
+        case .update:
+            print("stop update")
+        case .delete:
+            print("stop delete")
+        case .monitor:
+            print("stop monitor")
+            monitorLiveQuery.stop()
+            stopAndCloseDatabase()
+        case .listen:
+            print("stop listen")
+            listsLiveQuery.stop()
+            stopAndCloseDatabase()
+        }
     }
-    ////------couchbase live query and changes listener
+    
+    
+    func update(serviceRequest:ServiceRequest) {
+        self.serviceRequest = serviceRequest
+    }
+    
+    func create(request: ServiceRequest) {
+        
+    }
+    
+    func read(id: String) {
+        
+    }
+    
+    func update(request: ServiceRequest) {
+        
+    }
+    
+    func delete(id: String) {
+        
+    }
+    
+    func monitor(id: String) {
+        
+    }
+    
+    func listen() {
+        self.listenMapBlock = {(doc,emit) in
+            if let email = doc["email"] as? String ,email == "sujeet@gmail.com" {
+                emit(email,doc)
+            }
+        }
+    }
+    
+    //MARK:- couchbase live query and changes listener
     //changes which involves the Database livequery creation and observing changes in query(view)
     
     
     private var listsView:CBLView?
+    private var monitorView:CBLView?
     private var listsLiveQuery: CBLLiveQuery!
-    
+    private var monitorLiveQuery: CBLLiveQuery!
     private var listRows : [CBLQueryRow]?
-    private var mapBlock:CBLMapBlock!
+    private var monitoredRows :[CBLQueryRow]?
+    var listenMapBlock:CBLMapBlock!
+    var monitorMapBlock:CBLMapBlock!
     
-    private func createCBLView() {
-        listsView = database.viewNamed(self.requestPath.path)
+    private func createCBLView(mapBlock:CBLMapBlock!) {
+        listsView = database.viewNamed((self.serviceRequest.pathArgs?.operationType)!.rawValue)
         if listsView?.mapBlock == nil {
-            listsView?.setMapBlock(self.mapBlock, version: Constants.CBLVersion)
+            listsView?.setMapBlock(mapBlock, version: Constants.CBLVersion)
         }
     }
     
-    private func createCBLLiveQuery(){
+    private func createCBLMonitorView(mapBlock:CBLMapBlock!) {
+        monitorView = database.viewNamed((self.serviceRequest.pathArgs?.operationType)!.rawValue)
+        if monitorView?.mapBlock == nil {
+            monitorView?.setMapBlock(mapBlock, version: Constants.CBLVersion)
+        }
+    }
+    
+    private func createCBListLLiveQuery(){
         listsLiveQuery = listsView?.createQuery().asLive()
         listsLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
+    }
+    
+    private func createCBLDocumentLiveQuery(){
+        monitorLiveQuery = monitorView?.createQuery().asLive()
+        let docID = self.serviceRequest.pathArgs?.documentID
+        print("listening to doc = \(docID)")
+//        monitorLiveQuery.startKeyDocID = docID
+//        monitorLiveQuery.endKeyDocID = docID
+        let keys = [docID]
+        monitorLiveQuery.keys = keys
+        monitorLiveQuery.addObserver(self, forKeyPath: "rows", options: .new, context: nil)
     }
     
     override internal func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -73,21 +183,34 @@ class CouchDatabaseManager :NSObject {
         if object as? NSObject == listsLiveQuery {
             reloadTaskLists()
         }
+        if object as? NSObject == monitorLiveQuery {
+            reloadDocument()
+        }
     }
     
     private func reloadTaskLists() {
         //based on the list update..find a mechanism to find out the row update evnets like insert ,delete,update in row or section.
         listRows = listsLiveQuery.rows?.allObjects as? [CBLQueryRow] ?? nil
-        let testresult = Result(withPath: requestPath.path)
-        print(listRows?.count ?? 12) 
+        let testresult = Response(withRequest: serviceRequest)
+        let count = listRows?.count ?? 12
+        print("list row count = \(count)") 
         testresult.result = listRows
+        self.dataBaseResponseListener.onListen(result:testresult )
+    }
+    //monitoredRows
+    private func reloadDocument() {
+        monitoredRows = monitorLiveQuery.rows?.allObjects as? [CBLQueryRow] ?? nil
+        let testresult = Response(withRequest: serviceRequest)
+        testresult.request = self.serviceRequest
+        let count = monitoredRows?.count ?? 12
+        print("reloadDocument list row count = \(count)")
+        testresult.result = monitoredRows
         self.dataBaseResponseListener.onChange(result:testresult )
     }
     
-    
-    ////------couchbase creation sepcific changes
+    //MARK:- couchbase creation sepcific changes
     //changes which involves the Database creation and starting replication
-    private var database: CBLDatabase!
+    var database: CBLDatabase!
     private var pusher: CBLReplication!
     private var puller: CBLReplication!
     private var syncError: NSError?
@@ -107,7 +230,7 @@ class CouchDatabaseManager :NSObject {
         
         try database = CBLManager.sharedInstance().openDatabaseNamed(dbname, with: options)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CBLDataHelper.observeDatabaseChange), name:Notification.Name.cblDatabaseChange, object: database)
+        NotificationCenter.default.addObserver(self, selector: #selector(CouchDatabaseManager.observeDatabaseChange), name:Notification.Name.cblDatabaseChange, object: database)
     }
 
     
@@ -143,7 +266,7 @@ class CouchDatabaseManager :NSObject {
             
             accessDocuments.append(changedDoc!);
             
-            NotificationCenter.default.addObserver(self, selector: #selector(CBLDataHelper.handleAccessChange), name: NSNotification.Name.cblDocumentChange, object: changedDoc);
+            NotificationCenter.default.addObserver(self, selector: #selector(CouchDatabaseManager.handleAccessChange), name: NSNotification.Name.cblDocumentChange, object: changedDoc);
         }
     }
     
@@ -248,7 +371,7 @@ class CouchDatabaseManager :NSObject {
             syncError = error
             if let errorCode = error?.code {
                 NSLog("Replication Error: \(error!)")
-                let errorResult = Result(withPath: requestPath.path)
+                let errorResult = Response(withRequest: serviceRequest)
                 errorResult.error = syncError
                 self.dataBaseResponseListener.onError(result:errorResult )
                 if errorCode == 401 {

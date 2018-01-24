@@ -23,57 +23,68 @@ class ResponseListenerRegistrationService : IResultReciever {
         return singletonWrapper.singleton
     }
     
-    private func register(requestPath:RequestPath,responseListener:IResponseListener){
+    private func register(requestPath:ServiceRequest,responseListener:IResponseListener){
         //what will be the key to register
         //---most likely, response path will be the key
-        responseListeners[requestPath.path] = responseListener
+        responseListeners[requestPath.requestId!] = responseListener
+        print("ResponseListenerRegistrationService registers for requestID = \(requestPath.requestId!)")
     }
     
-    private func deRegister(requestPath:RequestPath,responseListener:IResponseListener){
-        responseListeners[requestPath.path] = nil
+    private func deRegister(requestPath:ServiceRequest,responseListener:IResponseListener){
+        responseListeners[requestPath.requestId!] = nil
+        print("ResponseListenerRegistrationService deRegisters for requestID = \(requestPath.requestId!)")
     }
     
-    func start(requestPath:RequestPath,responseListner:IResponseListener){
+    func start(requestPath:ServiceRequest,responseListner:IResponseListener){
         //first register the responseListener.
         self.register(requestPath: requestPath, responseListener: responseListner)
         //get Requestmanager from factory
-        let requestManager = RequestManagerFactory.getRequestManager(requestPath: requestPath)
+        let requestManager = RequestManagerFactory.getRequestManager(request: requestPath)
         
         requestManager.start(with: requestPath, resultReciever: self)
     }
     
-    func stop(requestPath:RequestPath,responseListner:IResponseListener){
+    func stop(requestPath:ServiceRequest,responseListner:IResponseListener){
         //first register the
         self.deRegister(requestPath: requestPath, responseListener: responseListner)
         
         //get Requestmanager from factory
-        let requestManager = RequestManagerFactory.getRequestManager(requestPath: requestPath)
+        let requestManager = RequestManagerFactory.getRequestManager(request: requestPath)
         
         requestManager.stop(with: requestPath)
     }
     
     //MARK:- IResultReciever
-    func onStart(result:Result){
+    func onStart(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onStart(result: result)
     }
     
-    func onChange(result:Result){
+    func onCreate(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
+        responseListener?.onCreate(result: result)
+    }
+    func onChange(result:Response){
+        //get the listener from the dictionary
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onChange(result: result)
     }
     
-    func onError(result:Result){
+    func onListen(result:Response) {
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
+        responseListener?.onListen(result: result)
+    }
+    func onError(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onError(result: result)
     }
     
-    func onFinished(result:Result){
+    func onFinished(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onFinished(result: result)
     }
 }

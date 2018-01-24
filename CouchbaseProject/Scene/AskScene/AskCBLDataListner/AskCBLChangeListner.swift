@@ -14,6 +14,9 @@ import Foundation
  "type": "task-list"
  }
  */
+
+//not being used now.
+/**
 class AskCBLChangeListner:NSObject,CBLFetchResultControllerDelegate {
     
     let cblFetchResultController:CBLFetchResultController = CBLFetchResultController(withViewnNamed: "AskView", version: Constants.CBLVersion)
@@ -54,3 +57,4 @@ class AskCBLChangeListner:NSObject,CBLFetchResultControllerDelegate {
     }
 
 }
+**/

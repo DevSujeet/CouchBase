@@ -7,20 +7,72 @@
 //
 
 /*
- var data = {
- "user": {
- "name": "",
- "email": "",
- "created": "timestamp"
- },
+ {
  "query": {
- "query": this.state.input,
- "userId": "abc@abc.com",
- "location": "",
+ "_id": "2018-01-12T15:01:02.689Z",
  "deviceType": "",
- "_id": new Date().toISOString()
+ "location": "",
+ "query": "Sales of silk",
+ "userId": "abc@abc.com"
+ },
+ "reponse": {
+ "contexts": null,
+ "correlationId": "b4lfCluX1xyZKeIxhJQ1Myeg1LSro5yF1GUp8OVs_No = ",
+ "id": "8",
+ "intentType": "what ",
+ "linguisticProperties": {
+ "person": "null",
+ "sentiment": "neutral",
+ "tense": "present",
+ "typeOfQuestion": "which"
+ },
+ "originalQuery": "which of the service segments are away from the % sales achieved for region 901 ",
+ "parameters": [{
+ "entities": "Region 901",
+ "filter": null,
+ "type": "Employee"
+ },
+ {
+ "entities": "Region",
+ "filter": null,
+ "type": "Attribute"
+ },
+ {
+ "entities": "ServiceLine",
+ "filter": null,
+ "type": "Attribute"
+ },
+ {
+ "entities": "A01 - 137560",
+ "filter": null,
+ "type": "Customer"
+ },
+ {
+ "entities": 901,
+ "filter": null,
+ "type": "Region"
+ },
+ {
+ "entities": "SalesByCustSegFleetCount",
+ "filter": null,
+ "type": "DerivedMetric"
  }
- "_id": ""
+ ],
+ "properties": {
+ "deviceType": "",
+ "location": "",
+ "userId": ""
+ },
+ "resolvedQuery": "which of the service segments are away from the % sales achieved for region 901 ",
+ "timeTaken": "1.2999583859E10",
+ "timestamp": 1515481894209,
+ "versionId": "1.0"
+ },
+ "user": {
+ "created": "timestamp",
+ "email": "",
+ "name": ""
+ }
  }
  */
 import Foundation
@@ -31,13 +83,13 @@ protocol mappableDataProtocol: Mappable, CustomStringConvertible {
 }
 
 class UserQuery:mappableDataProtocol {
-    var id:String?  //id to be userid+currentdate
-    var user:User?
     var query:Query?
+    var user:User?
+    var response:[QIResponse]?
     
     //MARK:- object Mapper and default initializer methods
     var description: String {
-        return "Id: \(String(describing: id)), user: \(String(describing:user))\n, query: \(String(describing:query))\n"
+        return "user: \(String(describing:user))\n, query: \(String(describing:query))\n, response: \(String(describing:response))\n"
     }
     
     required init?(map: Map) {
@@ -45,9 +97,16 @@ class UserQuery:mappableDataProtocol {
     }
         
     func mapping(map: Map) {
-        id <- map["id"]
         user <- map["user"]
+        if user == nil {
+            user = User(JSON: [:])
+        }
+        
         query <- map["query"]
+        if query == nil {
+            query = Query(JSON: [:])
+        }
+        response <- map["response"]
     }
 }
 
@@ -69,6 +128,7 @@ class User:mappableDataProtocol{
         created <- (map["created"], MillisecondsToDateTransform())
     }
 }
+
 
 class Query:mappableDataProtocol{
     var query:String?

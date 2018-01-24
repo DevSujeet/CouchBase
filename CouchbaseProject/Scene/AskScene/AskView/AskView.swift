@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ObjectMapper
 
 protocol AskViewDelegate:NSObjectProtocol {
     func doneButtonPressed()
@@ -16,12 +17,23 @@ protocol AskViewDelegate:NSObjectProtocol {
 //The view that is hold the container where user can create a ask query through voice or through typing there content.
 class AskView: UIView {//, UISearchResultsUpdating..not using search controller
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!{
+        didSet {
+            tableView.separatorStyle = .none
+        }
+    }
     
     weak var delegate:AskViewDelegate?
     
     var askDataArray:[AskViewModel]? = []
     var askDataSource:AskDataSource?
+    
+    var documentId:String?
+    var baseOperation:BaseOperation?    //to lnow whicj operarion is taking place now
+    var dataProperties:[String:Any]?    //used while creating a object
+    
+    var serviceRequest:ServiceRequest?
+
     //----------------------------------
     //MARK:- view creation
     class func instanceFromNib() -> AskView {
@@ -37,7 +49,7 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
         // Setup SearchController:
         setUpSearchHeader()
 
-        //create a proper data source
+        //create a proper data source and action defination on cell action.
         askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
         //similarly other block can be defined for action in cell like edit on cell
         askDataSource?.tableItemSelectionHandler = { index in
@@ -45,27 +57,34 @@ class AskView: UIView {//, UISearchResultsUpdating..not using search controller
         }
     }
 
-    
+    //setup header view for search module. Has a search bar to allow asking question.
     func setUpSearchHeader(){
         let searchHeaderView = AskSearchView.instanceFromNib()
         searchHeaderView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height:70)
         searchHeaderView.delegate = self
         self.tableView.tableHeaderView = searchHeaderView
-
     }
-    
 }
 
 extension AskView :AskSearchViewDelegate {
+    
     func didAskQuestion(withText question:String){
-        
+
+        createAskQuery(with: question)
+//        let serviceReq = self.
     }
+    
     func didBeginAsking() {
         if (delegate != nil){
             self.delegate?.didBeginAsking()
         }
-        StartConnection()
+        let date = Date()
+        let dateString = Utility.dateToString(format: Constants.docIDDateFormat, date: date) + "-Sujeet"
+        self.documentId = dateString
+        self.baseOperation = .create
+//        StartConnection()
     }
+    
     func didPressDone(){
         if (delegate != nil){
             self.delegate?.doneButtonPressed()
@@ -81,69 +100,147 @@ extension AskView : ResponseListenerProtocol {
             return ResponseListenerRegistrationService.shared
         }
     }
+
+    //MARK- ask view actions
     
-    var requestPath: RequestPath {
-        get{
-            return ResponsePathConfigurerManager.configure(requestPathConfigurer: self) as! CBLRequestPath
-        }
-    }
     
     func stopConnection() {
-        responseListiner.stop(requestPath: requestPath, responseListner: self)
+        //nothing to stop if no request is present.
+        if self.serviceRequest != nil {
+            responseListiner.stop(requestPath: self.serviceRequest!, responseListner: self)
+        }
+        
     }
     
     func StartConnection(){
-        let requestPath = self.requestPath as! CBLRequestPath
-        requestPath.mapBlock = {(doc,emit) in
-            
-            if let type = doc["type"] as? String ,type == "task-list" {
-                emit(type,doc)
-            }
-        }
-        responseListiner.start(requestPath: requestPath, responseListner: self)
+        self.serviceRequest = ResponsePathConfigurerManager.configure(requestPathConfigurer: self)
+        responseListiner.start(requestPath: self.serviceRequest!, responseListner: self)
     }
     
     //MARK:-IResponsePathConfigurer
     
-    func getResponseListenerPath() -> String? {
-        return "ask"
+    func getResponseListenerPath() -> PathNames {
+        return .ask
     }
     
-    func getResponseListenerPathArgs() -> [String : Any]? {
-        return [:]
+    func getResponseListenerPathArgs() -> RequestPathArgs {
+        let requestPathArgsBuilder = RequestPathArgsBuilder() //create a builder to create a specific requestPath.
+        requestPathArgsBuilder.setOperationType(operationType: self.baseOperation)
+        requestPathArgsBuilder.setDocoumentId(documentID: self.documentId)
+        requestPathArgsBuilder.setDataProp(dataProp: dataProperties)
+        let requestPathArgs = requestPathArgsBuilder.buildPathArgs()
+        return requestPathArgs
     }
     
+    func getRequestType() ->RequestType {
+        return .CBL
+    }
     
     //MARK:- IResponseListener protocol
-    func onStart(result: Result) {
+    func onStart(result: Response) {
         print("Ask onStart")
     }
     
-    func onChange(result: Result) {
-        print("Ask onChange")
+    func onCreate(result:Response){
+        print("Ask onCreate")
+        if result.success! {
+            print("objectcreated successfully")
+            let createdID = result.result as! String
+            print("createdID = \(createdID)")
+            //once ID is created start monitoring the changes to this object
+            stopConnection()
+            //after stopping the connection..start listening to the new document for changes
+            self.dataProperties = nil
+            self.baseOperation = .monitor
+            StartConnection()
+        }else{
+            print("objectcreated failed")
+            stopConnection()
+        }
+        
+           //STOP THE CONNECTION
+    }
+    
+    func onListen(result:Response) {
+        print("Ask onListen")
         let askItems = result.result as? [CBLQueryRow] ?? []
         let count = askItems.count
+        print("askItems count = \(count)")
         //remove previous data
         askDataArray = []
-        for index in 0...count-1 {
-            let askItem = AskViewModel(with: "my sales + \(index)", owner: "sujeet", type: "ask")
-            askDataArray?.append(askItem)
+        for askItem in askItems {
+            
+            let data = askItem.value(forKey: "value")
+//
+            if let parsedObject = Mapper<AskModel>().map(JSONObject:data) {
+                print("parsedObject = \(parsedObject)")
+                let askItem = AskViewModel(with: parsedObject.name!, owner: parsedObject.owner!, type: parsedObject.type!)
+                askDataArray?.append(askItem)
+            }
+            
         }
 
-        //TODO:
-        //create  datasource with updated data array...finc out mech to insert data
-        //without creating a new instance of datasource.
         askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
         self.tableView.reloadData()
         print(result.path)
     }
     
-    func onError(result: Result) {
+    func onChange(result: Response) //TO LISTEN TO A SINGLE DOCUMENT IN THE DB
+    {
+        print("Ask onListen")
+        let askItems = result.result as? [CBLQueryRow] ?? []
+        //        let count = askItems.count
+        //remove previous data
+        askDataArray = []
+        for askItem in askItems {
+
+            let data = askItem.value(forKey: "value")
+            //
+            if let userQuery = Mapper<UserQuery>().map(JSONObject:data) {
+                print("parsedObject = \(userQuery)")
+//                let askItem = AskViewModel(with: (userQuery?.query)!, owner: (userQuery.query?.query)!, type: (userQuery.query?.query)!)
+                let askItem = AskViewModel(withQuery: userQuery)
+                askDataArray?.append(askItem)
+            }
+            
+        }
+
+        askDataSource = AskDataSource(tableView: self.tableView, array: askDataArray!)
+        self.tableView.reloadData()
+        print(result.path)
+    }
+    
+    
+    func onError(result: Response) {
         print("Ask onError")
     }
     
-    func onFinished(result: Result) {
+    func onFinished(result: Response) {
         print("Ask onFinished")
     }
-    
+
+}
+
+extension AskView {
+    //operations on Ask
+    func createAskQuery(with query:String) {
+        //create a query object
+        let date:Date = Date()
+//        let dateString = Utility.dateToString(format: Constants.docIDDateFormat, date: date as Date)
+        let docId = self.documentId
+        let userQuery = UserQuery(JSON: [:])
+        userQuery?.query?.id = docId
+        userQuery?.query?.deviceType = "iPhone"
+        userQuery?.query?.query = query
+        userQuery?.query?.userId = "sujeet@cuddle.ai"
+        
+        userQuery?.user?.name = "sujeet"
+        userQuery?.user?.email = "sujeet@cuddle.ai"
+        userQuery?.user?.created = date
+        let dataProp:[String:Any] = (userQuery?.toJSON())!
+        print("dataProp = \(dataProp)")
+        self.dataProperties = dataProp
+        
+        StartConnection() 
+    }
 }

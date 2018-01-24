@@ -7,41 +7,125 @@
 //
 
 import Foundation
-enum RequestType {
+
+enum RequestType:String {
     case HTTP
     case CBL
 }
 
-class RequestPath {
-    var path:String
-    var pathArgs:[String:Any]
+enum BaseOperation:String {
+    case create
+    case read
+    case update
+    case delete
     
-    init(withPath path:String ,pathArgs:[String:Any] ) {
-        self.path = path
-        self.pathArgs = pathArgs
+    case monitor
+    case listen
+}
+
+enum PathNames:String {
+    case ask
+    case track
+    case alert
+}
+
+class RequestPathArgs { //create builder patter for this class
+    
+    var documentID:String?
+    var selectArgs:[String]?
+    var sortOrder:String?
+    var sortBy:[String]?
+    var operationType:BaseOperation?
+    var dataProp:[String:Any]?
+
+    init(with documentID:String?, selectArgs:[String]?,sortOrder:String?,sortBy:[String]?,operationType:BaseOperation?,dataProp:[String:Any]?) {
+        
+        self.documentID = documentID
+        self.selectArgs = selectArgs
+        self.sortOrder = sortOrder
+        self.sortBy = sortBy
+        self.operationType = operationType
+        self.dataProp = dataProp
     }
 }
 
-class CBLRequestPath:RequestPath {
-    var mapBlock:CBLMapBlock!
+class RequestPathArgsBuilder {
+    private var documentID:String?
+    private var selectArgs:[String]?
+    private var sortOrder:String?
+    private var sortBy:[String]?
+    private var operationType:BaseOperation?
+    private var dataProp:[String:Any]?
+    
+    func setDocoumentId(documentID:String?){
+        self.documentID = documentID
+    }
+    
+    func setSelectArgs(selectArgs:[String]?){
+        self.selectArgs = selectArgs
+    }
+    
+    func setSortOrder(sortOrder:String?){
+        self.sortOrder = sortOrder
+    }
+    
+    func setSortBy(sortBy:[String]?){
+        self.sortBy = sortBy
+    }
+    
+    func setOperationType(operationType:BaseOperation?){
+        self.operationType = operationType
+    }
+    
+    func setDataProp(dataProp:[String:Any]?) {
+        self.dataProp = dataProp
+    }
+    
+    func buildPathArgs()->RequestPathArgs {
+        return RequestPathArgs(with: documentID, selectArgs: selectArgs, sortOrder: sortOrder, sortBy: sortBy, operationType: operationType, dataProp: dataProp)
+    }
 }
 
-class ResponsePathConfigurerManager {
-    class func configure(requestPathConfigurer:IResponsePathConfigurer,type:RequestType = .CBL) -> RequestPath {
-        var requestPath:RequestPath?
-        switch type {
-        case .HTTP:
-            requestPath = RequestPath(withPath: requestPathConfigurer.getResponseListenerPath()!, pathArgs: requestPathConfigurer.getResponseListenerPathArgs()!)
-        case .CBL:
-            requestPath = CBLRequestPath(withPath: requestPathConfigurer.getResponseListenerPath()!, pathArgs: requestPathConfigurer.getResponseListenerPathArgs()!)
-        }
+class ServiceRequest {
+    var path:PathNames?
+    var requestId:String?   //this to distinguish between diff ...created from the path and pathArgs
+    var pathArgs:RequestPathArgs?
+    var requestType:RequestType? = .CBL
+    
+    init(with path:PathNames, pathArgs:RequestPathArgs, requestType:RequestType) {
+        self.path = path
+        self.pathArgs = pathArgs
+        self.requestType = requestType
+        self.requestId = createRequestId()
+    }
+    
+    private func createRequestId()->String {
+        let uniquePath = path?.rawValue ?? "noPathGiven"
+        let uniOperation = pathArgs?.operationType?.rawValue ?? "noOperationDefined"
+        let uniDocID = pathArgs?.documentID ?? "noDocumentID"
         
-        return requestPath!
+        let uniqId = uniquePath + uniOperation + uniDocID + requestType!.rawValue
+        return uniqId
+    }
+}
+
+//class CBLRequestPath:ServiceRequest {
+//    var mapBlock:CBLMapBlock!
+//}
+
+class ResponsePathConfigurerManager {
+    class func configure(requestPathConfigurer:IResponsePathConfigurer) -> ServiceRequest {
+        var serviceRequest:ServiceRequest?
+        
+        serviceRequest = ServiceRequest(with: requestPathConfigurer.getResponseListenerPath(), pathArgs: requestPathConfigurer.getResponseListenerPathArgs(),requestType:requestPathConfigurer.getRequestType())
+        
+        return serviceRequest!
     }
 }
 
 
 protocol IResponsePathConfigurer {
-    func getResponseListenerPath() ->String?
-    func getResponseListenerPathArgs() -> [String:Any]?
+    func getResponseListenerPath() ->PathNames
+    func getResponseListenerPathArgs() -> RequestPathArgs
+    func getRequestType() ->RequestType
 }

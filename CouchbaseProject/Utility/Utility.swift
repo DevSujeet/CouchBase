@@ -15,8 +15,10 @@ class Utility {
         return date
     }
     
-    static func toTimeInMilliseconds(_ date: Date) -> Int64 {
-        return Int64(date.timeIntervalSince1970 * 1000)
+    static func toTimeInMilliseconds(_ date: Date?) -> Int64 {
+        
+        return Int64((date?.timeIntervalSince1970 ?? 0) * 1000)
+        
     }
     
     //MARK:- date string.

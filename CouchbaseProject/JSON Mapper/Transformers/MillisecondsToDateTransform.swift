@@ -25,7 +25,7 @@ class MillisecondsToDateTransform: TransformType {
     }
     
     func transformToJSON(_ value: Date?) -> Int64? {
-        return Utility.toTimeInMilliseconds(value!)
+        return Utility.toTimeInMilliseconds(value)
     }
 }
 
