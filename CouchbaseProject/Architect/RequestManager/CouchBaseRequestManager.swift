@@ -35,14 +35,14 @@ final class CouchBaseRequestManager:IRequestManager,IDataBaseResponseListner {
     func start(with request: ServiceRequest, resultReciever: IResultReciever) {
         
         iResultReciever = resultReciever
-        if let dataBaseManager = dataBases![(request.path?.rawValue)!] {
+        if let dataBaseManager = dataBases![request.requestId!] {
             dataBaseManager.update(serviceRequest: request)
              dataBaseManager.execute()
         } else {
             //create a new instance of DataBaseManager
             let dataBaseManager = CouchbaseManagerFactory().getCouchBaseDataManager(request: request, dataBaseResponseListener: self)
             //add in the dictionary
-            dataBases![(request.path?.rawValue)!] = dataBaseManager
+            dataBases![request.requestId!] = dataBaseManager
             //execute on data base
             dataBaseManager.update(serviceRequest: request)
             dataBaseManager.execute()
@@ -50,8 +50,9 @@ final class CouchBaseRequestManager:IRequestManager,IDataBaseResponseListner {
     }
     
     func stop(with request:ServiceRequest) {
-        if let dataBaseManager = dataBases![(request.path?.rawValue)!] {
+        if let dataBaseManager = dataBases![request.requestId!] {
             dataBaseManager.stopListening()
+            dataBases![request.requestId!] = nil
         }
     }
     

@@ -191,7 +191,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     private func reloadTaskLists() {
         //based on the list update..find a mechanism to find out the row update evnets like insert ,delete,update in row or section.
         listRows = listsLiveQuery.rows?.allObjects as? [CBLQueryRow] ?? nil
-        let testresult = Response(withPath: (serviceRequest.path?.rawValue)!)
+        let testresult = Response(withRequest: serviceRequest)
         let count = listRows?.count ?? 12
         print("list row count = \(count)") 
         testresult.result = listRows
@@ -200,7 +200,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
     //monitoredRows
     private func reloadDocument() {
         monitoredRows = monitorLiveQuery.rows?.allObjects as? [CBLQueryRow] ?? nil
-        let testresult = Response(withPath: (serviceRequest.path?.rawValue)!)
+        let testresult = Response(withRequest: serviceRequest)
         testresult.request = self.serviceRequest
         let count = monitoredRows?.count ?? 12
         print("reloadDocument list row count = \(count)")
@@ -371,7 +371,7 @@ class CouchDatabaseManager :NSObject,DatabaseManagerProtocol {
             syncError = error
             if let errorCode = error?.code {
                 NSLog("Replication Error: \(error!)")
-                let errorResult = Response(withPath: (serviceRequest.path?.rawValue)!)
+                let errorResult = Response(withRequest: serviceRequest)
                 errorResult.error = syncError
                 self.dataBaseResponseListener.onError(result:errorResult )
                 if errorCode == 401 {

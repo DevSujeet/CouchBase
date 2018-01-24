@@ -26,11 +26,13 @@ class ResponseListenerRegistrationService : IResultReciever {
     private func register(requestPath:ServiceRequest,responseListener:IResponseListener){
         //what will be the key to register
         //---most likely, response path will be the key
-        responseListeners[(requestPath.path?.rawValue)!] = responseListener
+        responseListeners[requestPath.requestId!] = responseListener
+        print("ResponseListenerRegistrationService registers for requestID = \(requestPath.requestId!)")
     }
     
     private func deRegister(requestPath:ServiceRequest,responseListener:IResponseListener){
-        responseListeners[(requestPath.path?.rawValue)!] = nil
+        responseListeners[requestPath.requestId!] = nil
+        print("ResponseListenerRegistrationService deRegisters for requestID = \(requestPath.requestId!)")
     }
     
     func start(requestPath:ServiceRequest,responseListner:IResponseListener){
@@ -55,34 +57,34 @@ class ResponseListenerRegistrationService : IResultReciever {
     //MARK:- IResultReciever
     func onStart(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onStart(result: result)
     }
     
     func onCreate(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onCreate(result: result)
     }
     func onChange(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onChange(result: result)
     }
     
     func onListen(result:Response) {
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onListen(result: result)
     }
     func onError(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onError(result: result)
     }
     
     func onFinished(result:Response){
         //get the listener from the dictionary
-        let responseListener = self.responseListeners[result.path]
+        let responseListener = self.responseListeners[(result.request?.requestId)!]
         responseListener?.onFinished(result: result)
     }
 }

@@ -196,9 +196,10 @@ extension AskView : ResponseListenerProtocol {
 
             let data = askItem.value(forKey: "value")
             //
-            if let parsedObject = Mapper<UserQuery>().map(JSONObject:data) {
-                print("parsedObject = \(parsedObject)")
-                let askItem = AskViewModel(with: (parsedObject.query?.query)!, owner: (parsedObject.query?.query)!, type: (parsedObject.query?.query)!)
+            if let userQuery = Mapper<UserQuery>().map(JSONObject:data) {
+                print("parsedObject = \(userQuery)")
+//                let askItem = AskViewModel(with: (userQuery?.query)!, owner: (userQuery.query?.query)!, type: (userQuery.query?.query)!)
+                let askItem = AskViewModel(withQuery: userQuery)
                 askDataArray?.append(askItem)
             }
             

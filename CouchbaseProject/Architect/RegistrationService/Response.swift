@@ -23,7 +23,11 @@ class Response {
     
     var error:Error?
     
-    init(withPath path:String) {
-        self.path = path
+    init(withRequest request:ServiceRequest){
+        self.request = request
     }
+    
+//    init(withPath path:String) {
+//        self.path = path
+//    }
 }

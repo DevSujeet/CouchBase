@@ -10,6 +10,7 @@ import UIKit
 
 class AskTableViewCell: UITableViewCell,ConfigurableCell {
 
+
     @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
@@ -32,6 +33,6 @@ class AskTableViewCell: UITableViewCell,ConfigurableCell {
     
     func configure(_ item: AskViewModel, at indexPath: IndexPath) {
         //        dataTitleLabel.text = item
-        titleLabel.text = item.title
+        titleLabel.text = item.userQuery?.query?.query
     }
 }

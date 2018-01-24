@@ -88,13 +88,24 @@ class RequestPathArgsBuilder {
 
 class ServiceRequest {
     var path:PathNames?
+    var requestId:String?   //this to distinguish between diff ...created from the path and pathArgs
     var pathArgs:RequestPathArgs?
-    var requestType:RequestType?
+    var requestType:RequestType? = .CBL
     
     init(with path:PathNames, pathArgs:RequestPathArgs, requestType:RequestType) {
         self.path = path
         self.pathArgs = pathArgs
         self.requestType = requestType
+        self.requestId = createRequestId()
+    }
+    
+    private func createRequestId()->String {
+        let uniquePath = path?.rawValue ?? "noPathGiven"
+        let uniOperation = pathArgs?.operationType?.rawValue ?? "noOperationDefined"
+        let uniDocID = pathArgs?.documentID ?? "noDocumentID"
+        
+        let uniqId = uniquePath + uniOperation + uniDocID + requestType!.rawValue
+        return uniqId
     }
 }
 

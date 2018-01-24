@@ -87,6 +87,8 @@
 		BAB691E4201608290061B3D2 /* TrackDataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691E3201608290061B3D2 /* TrackDataBaseManager.swift */; };
 		BAB691E6201608360061B3D2 /* AlertDataBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691E5201608360061B3D2 /* AlertDataBaseManager.swift */; };
 		BAB691E9201626EC0061B3D2 /* AskModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691E8201626EC0061B3D2 /* AskModel.swift */; };
+		BAB691EC20185B1F0061B3D2 /* AskIntentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAB691EB20185B1F0061B3D2 /* AskIntentView.swift */; };
+		BAB691EE20185B810061B3D2 /* AskIntentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = BAB691ED20185B810061B3D2 /* AskIntentView.xib */; };
 		BACBB9E6200E7DB000A44ED3 /* AskCBLChangeListner.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACBB9E5200E7DB000A44ED3 /* AskCBLChangeListner.swift */; };
 		BAEC1FF12004A52000B79AB1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BAEC1FF02004A52000B79AB1 /* AppDelegate.swift */; };
 		BAEC1FF62004A52000B79AB1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BAEC1FF42004A52000B79AB1 /* Main.storyboard */; };
@@ -201,6 +203,8 @@
 		BAB691E3201608290061B3D2 /* TrackDataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDataBaseManager.swift; sourceTree = "<group>"; };
 		BAB691E5201608360061B3D2 /* AlertDataBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertDataBaseManager.swift; sourceTree = "<group>"; };
 		BAB691E8201626EC0061B3D2 /* AskModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskModel.swift; sourceTree = "<group>"; };
+		BAB691EB20185B1F0061B3D2 /* AskIntentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskIntentView.swift; sourceTree = "<group>"; };
+		BAB691ED20185B810061B3D2 /* AskIntentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AskIntentView.xib; sourceTree = "<group>"; };
 		BACBB9E5200E7DB000A44ED3 /* AskCBLChangeListner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AskCBLChangeListner.swift; sourceTree = "<group>"; };
 		BAEC1FED2004A52000B79AB1 /* CouchbaseProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CouchbaseProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BAEC1FF02004A52000B79AB1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -282,12 +286,11 @@
 		BA840044200CA02500986FF6 /* AskView */ = {
 			isa = PBXGroup;
 			children = (
+				BAB691EA20185AE90061B3D2 /* AskCellView */,
 				BA840050200CF2D200986FF6 /* SearchView */,
 				BA840045200CA04C00986FF6 /* AskDataSource.swift */,
 				BA840040200C9F9700986FF6 /* AskView.swift */,
 				BA840042200C9FA700986FF6 /* AskView.xib */,
-				BA840047200CA0B100986FF6 /* AskTableViewCell.swift */,
-				BA840048200CA0B100986FF6 /* AskTableViewCell.xib */,
 			);
 			path = AskView;
 			sourceTree = "<group>";
@@ -663,6 +666,17 @@
 			path = TestAsk;
 			sourceTree = "<group>";
 		};
+		BAB691EA20185AE90061B3D2 /* AskCellView */ = {
+			isa = PBXGroup;
+			children = (
+				BA840047200CA0B100986FF6 /* AskTableViewCell.swift */,
+				BA840048200CA0B100986FF6 /* AskTableViewCell.xib */,
+				BAB691EB20185B1F0061B3D2 /* AskIntentView.swift */,
+				BAB691ED20185B810061B3D2 /* AskIntentView.xib */,
+			);
+			path = AskCellView;
+			sourceTree = "<group>";
+		};
 		BACBB9E4200E7B4600A44ED3 /* AskCBLDataListner */ = {
 			isa = PBXGroup;
 			children = (
@@ -892,6 +906,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BA84004A200CA0B100986FF6 /* AskTableViewCell.xib in Resources */,
+				BAB691EE20185B810061B3D2 /* AskIntentView.xib in Resources */,
 				BAEC1FFB2004A52000B79AB1 /* LaunchScreen.storyboard in Resources */,
 				BA840054200CF33300986FF6 /* AskSearchView.xib in Resources */,
 				BA986F8620144ED9003C3D1B /* TrackTableViewCell.xib in Resources */,
@@ -1133,6 +1148,7 @@
 				BA986F8E2014584E003C3D1B /* AlertDataSource.swift in Sources */,
 				BA90035C2005F4EA00E3A035 /* Ui.swift in Sources */,
 				BAB691E22016081E0061B3D2 /* AskDataBaseManager.swift in Sources */,
+				BAB691EC20185B1F0061B3D2 /* AskIntentView.swift in Sources */,
 				BA840049200CA0B100986FF6 /* AskTableViewCell.swift in Sources */,
 				BAEC20202004D0B700B79AB1 /* LoginWithReplicationSerices.swift in Sources */,
 				BA8AEC5F20119ADA007ACC46 /* CouchDatabaseManager.swift in Sources */,

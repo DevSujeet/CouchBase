@@ -15,7 +15,7 @@ class AskDataBaseManager: CouchDatabaseManager {
         let document = database.document(withID: (request.pathArgs?.documentID)!)
         let properties = request.pathArgs?.dataProp
         
-        let onCreateResult = Response(withPath: (serviceRequest.path?.rawValue)!)
+        let onCreateResult = Response(withRequest: request)
         do {
             try document?.putProperties(properties!)
             onCreateResult.success = true
