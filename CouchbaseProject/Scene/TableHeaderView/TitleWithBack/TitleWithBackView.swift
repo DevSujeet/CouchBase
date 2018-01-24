@@ -20,7 +20,7 @@ class TitleWithBackView: UIView {
     @IBOutlet weak var titleLabel: UILabel!{
         didSet {
             titleLabel.font = UIFont.systemFont(ofSize: 35, weight: .bold)
-            titleLabel.textColor = UIColor.lightGray//UIColor(hex6: 0x665978)
+            titleLabel.textColor = UIColor.white//UIColor(hex6: 0x665978)
         }
     }
     

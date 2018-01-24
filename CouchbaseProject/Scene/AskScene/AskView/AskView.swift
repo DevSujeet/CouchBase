@@ -105,7 +105,11 @@ extension AskView : ResponseListenerProtocol {
     
     
     func stopConnection() {
-        responseListiner.stop(requestPath: self.serviceRequest!, responseListner: self)
+        //nothing to stop if no request is present.
+        if self.serviceRequest != nil {
+            responseListiner.stop(requestPath: self.serviceRequest!, responseListner: self)
+        }
+        
     }
     
     func StartConnection(){

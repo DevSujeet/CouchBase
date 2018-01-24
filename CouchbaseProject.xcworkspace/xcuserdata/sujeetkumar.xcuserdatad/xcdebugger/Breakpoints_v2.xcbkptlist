@@ -10,7 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Scene/AlertScene/AlertViewController.swift"
-            timestampString = "538410463.145293"
+            timestampString = "538411502.348291"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "124"
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538410463.145624"
+            timestampString = "538411502.348597"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "191"
+            endingLineNumber = "191"
             landmarkName = "onChange(result:)"
             landmarkType = "7">
             <Locations>
@@ -42,12 +42,12 @@
                   moduleName = "CouchbaseProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-                  timestampString = "538410463.352807"
+                  timestampString = "538411502.695328"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "280">
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "224">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,12 +57,12 @@
                   moduleName = "CouchbaseProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-                  timestampString = "538410463.354511"
+                  timestampString = "538411502.696901"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "187"
-                  endingLineNumber = "187"
-                  offsetFromSymbolStart = "62">
+                  startingLineNumber = "191"
+                  endingLineNumber = "191"
+                  offsetFromSymbolStart = "68">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -74,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538410463.146036"
+            timestampString = "538411502.348989"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "202"
@@ -90,12 +90,12 @@
                   moduleName = "CouchbaseProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-                  timestampString = "538410463.358048"
+                  timestampString = "538411502.708189"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
                   endingLineNumber = "202"
-                  offsetFromSymbolStart = "23">
+                  offsetFromSymbolStart = "28">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -105,7 +105,7 @@
                   moduleName = "CouchbaseProject"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sujeetkumar/Documents/workspace/myCouchbaseProject/CouchbaseProject/CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-                  timestampString = "538410463.359683"
+                  timestampString = "538411502.70976"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "202"
@@ -122,7 +122,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538410463.146301"
+            timestampString = "538411502.349207"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "207"
@@ -138,7 +138,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Scene/AskScene/AskView/AskView.swift"
-            timestampString = "538410463.146372"
+            timestampString = "538411502.349278"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "73"
@@ -154,7 +154,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538410463.146822"
+            timestampString = "538411502.349713"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "45"
@@ -170,7 +170,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManagers/AskDataBaseManager.swift"
-            timestampString = "538410463.1468951"
+            timestampString = "538411502.349784"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "51"
@@ -186,7 +186,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "CouchbaseProject/Architect/CouchbaseManager/CouchDatabaseManager.swift"
-            timestampString = "538410463.14709"
+            timestampString = "538411502.350019"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "176"

@@ -70,6 +70,7 @@ class AskSearchView: UIView, UITextFieldDelegate{
     
   
     @IBAction func doneButtonAction(_ sender: UIButton) {
+        searchTextField.text = ""
         self.searchTextField.resignFirstResponder()
         if (delegate != nil) {
             self.delegate?.didPressDone()
@@ -88,6 +89,7 @@ class AskSearchView: UIView, UITextFieldDelegate{
         if (delegate != nil) {
             delegate?.didAskQuestion(withText: textField.text!)
         }
+        searchTextField.text = ""
         textField.resignFirstResponder()
         return true
     }
